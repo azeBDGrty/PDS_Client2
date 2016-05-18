@@ -257,6 +257,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
             double tauxAssurance = Double.parseDouble(iTauxAssurance.getText());
 
             
+            
             double mtTTInteret = (mtPret*dureePret*TEAG)/1200;
             double mtTTAssurance = (mtPret*dureePret*tauxAssurance)/1200;
             this.iTTInteret.setText(mtTTInteret+"");

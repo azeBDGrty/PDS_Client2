@@ -16,6 +16,7 @@ public class Controller_gestProspect {
 
     private AbstractHandle model;
     
+    
     public Controller_gestProspect(AbstractHandle model) {
         this.model = model;
         
