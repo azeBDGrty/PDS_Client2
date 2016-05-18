@@ -20,6 +20,7 @@ public class Controller_Connection {
 
     public Controller_Connection(AbstractHandle model) {
         this.model = model;
+        // teste
     }
     
     
