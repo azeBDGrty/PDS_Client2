@@ -10,8 +10,11 @@ import com.pds.serverhandler.ConseillerHandle;
 
 /**
  *
- * @author zouhairhajji
- */
+ * @author JIHANE
+
+*/
+
+ 
 public class Controller_gestProspect {
 
     private AbstractHandle model;
