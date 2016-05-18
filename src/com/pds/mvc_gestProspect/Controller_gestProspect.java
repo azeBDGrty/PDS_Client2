@@ -5,6 +5,7 @@
  */
 package com.pds.mvc_gestProspect;
 
+import com.pds.serverhandler.AbstractHandle;
 import com.pds.serverhandler.ConseillerHandle;
 
 /**
@@ -13,9 +14,9 @@ import com.pds.serverhandler.ConseillerHandle;
  */
 public class Controller_gestProspect {
 
-    private ConseillerHandle model;
+    private AbstractHandle model;
     
-    public Controller_gestProspect(ConseillerHandle model) {
+    public Controller_gestProspect(AbstractHandle model) {
         this.model = model;
     }
     
