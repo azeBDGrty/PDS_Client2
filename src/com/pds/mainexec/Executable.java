@@ -26,8 +26,7 @@ public class Executable {
         InPutData in = new InPutData(socket);
         OutPutData out = new OutPutData(socket);
         Anonyme user = new Anonyme();
-        // je suis un commentaire
-        // je suis un 2eme commentaire
+        
         AnonymeHandle model = new AnonymeHandle(in, out, user);
         
         
