@@ -249,6 +249,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
 
 
     public void chargerSimulation() {
+        
             
         try {
             int dureePret = Integer.parseInt(iDureePret.getText());
