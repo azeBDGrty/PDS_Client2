@@ -263,7 +263,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Date de contraction :"/>
+        <Property name="text" type="java.lang.String" value="Date de reference  :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iMtPret">

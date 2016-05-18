@@ -104,7 +104,7 @@ public class PanelSimPret extends javax.swing.JPanel {
 
         iDateContraction.setEditable(false);
 
-        jLabel12.setText("Date de contraction :");
+        jLabel12.setText("Date de reference  :");
 
         iMtPret.setEditable(false);
 
