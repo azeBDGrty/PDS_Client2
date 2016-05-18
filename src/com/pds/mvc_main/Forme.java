@@ -10,6 +10,7 @@ import com.pds.serverhandler.ConseillerHandle;
 import com.pds.implobs.AbstractObservable;
 import com.pds.implobs.IObserver;
 import com.pds.mvc_customer.View_GestClient;
+import com.pds.mvc_gestProspect.View_SimProspect;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -46,6 +47,9 @@ public class Forme extends JFrame implements IObserver {
     private JMenu gestionClient;
     private JMenuItem listerClients;
     
+    private JMenu gestionProspect;
+    private JMenuItem simProspect;
+    
     public Forme(Controller_MDIForm controller, boolean isNimbus) throws Exception {
         if (isNimbus) 
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -76,6 +80,10 @@ public class Forme extends JFrame implements IObserver {
 
         this.gestionClient = new JMenu("Gestion des clients");
         this.listerClients = new JMenuItem("Lister les clients");
+        
+        this.gestionProspect = new JMenu("Gestion des prospects");
+        this.simProspect = new JMenuItem("Simulation Prospect");
+        
         initComponent();
     }
 
@@ -90,15 +98,19 @@ public class Forme extends JFrame implements IObserver {
         
         this.gestionClient.add(listerClients);
         
+        this.gestionProspect .add(simProspect);
+        
         this.menuBar.add(option);
         this.menuBar.add(gestionComptes);
         this.menuBar.add(gestionClient);
+        this.menuBar.add(gestionProspect);
         
         this.desktopPane.setLayout(null);
 
         this.seConnecter.addActionListener(new SeConnecterListener());
         this.listerComptes.addActionListener(new GestionClientListener());
         this.listerClients.addActionListener(new ListerClientListener());
+        this.simProspect.addActionListener(new simProspectListener());
         
         
         
@@ -175,6 +187,15 @@ public class Forme extends JFrame implements IObserver {
         public void actionPerformed(ActionEvent e) {
             View_GestClient view = controller.ouvrirListClient();
              addWindow(view, true);
+        }
+    }
+    
+    
+    public class simProspectListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            View_SimProspect view = controller.ouvrirListProspect();
+            addWindow(view, true);
         }
     }
 

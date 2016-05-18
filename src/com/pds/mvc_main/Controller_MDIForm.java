@@ -12,6 +12,8 @@ import com.pds.mvc_connection.Controller_Connection;
 import com.pds.mvc_connection.View_Connection;
 import com.pds.mvc_customer.Controller_GestClient;
 import com.pds.mvc_customer.View_GestClient;
+import com.pds.mvc_gestProspect.Controller_gestProspect;
+import com.pds.mvc_gestProspect.View_SimProspect;
 import javax.swing.JInternalFrame;
 
 /**
@@ -45,6 +47,13 @@ public class Controller_MDIForm {
         model.addObserver(viewGestClient);
         viewGestClient.chargerTable(model.getClients());
         return viewGestClient;
+    }
+    
+    public View_SimProspect ouvrirListProspect(){
+        Controller_gestProspect controllerGestprospect = new Controller_gestProspect(model);
+        View_SimProspect viewGestProspect = new View_SimProspect(controllerGestprospect);
+        model.addObserver(viewGestProspect);
+        return viewGestProspect;
     }
     
 }

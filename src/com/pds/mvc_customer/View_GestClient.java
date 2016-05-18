@@ -50,6 +50,7 @@ public class View_GestClient extends JInternalFrame implements IObserver{
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         bVisSimPret = new javax.swing.JButton();
+        bVisSimPret1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -60,10 +61,17 @@ public class View_GestClient extends JInternalFrame implements IObserver{
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel1.setText("Liste des clients");
 
-        bVisSimPret.setText("Visualiser les simulations réalisées");
+        bVisSimPret.setText("Afficher les simulations");
         bVisSimPret.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bVisSimPretActionPerformed(evt);
+            }
+        });
+
+        bVisSimPret1.setText("rechercher");
+        bVisSimPret1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVisSimPret1ActionPerformed(evt);
             }
         });
 
@@ -82,9 +90,11 @@ public class View_GestClient extends JInternalFrame implements IObserver{
                         .addGap(0, 383, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(bVisSimPret, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(bVisSimPret, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bVisSimPret1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(235, 235, 235))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,8 +103,10 @@ public class View_GestClient extends JInternalFrame implements IObserver{
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(bVisSimPret, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bVisSimPret, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bVisSimPret1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -104,6 +116,10 @@ public class View_GestClient extends JInternalFrame implements IObserver{
     private void bVisSimPretActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVisSimPretActionPerformed
         controller.showFrameListSimPret(this.clients.get(this.idSelectedIndex));
     }//GEN-LAST:event_bVisSimPretActionPerformed
+
+    private void bVisSimPret1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVisSimPret1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bVisSimPret1ActionPerformed
 
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
@@ -164,6 +180,7 @@ public class View_GestClient extends JInternalFrame implements IObserver{
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bVisSimPret;
+    private javax.swing.JButton bVisSimPret1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

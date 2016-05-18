@@ -38,9 +38,11 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="bVisSimPret" min="-2" pref="239" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Component id="bVisSimPret" min="-2" pref="171" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="bVisSimPret1" min="-2" pref="138" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,8 +53,11 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="217" max="-2" attributes="0"/>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
-              <Component id="bVisSimPret" min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace pref="177" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="bVisSimPret" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="bVisSimPret1" alignment="3" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -85,10 +90,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="bVisSimPret">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visualiser les simulations r&#xe9;alis&#xe9;es"/>
+        <Property name="text" type="java.lang.String" value="Afficher les simulations"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bVisSimPretActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bVisSimPret1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="rechercher"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bVisSimPret1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

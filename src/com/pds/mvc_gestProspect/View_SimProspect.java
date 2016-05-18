@@ -252,18 +252,18 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
             
         try {
             int dureePret = Integer.parseInt(iDureePret.getText());
-        double mtPret = Double.parseDouble(iMtPret.getText());
-        double TEAG = Double.parseDouble(iTauxInteret.getText());
-        double tauxAssurance = Double.parseDouble(iTauxAssurance.getText());
-        
-        
-        double mtTTInteret = (mtPret*dureePret*TEAG)/1200;
-        double mtTTAssurance = (mtPret*dureePret*tauxAssurance)/1200;
-        this.iTTInteret.setText(mtTTInteret+"");
-        this.iTTAssurance.setText(mtTTAssurance+"");
-        double mensualite = (mtTTInteret + mtTTAssurance + mtPret)/dureePret;
-        this.iRembourssement.setText(mensualite+"");
-        this.iTTPret.setText(mensualite*dureePret+"");
+            double mtPret = Double.parseDouble(iMtPret.getText());
+            double TEAG = Double.parseDouble(iTauxInteret.getText());
+            double tauxAssurance = Double.parseDouble(iTauxAssurance.getText());
+
+            
+            double mtTTInteret = (mtPret*dureePret*TEAG)/1200;
+            double mtTTAssurance = (mtPret*dureePret*tauxAssurance)/1200;
+            this.iTTInteret.setText(mtTTInteret+"");
+            this.iTTAssurance.setText(mtTTAssurance+"");
+            double mensualite = (mtTTInteret + mtTTAssurance + mtPret)/dureePret;
+            this.iRembourssement.setText(mensualite+"");
+            this.iTTPret.setText(mensualite*dureePret+"");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Le formulaire est mal remplit");
         }
