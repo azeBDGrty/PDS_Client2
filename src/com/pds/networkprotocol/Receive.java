@@ -15,7 +15,6 @@ public enum Receive {
     connectionAutorised ("La connection est autorisée"),
     connectionRefused ("La connection est refusée"),
     none ("La commande n'est pas reconnu"),
-    done ("La commande n'est pas reconnu"),
     
     
     sendAllClient ("la liste de tous les clients"),
