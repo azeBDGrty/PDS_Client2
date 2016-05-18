@@ -26,7 +26,7 @@ public class Executable {
         InPutData in = new InPutData(socket);
         OutPutData out = new OutPutData(socket);
         Anonyme user = new Anonyme();
-        // je teste
+       
         AnonymeHandle model = new AnonymeHandle(in, out, user);
         
         
