@@ -82,6 +82,11 @@ public class OutPutData {
         sendMessage(askAllPays.toString(), element);
     }
     
+    //Nodaro
+    public void askAllSimPretClient(Element element){
+        sendMessage(askSimulationPretsClient.toString(), element);
+    }
+    
     
     
 }

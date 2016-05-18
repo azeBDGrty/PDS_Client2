@@ -5,38 +5,91 @@
 */
 package com.pds.graphics;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import com.pds.entities.CalculPret;
+import com.pds.entities.SimulationPret;
+import com.pds.entities.Taux_directeur;
 import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Nodaro
  */
-public class AmortisationTable extends javax.swing.JFrame {
-   
+public class AmortisationTable extends JFrame {
+    
     private JFrame frame;
-
+    private SimulationPret simulationPret;
+    private CalculPret calculPret;
+    
     /**
      * Creates new form AmortisationTable
      */
-    public AmortisationTable() {
+    public AmortisationTable(int idClient) throws SQLException {
         initComponents();
         frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(120);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(170);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(60);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(60);
-        this.setTitle("Tableau d'amortissement");
+        
+        
+        //this.setTitle("Tableau d'amortissement");
+        
+        //récupération des données dans la base, + peuplement de simulationpret
+        calculPret=new CalculPret();
+        Taux_directeur td=new Taux_directeur();
+        calculPret.setTauxDirecteur(td);
+        simulationPret=new SimulationPret();
+        simulationPret.setCalcPret(calculPret);
+        simulationPret.setAmortisationCalcPret(calculPret, idClient,td);
+        
+        List<Double> capAmorti=new ArrayList<Double>();
+        capAmorti=simulationPret.calcCapAmmort();   //capital amort
+        List<Double> capRestant=new ArrayList<Double>();
+        capRestant=simulationPret.calcCapRestant(); //captital restant
+        List<Double> calcInterets=new ArrayList<Double>();
+        calcInterets=simulationPret.calcInterets(); //interets
+        double assurance=simulationPret.calcAssurance();    //asurance
+        double totalAPayer=simulationPret.calcMensualite(); //total a payer
+        
+        String col[] = {"Mois", "Montant remboursé", "Intérêts", "Montant restant à rembourser", "Assurance", "Coût total"};
+        DefaultTableModel dtm = new DefaultTableModel(col, 0);
+        jTable1.setModel(dtm);
+        for (int i=0;i<simulationPret.getDureePret();i++){      //affichage des valeurs dans les cellules
+            Object[] data = {i+1, capAmorti.get(i), calcInterets.get(i),capRestant.get(i),assurance,totalAPayer
+            };
+            dtm.addRow(data);
+        }
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);        //taille des colonnes
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(140);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
+        
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i=0;i<jTable1.getColumnCount();i++)
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);   //centrer les valeurs du jtable
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);         //centrer les titres du header
+        this.setVisible(true);
+        this.setSize(650, 500);
+        
     }
+    
+    
+    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,12 +146,12 @@ public class AmortisationTable extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,8 +160,7 @@ public class AmortisationTable extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,18 +170,18 @@ public class AmortisationTable extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         PrinterJob job = PrinterJob.getPrinterJob();
-
+        
         PageFormat format = job.defaultPage();
         format.setOrientation(PageFormat.LANDSCAPE);
         PageFormat postformat = job.pageDialog(format);
         job.setPrintable(new Printer(frame), format);
-         
+        
         try{
             if(job.printDialog()) job.print();
         }
         catch(Exception e){e.printStackTrace();}
         
-
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     /**
@@ -158,11 +210,16 @@ public class AmortisationTable extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AmortisationTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AmortisationTable().setVisible(true);
+                try {
+                    new AmortisationTable(1).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AmortisationTable.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
