@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author zouhairhajji
+ * @author JIHANE
  */
 public class View_SimProspect extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver{
 
@@ -256,7 +256,6 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
             double TEAG = Double.parseDouble(iTauxInteret.getText());
             double tauxAssurance = Double.parseDouble(iTauxAssurance.getText());
 
-            
             
             double mtTTInteret = (mtPret*dureePret*TEAG)/1200;
             double mtTTAssurance = (mtPret*dureePret*tauxAssurance)/1200;
