@@ -97,15 +97,19 @@ public class InPutData {
                 break ;
                 
             case sendAllDepartement:
+                
                 readElement();
                 break ;
                 
             case sendAllPays:
+                
                 readElement();
                 break ;
                 
             case sendSimulationPretsClient: 
+                System.out.println("Simulation lkfsdmghmfdsjlghvhjmskfldghjkmsdgfhjk");
                 readElement(); 
+                
                 break;
             default:
                 break;

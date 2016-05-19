@@ -79,7 +79,7 @@ public class OutPutData {
     }
     
     public void askAllSimulationClientPret(Element element){
-        sendMessage(askAllPays.toString(), element);
+        sendMessage(askSimulationPretsClient.toString(), element);
     }
     
     //Nodaro
