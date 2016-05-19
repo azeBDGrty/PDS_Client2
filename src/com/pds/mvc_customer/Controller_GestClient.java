@@ -42,6 +42,7 @@ public class Controller_GestClient {
         model.addObserver(view);
         view.chargerSimulations(client, listSimPret);
         view.setVisible(true);
+        
     }
     
     

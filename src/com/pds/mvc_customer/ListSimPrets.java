@@ -117,9 +117,9 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
             if( panel.gettSelectionner().isSelected()){
                 framsSelected.add(panel);
                 listSimPret.add(panel.getSimPret());
-            } else{
+            } else
                 framsUnselected.add(panel);
-            }
+            
         }
         
         if(framsSelected.size() == 0)

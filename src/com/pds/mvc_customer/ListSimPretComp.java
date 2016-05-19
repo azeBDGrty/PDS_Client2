@@ -114,9 +114,8 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
             panel.setVisible(true);
             FrameList.add(panel, gbc);
         }
-        System.out.println("je dois ajouter "+ listSimPret.size());
+        
         FrameList.repaint();
         FrameList.validate();
-        System.out.println(FrameList.getComponentCount());
     }
 }

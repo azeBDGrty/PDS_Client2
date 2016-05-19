@@ -189,6 +189,7 @@ public class PanelInfoSimPret extends javax.swing.JPanel {
     }
     
     
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
