@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver{
 
     private Controller_GestClient controller;
-    
+    private Client client;
     
     public ListSimPrets(Controller_GestClient controller) {
         this.controller= controller;
@@ -110,11 +110,13 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         List<PanelSimPret> framsSelected = new ArrayList<>();
         List<PanelSimPret> framsUnselected = new ArrayList<>();
+        List<SimulationPret> listSimPret = new ArrayList<>();
         
         for(int i = 0; i <FrameList.getComponentCount(); i++){
             PanelSimPret panel = (PanelSimPret) FrameList.getComponent(i);
             if( panel.gettSelectionner().isSelected()){
                 framsSelected.add(panel);
+                listSimPret.add(panel.getSimPret());
             } else{
                 framsUnselected.add(panel);
             }
@@ -126,7 +128,7 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
             for(PanelSimPret fram : framsUnselected)
                 fram.compararer(framsUnselected.get(0));
         else
-            controller.showPanelComparaison(framsSelected);
+            controller.showPanelComparaison(client, listSimPret);
         
         
         
@@ -147,8 +149,7 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
     }
 
     public void chargerSimulations(Client client) {
-        System.out.println("je dois l'afficher");
-        System.out.println("je dois l'afficher : il y a  "+ client.getSimulationsPrets().size());
+        this.client = client;
         for(SimulationPret simPret : client.getSimulationsPrets()){
             PanelSimPret panel = new PanelSimPret();
             panel.chargerSimulation(simPret);

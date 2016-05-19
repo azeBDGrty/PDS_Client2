@@ -6,6 +6,7 @@
 package com.pds.mvc_customer;
 
 import com.pds.entities.Client;
+import com.pds.entities.SimulationPret;
 import com.pds.serverhandler.AbstractHandle;
 import com.pds.serverhandler.ConseillerHandle;
 import java.util.List;
@@ -34,10 +35,14 @@ public class Controller_GestClient {
         view.setVisible(true);
     }
 
-    void showPanelComparaison(List<PanelSimPret> framsSelected) {
-    
+    void showPanelComparaison(Client client, List<SimulationPret> listSimPret) {
+        ListSimPretComp view = new ListSimPretComp(this);
+        model.getDeskTopPane().add(view);
+        
+        model.addObserver(view);
+        view.chargerSimulations(client, listSimPret);
+        view.setVisible(true);
     }
-    
     
     
 }

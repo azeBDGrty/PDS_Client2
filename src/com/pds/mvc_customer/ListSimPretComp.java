@@ -5,17 +5,28 @@
  */
 package com.pds.mvc_customer;
 
+import com.pds.entities.Client;
+import com.pds.entities.SimulationPret;
+import com.pds.implobs.AbstractObservable;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.util.List;
+
 /**
  *
  * @author zouhairhajji
  */
-public class ListSimPretComp extends javax.swing.JInternalFrame {
+public class ListSimPretComp extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver{
 
+    private Controller_GestClient controller;
+    private Client client;
     
-    
-    public ListSimPretComp() {
+    public ListSimPretComp(Controller_GestClient controller) {
+        this.controller = controller;
         initComponents();
+        
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,30 +38,22 @@ public class ListSimPretComp extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        panelInfoSimPret1 = new com.pds.mvc_customer.PanelInfoSimPret();
+        FrameList = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelInfoSimPret1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelInfoSimPret1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
-        );
+        setClosable(true);
+        setIconifiable(true);
 
-        jScrollPane1.setViewportView(jPanel1);
+        FrameList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        FrameList.setLayout(new java.awt.GridBagLayout());
+        jScrollPane1.setViewportView(FrameList);
 
         jButton1.setText("Retrier");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,10 +61,12 @@ public class ListSimPretComp extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(594, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,13 +81,42 @@ public class ListSimPretComp extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel FrameList;
     private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.pds.mvc_customer.PanelInfoSimPret panelInfoSimPret1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public boolean update(AbstractObservable sender, String message, Object... data) {
+        return true;
+    }
+
+
+    void chargerSimulations(Client client, List<SimulationPret> listSimPret) {
+        this.client = client;
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.weighty = 1;
+        
+        
+        for(SimulationPret simulation : listSimPret){
+            PanelInfoSimPret panel = new PanelInfoSimPret();
+            System.out.println("..");
+            panel.setVisible(true);
+            FrameList.add(panel, gbc);
+        }
+        System.out.println("je dois ajouter "+ listSimPret.size());
+        FrameList.repaint();
+        FrameList.validate();
+        System.out.println(FrameList.getComponentCount());
+    }
 }

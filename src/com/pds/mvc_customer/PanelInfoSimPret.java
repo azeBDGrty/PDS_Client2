@@ -130,7 +130,7 @@ public class PanelInfoSimPret extends javax.swing.JPanel {
                         .addGap(44, 44, 44)
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGap(80, 80, 80)
                         .addComponent(lTaux)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
@@ -139,7 +139,7 @@ public class PanelInfoSimPret extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addComponent(lTaux)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
