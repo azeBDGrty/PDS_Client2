@@ -41,7 +41,9 @@ public class SimulationPret {
         return "SimulationPret{" + "idSimPret=" + idSimPret + ", dateSimulation=" + dateSimulation + ", dateContraction=" + dateContraction + ", dureePret=" + dureePret + ", mtPret=" + mtPret + ", typePret=" + typePret + ", blocked=" + blocked + ", calcPret=" + calcPret + ", typeEmprunt=" + typeEmprunt + '}';
     }
     
-    public SimulationPret(int idSimPret, Timestamp dateSimulation, Timestamp dateContraction, int dureePret, double mtPret, TypePret typePret, boolean blocked, CalculPret calcPret) {
+    public SimulationPret(int idSimPret, Timestamp dateSimulation, 
+            Timestamp dateContraction, int dureePret, double mtPret, 
+            TypePret typePret, boolean blocked, CalculPret calcPret) {
         this.idSimPret = idSimPret;
         this.dateSimulation = dateSimulation;
         this.dateContraction = dateContraction;
@@ -50,6 +52,14 @@ public class SimulationPret {
         this.typePret = typePret;
         this.blocked = blocked;
         this.calcPret = calcPret;
+    }
+    
+    public SimulationPret(int idSimPret, 
+             int dureePret, double mtPret) {
+        this.idSimPret = idSimPret;
+        this.dureePret = dureePret;
+        this.mtPret = mtPret;
+
     }
     
     public int getIdSimPret() {

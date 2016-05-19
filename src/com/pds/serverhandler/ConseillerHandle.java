@@ -47,6 +47,7 @@ public class ConseillerHandle extends AbstractHandle{
     private List<Departement> departements;
     private List<Pays> pays;
     private List<Client> clients;
+    private List<SimulationPret> simulations;
     
     
     public ConseillerHandle(InPutData in, OutPutData out, Personne user) {
@@ -56,6 +57,7 @@ public class ConseillerHandle extends AbstractHandle{
         this.departements = new ArrayList<>();
         this.pays = new ArrayList<>();
         this.clients  = new ArrayList<>();
+        simulations=new ArrayList<>();
     }
 
     @Override
@@ -76,6 +78,7 @@ public class ConseillerHandle extends AbstractHandle{
             in.getCommand();
             buildAllPays(this.in.getLastDocument());
             
+
             
             Element root = new Element("rootElement");
             Element eIdConseille = new Element("idConseille");
@@ -89,6 +92,18 @@ public class ConseillerHandle extends AbstractHandle{
             in.getCommand();
             buildAllClient(this.in.getLastDocument());
             
+
+            Element eIdClient = new Element("idClient");
+            eIdClient.setText(user.getAccount().getIdAccount()+"");
+            root.addContent(eIdClient);
+            out.askAllInformationClient(root);
+            in.getCommand();
+            buildOwnInfo(this.in.getLastDocument());
+            
+            out.askAllSimulationClientPret(root);
+            in.getCommand();
+            this.buildAllSimulation(this.in.getLastDocument());
+            
         } catch (IOException | ParseException ex) {
             Logger.getLogger(ConseillerHandle.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,7 +114,7 @@ public class ConseillerHandle extends AbstractHandle{
                 switch(in.getCommand()){
                     
                     case connectionDone : 
-                        System.out.println("Donnection déja effectué");
+                        System.out.println("Connection déjà effectuée");
                         break;
                     
                     case sendAllClient : 
@@ -117,11 +132,11 @@ public class ConseillerHandle extends AbstractHandle{
                         break;
                         
                     case sendAllDepartement : 
-                        System.out.println("Je dois recevoir la liste des Departement;");
+                        System.out.println("Je dois recevoir la liste des départements;");
                         break;
                         
                     case sendAllPays : 
-                        System.out.println("Je dois recevoir la liste des Pays;");
+                        System.out.println("Je dois recevoir la liste des pays;");
                         break;
                         
                     default : 
@@ -232,6 +247,18 @@ public class ConseillerHandle extends AbstractHandle{
                     epays.getChildText("alpha3"),
                     epays.getChildText("nom_en_fr"),
                     epays.getChildText("nom_en_gb")));
+        }
+    }
+    
+    private void buildAllSimulation(Document lastDocument) {
+        Element eRoot =lastDocument.getRootElement();
+        for(Element eSimulation : eRoot.getChildren()){
+            simulations.add(new SimulationPret(Integer.parseInt(eSimulation.getChildText("id_sim_pret")),
+                    Integer.parseInt(eSimulation.getChildText("duree_pret")),
+                    Double.parseDouble(eSimulation.getChildText("mt_pret"))
+            
+            
+            ));
         }
     }
 
