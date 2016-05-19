@@ -92,9 +92,6 @@ public class InPutData {
                 break ;
                 
                 
-                
-                
-                
             case sendAllRegion:
                 readElement();
                 break ;
@@ -110,7 +107,6 @@ public class InPutData {
             case sendSimulationPretsClient: 
                 readElement(); 
                 break;
-                
             default:
                 break;
         }
