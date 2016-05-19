@@ -22,6 +22,9 @@ import javax.swing.JToggleButton;
 public class PanelSimPret extends javax.swing.JPanel {
 
     private boolean selected;
+    private SimulationPret simPret;
+    
+    
     public PanelSimPret() {
         initComponents();
     }
@@ -353,6 +356,7 @@ public class PanelSimPret extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void chargerSimulation(SimulationPret simPret) {
+        this.simPret = simPret;
         this.numSim.setText(this.numSim.getText()+" " + simPret.getIdSimPret());
         this.iTypeEmprunt.setText(simPret.getTypeEmprunt().getAbv());
         this.iTypePret.setText(simPret.getTypePret().getAbv());
@@ -409,6 +413,11 @@ public class PanelSimPret extends javax.swing.JPanel {
         clearCell(lTauxAssurance, "...", Color.BLACK);
         clearCell(lTauxInteret, "...", Color.BLACK);
     }
+
+    public SimulationPret getSimPret() {
+        return simPret;
+    }
+    
     
     
     public void compararer(PanelSimPret frameComp){

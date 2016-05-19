@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver{
 
     private Controller_GestClient controller;
+    
+    
     public ListSimPrets(Controller_GestClient controller) {
         this.controller= controller;
         initComponents();
@@ -106,33 +108,25 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PanelSimPret selectedPanel = null;
-        List<PanelSimPret> frams = new ArrayList<>();
+        List<PanelSimPret> framsSelected = new ArrayList<>();
+        List<PanelSimPret> framsUnselected = new ArrayList<>();
         
         for(int i = 0; i <FrameList.getComponentCount(); i++){
             PanelSimPret panel = (PanelSimPret) FrameList.getComponent(i);
-            if(panel.gettSelectionner().isSelected()){
-                if (selectedPanel == null){
-                    selectedPanel = panel;
-                }else{
-                    JOptionPane.showMessageDialog(this, "Vous devez selectionner exactement un element, non pas plusieurs.");
-                    return;
-                }
-            }else{
-                frams.add(panel);
-            } 
+            if( panel.gettSelectionner().isSelected()){
+                framsSelected.add(panel);
+            } else{
+                framsUnselected.add(panel);
+            }
         }
         
-        if(selectedPanel == null){
-            JOptionPane.showMessageDialog(this, "Vous devez selectionner un element.");
-            return;
-        }
-            
-        
-        for(PanelSimPret fram : frams){
-            fram.compararer(selectedPanel);
-        }
-        
+        if(framsSelected.size() == 0)
+            JOptionPane.showMessageDialog(this, "Vous devez obligatoirement choisir au moins une simulation.");
+        else if (framsSelected.size() == 1)
+            for(PanelSimPret fram : framsUnselected)
+                fram.compararer(framsUnselected.get(0));
+        else
+            controller.showPanelComparaison(framsSelected);
         
         
         
