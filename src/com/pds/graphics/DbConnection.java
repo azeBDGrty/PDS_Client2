@@ -21,9 +21,9 @@ import java.sql.SQLException;
 //Ajouter droits 
 //GRANT ALL PRIVILEGES ON nom_db.* TO "nom_utilisateur"@"localhost" IDENTIFIED BY 'mot_de_passe';
 public class DbConnection {
-    public static String url = "jdbc:mysql://localhost:3306/pds";
-    public static String username = "java";
-    public static String password = "password";
+    public static String url = "jdbc:mysql://localhost:3306/pds_bdg";
+    public static String username = "root";
+    public static String password = "";
     public static Connection connection;
     
     public static void  connection(){
