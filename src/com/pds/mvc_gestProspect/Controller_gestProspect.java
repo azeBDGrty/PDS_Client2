@@ -6,13 +6,12 @@
 package com.pds.mvc_gestProspect;
 
 import com.pds.serverhandler.AbstractHandle;
-import com.pds.serverhandler.ConseillerHandle;
+import com.pds.serverhandler.AdvisorHandle;
 
 /**
  *
  * @author JIHANE
 
-*/
 
  
 public class Controller_gestProspect {

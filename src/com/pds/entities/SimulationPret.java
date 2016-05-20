@@ -149,6 +149,7 @@ public class SimulationPret implements Cloneable{
     public double calcAssurance(){
         double mtTTAssurance = (getMtPret()*getDureePret()*getCalcPret().getCoef_assurance())/1200;
         mtTTAssurance=mtTTAssurance/getDureePret();
+        mtTTAssurance=(double)Math.round(mtTTAssurance*100d)/100d;
         return mtTTAssurance;
     }
     

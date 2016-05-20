@@ -57,7 +57,7 @@ public class AmortisationTable extends JFrame {
         capRestant=simulationPret.calcCapRestant(); //captital restant
         List<Double> calcInterets=new ArrayList<Double>();
         calcInterets=simulationPret.calcInterets(); //interets
-        double assurance=simulationPret.calcAssurance();    //asurance
+        double assurance=simulationPret.calcAssurance();    //insurance
         double totalAPayer=simulationPret.calcMensualite(); //total a payer
         
         String col[] = {"Mois", "Montant remboursé", "Intérêts", "Montant restant à rembourser", "Assurance", "Coût total"};
@@ -68,7 +68,7 @@ public class AmortisationTable extends JFrame {
             };
             dtm.addRow(data);
         }
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);        //taille des colonnes
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);        //columns width
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(140);
@@ -78,9 +78,9 @@ public class AmortisationTable extends JFrame {
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i=0;i<jTable1.getColumnCount();i++)
-            jTable1.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);   //centrer les valeurs du jtable
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);   //center values in jTable
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
-                .setHorizontalAlignment(JLabel.CENTER);         //centrer les titres du header
+                .setHorizontalAlignment(JLabel.CENTER);         //center titles in header
         this.setVisible(true);
         this.setSize(650, 500);
         
