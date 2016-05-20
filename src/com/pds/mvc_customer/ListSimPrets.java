@@ -10,6 +10,8 @@ import com.pds.entities.SimulationPret;
 import com.pds.implobs.AbstractObservable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -128,7 +130,11 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
             for(PanelSimPret fram : framsUnselected)
                 fram.compararer(framsUnselected.get(0));
         else
-            controller.showPanelComparaison(client, listSimPret);
+            try {
+                controller.showPanelComparaison(client, listSimPret);
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(ListSimPrets.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         

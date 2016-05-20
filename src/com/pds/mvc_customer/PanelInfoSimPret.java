@@ -5,7 +5,14 @@
  */
 package com.pds.mvc_customer;
 
+import com.pds.entities.Client;
+import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
+import java.awt.Color;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JLabel;
 
 /**
@@ -31,117 +38,106 @@ public class PanelInfoSimPret extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        l1 = new javax.swing.JLabel();
-        l2 = new javax.swing.JLabel();
-        l3 = new javax.swing.JLabel();
-        l4 = new javax.swing.JLabel();
-        l5 = new javax.swing.JLabel();
-        l6 = new javax.swing.JLabel();
+        panelPointFort = new javax.swing.JPanel();
+        titrePointFort = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lPosition = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelInformation = new javax.swing.JPanel();
+        panelIndicateur = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lTaux = new javax.swing.JLabel();
+        lTauxEndettement = new javax.swing.JLabel();
+        lTauxInteret = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelPointFort.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel3.setText("Point fort");
-
-        l1.setText("1- ");
-
-        l2.setText("2- ");
-
-        l3.setText("3- ");
-
-        l4.setText("4- ");
-
-        l5.setText("5- ");
-
-        l6.setText("6- ");
+        titrePointFort.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        titrePointFort.setText("Point fort");
 
         jLabel2.setText("Position :");
 
         lPosition.setText("1");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l2)
-                    .addComponent(l1)
-                    .addComponent(l3)
-                    .addComponent(l4)
-                    .addComponent(l5)
-                    .addComponent(l6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelInformation.setLayout(new javax.swing.BoxLayout(panelInformation, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(panelInformation);
+
+        javax.swing.GroupLayout panelPointFortLayout = new javax.swing.GroupLayout(panelPointFort);
+        panelPointFort.setLayout(panelPointFortLayout);
+        panelPointFortLayout.setHorizontalGroup(
+            panelPointFortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPointFortLayout.createSequentialGroup()
                 .addGap(141, 141, 141)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addComponent(titrePointFort, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lPosition)
                 .addGap(10, 10, 10))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(lPosition))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(l1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(l2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(l3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(l4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(l5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(l6)
+            .addGroup(panelPointFortLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
+        panelPointFortLayout.setVerticalGroup(
+            panelPointFortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPointFortLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(panelPointFortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titrePointFort)
+                    .addComponent(jLabel2)
+                    .addComponent(lPosition))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelIndicateur.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel1.setText("Taux d'emprunt");
+        jLabel1.setText("Taux d'endettement");
 
-        lTaux.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lTaux.setText("...");
+        lTauxEndettement.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lTauxEndettement.setText("...");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+        lTauxInteret.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lTauxInteret.setText("...");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel4.setText("Taux d'emprunt");
+
+        javax.swing.GroupLayout panelIndicateurLayout = new javax.swing.GroupLayout(panelIndicateur);
+        panelIndicateur.setLayout(panelIndicateurLayout);
+        panelIndicateurLayout.setHorizontalGroup(
+            panelIndicateurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIndicateurLayout.createSequentialGroup()
+                .addGroup(panelIndicateurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIndicateurLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(lTaux)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addGroup(panelIndicateurLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(lTauxEndettement))
+                    .addGroup(panelIndicateurLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4))
+                    .addGroup(panelIndicateurLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(lTauxInteret)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+        panelIndicateurLayout.setVerticalGroup(
+            panelIndicateurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIndicateurLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lTauxEndettement, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lTaux)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lTauxInteret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -149,40 +145,27 @@ public class PanelInfoSimPret extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(panelPointFort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(panelIndicateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelIndicateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelPointFort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public void setSimPret(SimulationPret simPret) {
         this.simPret = simPret;
     }
-
-    public JLabel getL1() {
-        return l1;
-    }
     
-    public JLabel getL2() {
-        return l1;
-    }
-    
-    public JLabel getL3() {
-        return l1;
-    }
-    
-    public JLabel getL4() {
-        return l1;
-    }
-    
-    public JLabel getL5() {
-        return l1;
-    }
 
     public JLabel getlPosition() {
         return lPosition;
@@ -194,16 +177,114 @@ public class PanelInfoSimPret extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel l1;
-    private javax.swing.JLabel l2;
-    private javax.swing.JLabel l3;
-    private javax.swing.JLabel l4;
-    private javax.swing.JLabel l5;
-    private javax.swing.JLabel l6;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lPosition;
-    private javax.swing.JLabel lTaux;
+    private javax.swing.JLabel lTauxEndettement;
+    private javax.swing.JLabel lTauxInteret;
+    private javax.swing.JPanel panelIndicateur;
+    private javax.swing.JPanel panelInformation;
+    private javax.swing.JPanel panelPointFort;
+    private javax.swing.JLabel titrePointFort;
     // End of variables declaration//GEN-END:variables
+
+    
+
+
+    void chargerInfoSimPret(Client client, SimulationPret simToShow, List<SimulationPret> listSimPret) throws CloneNotSupportedException {
+        List<SimulationPret> clonedList = new LinkedList<>(listSimPret);
+        
+        
+        if(simToShow.getTauxEndettement(client) > 0.33){
+            panelIndicateur.setBackground(new Color(239, 214, 214));
+            panelPointFort.setBackground(new Color(239, 214, 214));
+            lPosition.setText(0+"");
+            titrePointFort.setText("Pas de point fort !");
+            
+        }else{
+            showAdvantage(client, simToShow, listSimPret);
+        }
+        
+        lTauxEndettement.setText(MathHepler.ajustVirgule(simToShow.getTauxEndettement(client)*100, 2)+" %");
+        lTauxInteret.setText(MathHepler.ajustVirgule(simToShow.getTauxInteret(), 2) +" %");
+        panelIndicateur.repaint();
+        panelIndicateur.validate();
+    }
+    
+    private void showAdvantage(Client client, SimulationPret simToShow, List<SimulationPret> listSimPret) {
+        // Pour le taux d'interet
+        int cnt = 0;
+        boolean isBestTauxInteret = true;
+        boolean isBestTauxEndet = true;
+        boolean isBestDuree = true;
+        boolean isBestMensualite = true;
+        boolean isBestMttTotalaRemb = true;
+        
+        for(SimulationPret simulation : listSimPret){
+            if(simulation == simToShow)
+                continue;
+            
+            if(simToShow.getTauxInteret() > simulation.getTauxInteret())
+                isBestTauxInteret = false;
+            
+            
+            if (simToShow.getTauxEndettement(client) > simulation.getTauxEndettement(client))
+                isBestTauxEndet = false;
+            
+            if (simToShow.getDureePret() < simulation.getDureePret())
+                isBestDuree = false;
+            
+            if (simToShow.getMensualite()> simulation.getMensualite())
+                isBestMensualite = false;
+            
+            if(simToShow.getDureePret() * simToShow.getMensualite() > simulation.getDureePret() * simulation.getMensualite())
+                isBestMttTotalaRemb = false;
+        }
+        
+        if(isBestTauxInteret){
+            cnt++;
+            lTauxInteret.setForeground(new Color(78, 184 , 0));
+            JLabel label = new JLabel(cnt+"- Meilleur taux d'interet : " +MathHepler.ajustVirgule(simToShow.getTauxInteret(), 2) +" %");
+            label.setSize(label.getWidth(), 20);
+            panelInformation.add(label);
+        }
+        
+        if(isBestTauxEndet){
+            cnt++;
+            JLabel label = new JLabel(cnt+"- Meilleur taux d'endettement " + MathHepler.ajustVirgule(simToShow.getTauxEndettement(client)*100, 2)+" %");
+            label.setSize(label.getWidth(), 20);
+            panelInformation.add(label);
+            lTauxEndettement.setForeground(new Color(78, 184 , 0));
+        }
+        
+        if(isBestDuree){
+            cnt++;
+            JLabel label = new JLabel(cnt+"- Meilleure durée d'emprunt " + simToShow.getDureePret() +" mois");
+            label.setSize(label.getWidth(), 20);
+            panelInformation.add(label);
+        }
+        
+        if(isBestMensualite){
+            cnt++;
+            JLabel label = new JLabel(cnt+"- Meilleure mensualité" + MathHepler.ajustVirgule(simToShow.getMensualite(), 3));
+            label.setSize(label.getWidth(), 20);
+            panelInformation.add(label);
+        }
+        
+        if(isBestMttTotalaRemb){
+            cnt++;
+            JLabel label = new JLabel(cnt+"- Meilleure montant totale à rembourser" + MathHepler.ajustVirgule(simToShow.getMensualite()*simToShow.getDureePret(), 3));
+            label.setSize(label.getWidth(), 20);
+            panelInformation.add(label);
+        }
+        
+        
+        
+        
+        // pour le montant totale remboursé
+        
+    }
+    
+    
 }
+

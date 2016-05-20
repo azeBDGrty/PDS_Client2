@@ -20,7 +20,7 @@ import org.jdom2.Element;
  *
  * @author zouhairhajji
  */
-public class SimulationPret {
+public class SimulationPret implements Cloneable{
     
     private int idSimPret;
     private Timestamp dateSimulation, dateContraction;
@@ -264,4 +264,42 @@ public class SimulationPret {
         
         return capsInterets;
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        SimulationPret sim =  new SimulationPret();
+        sim.setBlocked(blocked);
+        sim.setCalcPret(calcPret);
+        sim.setDateContraction(dateContraction);
+        sim.setDateSimulation(dateSimulation);
+        sim.setDureePret(dureePret);
+        sim.setIdSimPret(idSimPret);
+        sim.setMtPret(mtPret);
+        sim.setTypeEmprunt(typeEmprunt);
+        sim.setTypePret(typePret);
+        return sim;
+    }
+    
+    
+    
+    
+    public double getTauxEndettement(Client client){
+        
+        double remunerationAllDuree  = client.getInfoPerso().getRevenuMensuel()*dureePret+client.getInfoPerso().getApportPerso();
+        return (remunerationAllDuree == 0) ?  1 : getMensualite()*getDureePret()/remunerationAllDuree;
+        
+    }
+    
+    public double getTauxInteret(){
+        return getCalcPret().getTauxDirecteur().getValue() + getCalcPret().getT_marge();
+    }
+    
+    
+    public double getMensualite(){
+        double TEAG = getCalcPret().getTauxDirecteur().getValue() + getCalcPret().getT_marge();
+        double mtTTInteret = (getMtPret()*getDureePret()*TEAG)/1200;
+        double mtTTAssurance = (getMtPret()*getDureePret()*getCalcPret().getCoef_assurance())/1200;
+        return (mtTTInteret + mtTTAssurance + getMtPret())/getDureePret();
+    }
+    
 }

@@ -35,7 +35,7 @@ public class Controller_GestClient {
         view.setVisible(true);
     }
 
-    void showPanelComparaison(Client client, List<SimulationPret> listSimPret) {
+    void showPanelComparaison(Client client, List<SimulationPret> listSimPret) throws CloneNotSupportedException {
         ListSimPretComp view = new ListSimPretComp(this);
         model.getDeskTopPane().add(view);
         

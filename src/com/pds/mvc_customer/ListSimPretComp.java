@@ -6,10 +6,13 @@
 package com.pds.mvc_customer;
 
 import com.pds.entities.Client;
+import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
 import com.pds.implobs.AbstractObservable;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,11 +23,12 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
 
     private Controller_GestClient controller;
     private Client client;
-    
+    private List<SimulationPret> listSimPretConcerned;
+    private String[] critere;
     public ListSimPretComp(Controller_GestClient controller) {
         this.controller = controller;
+        this.critere = new String[]{"Taux d'endettement", "Taux d'emprunt", "Par mensualité", "Tri intelligent", "Mt total de rembourssement"};
         initComponents();
-        
     }
 
 
@@ -40,12 +44,16 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
         jScrollPane1 = new javax.swing.JScrollPane();
         FrameList = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbCritereTri = new javax.swing.JComboBox<>(critere);
 
         setClosable(true);
         setIconifiable(true);
 
+        FrameList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         FrameList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        FrameList.setLayout(new java.awt.GridBagLayout());
+        FrameList.setLayout(new javax.swing.BoxLayout(FrameList, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(FrameList);
 
         jButton1.setText("Retrier");
@@ -55,27 +63,46 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel1.setText("Liste des simulations de prêt");
+
+        jLabel2.setText("Critère de tri :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(594, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbCritereTri, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1)
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbCritereTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
         );
 
         pack();
@@ -91,7 +118,10 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FrameList;
+    private javax.swing.JComboBox<String> cbCritereTri;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
@@ -101,18 +131,25 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
     }
 
 
-    void chargerSimulations(Client client, List<SimulationPret> listSimPret) {
+    void chargerSimulations(Client client, List<SimulationPret> listSimPret) throws CloneNotSupportedException {
         this.client = client;
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.NORTH;
-        gbc.weighty = 1;
+        this.listSimPretConcerned = new LinkedList<>();
         
         
-        for(SimulationPret simulation : listSimPret){
-            PanelInfoSimPret panel = new PanelInfoSimPret();
-            System.out.println("..");
-            panel.setVisible(true);
-            FrameList.add(panel, gbc);
+        listSimPret.stream()
+                .sorted(
+                        (e1, e2) -> MathHepler.compareToWithTauxEndet(client, e1, e2, true)
+                                //Double.compare(
+                                //e1.getTauxEndettement(client), e2.getTauxEndettement(client))
+                )
+                .forEach(e -> listSimPretConcerned.add(e));
+        
+        
+        for(SimulationPret simulation : listSimPretConcerned){
+            PanelInfoSimPret frameInfoSimPret = new PanelInfoSimPret();
+            frameInfoSimPret.chargerInfoSimPret(client, simulation, listSimPret);
+            frameInfoSimPret.setVisible(true);
+            FrameList.add(frameInfoSimPret);
         }
         
         FrameList.repaint();
