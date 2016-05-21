@@ -204,7 +204,7 @@ public class SimulationPret implements Cloneable{
 
     //récupération des données du client ayant l'id idClient
 
-    
+    /*
     public void setAmortisationCalcPret(CalculPret cp, int idClient, Taux_directeur td) throws SQLException{
         DbConnection.connection();
         Statement st=DbConnection.connection.createStatement();
@@ -223,8 +223,9 @@ public class SimulationPret implements Cloneable{
             cp.setT_marge(rs.getDouble("t_marge"));
         }
         DbConnection.connection.close();
-        
     }
+    */
+    
     
     public double calcSum(List<Double> list){
         double sum=0;
@@ -241,7 +242,6 @@ public class SimulationPret implements Cloneable{
             sumAssurance+=this.calcAssurance();
         }
             return sumAssurance;
-    
     }
     
     public List<Double> calcEvolutionCapAmmorti(){

@@ -6,11 +6,16 @@
 package com.pds.mvc_customer;
 
 import com.pds.entities.SimulationPret;
+import com.pds.graphics.LineChart;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
@@ -23,12 +28,16 @@ public class PanelSimPret extends javax.swing.JPanel {
 
     private boolean selected;
     private SimulationPret simPret;
+    private Controller_GestClient controller;
     
-    
-    public PanelSimPret() {
+    public PanelSimPret(Controller_GestClient controller) {
+        this.controller = controller;
         initComponents();
     }
 
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +89,11 @@ public class PanelSimPret extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(204, 204, 255));
         jButton1.setText("Afficher");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         tSelectionner.setText("Selectionner");
         tSelectionner.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +328,10 @@ public class PanelSimPret extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_iTTInteretActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        controller.showFrameTableAmmort(simPret);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser iDateContraction;
@@ -355,6 +373,8 @@ public class PanelSimPret extends javax.swing.JPanel {
     private javax.swing.JToggleButton tSelectionner;
     // End of variables declaration//GEN-END:variables
 
+    
+    
     public void chargerSimulation(SimulationPret simPret) {
         this.simPret = simPret;
         this.numSim.setText(this.numSim.getText()+" " + simPret.getIdSimPret());

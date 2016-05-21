@@ -139,6 +139,7 @@ public class LineChart extends ApplicationFrame {
         simPret=new SimulationPret();
         calculPret=new CalculPret();
         Taux_directeur td=new Taux_directeur();
+        
         calculPret.setTauxDirecteur(td);
         simPret.setCalcPret(calculPret);
         simPret.setAmortisationCalcPret(calculPret, idClient,td);

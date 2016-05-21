@@ -157,7 +157,7 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
     public void chargerSimulations(Client client) {
         this.client = client;
         for(SimulationPret simPret : client.getSimulationsPrets()){
-            PanelSimPret panel = new PanelSimPret();
+            PanelSimPret panel = new PanelSimPret(controller);
             panel.chargerSimulation(simPret);
             FrameList.add(panel);
         }

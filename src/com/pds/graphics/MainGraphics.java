@@ -19,7 +19,8 @@ public class MainGraphics extends JFrame{
     
     
     public MainGraphics (int idClient) throws SQLException{
-        LineChart l=new LineChart(idClient);
+        
+        LineChart l = new LineChart(idClient);
         PieChart p=new PieChart(idClient);
         
         
@@ -29,7 +30,7 @@ public class MainGraphics extends JFrame{
         gl.setHgap(20);     //20 pixels d'espace entre les colonnes
         JPanel panelLineChart=l.createChartPanel();
         JPanel panelPieChart=p.createDemoPanel( );
-        AmortisationTablePanel atp=new AmortisationTablePanel(1);
+        AmortisationTablePanel atp = new AmortisationTablePanel(1);
         ParametresSimulation ps=new ParametresSimulation();
         this.getContentPane().add(ps);
         

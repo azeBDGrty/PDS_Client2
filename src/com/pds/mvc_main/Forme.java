@@ -11,6 +11,7 @@ import com.pds.implobs.AbstractObservable;
 import com.pds.implobs.IObserver;
 import com.pds.mvc_customer.View_GestClient;
 import com.pds.mvc_gestProspect.View_SimProspect;
+import com.pds.mvc_gestProspect.View_SimProspectVar;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -49,6 +50,10 @@ public class Forme extends JFrame implements IObserver {
     
     private JMenu gestionProspect;
     private JMenuItem simProspect;
+    private JMenuItem simProspectVar;
+    
+    
+    
     
     public Forme(Controller_MDIForm controller, boolean isNimbus) throws Exception {
         if (isNimbus) 
@@ -83,6 +88,7 @@ public class Forme extends JFrame implements IObserver {
         
         this.gestionProspect = new JMenu("Gestion des prospects");
         this.simProspect = new JMenuItem("Simulation Prospect");
+        this.simProspectVar = new JMenuItem("Simulation d'emprunt à taux variable");
         
         initComponent();
     }
@@ -99,6 +105,7 @@ public class Forme extends JFrame implements IObserver {
         this.gestionClient.add(listerClients);
         
         this.gestionProspect .add(simProspect);
+        this.gestionProspect .add(simProspectVar);
         
         this.menuBar.add(option);
         this.menuBar.add(gestionComptes);
@@ -111,6 +118,7 @@ public class Forme extends JFrame implements IObserver {
         this.listerComptes.addActionListener(new GestionClientListener());
         this.listerClients.addActionListener(new ListerClientListener());
         this.simProspect.addActionListener(new simProspectListener());
+        this.simProspectVar.addActionListener(new simProspectEmpVarListener());
         
         
         
@@ -195,6 +203,15 @@ public class Forme extends JFrame implements IObserver {
         @Override
         public void actionPerformed(ActionEvent e) {
             View_SimProspect view = controller.ouvrirListProspect();
+            addWindow(view, true);
+        }
+    }
+    
+    
+    public class simProspectEmpVarListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            View_SimProspectVar view = controller.ouvrirListProspectEmpVar();
             addWindow(view, true);
         }
     }

@@ -10,12 +10,15 @@ import com.pds.entities.SimulationPret;
 import com.pds.serverhandler.AbstractHandle;
 import com.pds.serverhandler.ConseillerHandle;
 import java.util.List;
+import javax.swing.JInternalFrame;
 
 /**
  *
  * @author zouhairhajji
  */
 public class Controller_GestClient {
+    
+    
     private ConseillerHandle model;
 
     public Controller_GestClient(ConseillerHandle model) {
@@ -43,6 +46,15 @@ public class Controller_GestClient {
         view.chargerSimulations(client, listSimPret);
         view.setVisible(true);
         
+    }
+
+    void showFrameTableAmmort(SimulationPret simPret) {
+        PanelPlusInfoSimPret view = new PanelPlusInfoSimPret(this);
+        model.getDeskTopPane().add(view);
+        
+        model.addObserver(view);
+        view.chargerSimulation(simPret);
+        view.setVisible(true);
     }
     
     

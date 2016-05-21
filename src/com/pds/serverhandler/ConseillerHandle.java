@@ -100,6 +100,8 @@ public class ConseillerHandle extends AbstractHandle{
             in.getCommand();
             buildOwnInfo(this.in.getLastDocument());
             
+            
+            
             out.askAllSimulationClientPret(root);
             in.getCommand();
             this.buildAllSimulation(this.in.getLastDocument());

@@ -110,6 +110,20 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        switch(cbCritereTri.getSelectedIndex()){
+            case 0: 
+                break;
+                
+            case 1: 
+                break;
+                
+            case 2: 
+                break;
+                
+            case 3: 
+                break;
+                
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
