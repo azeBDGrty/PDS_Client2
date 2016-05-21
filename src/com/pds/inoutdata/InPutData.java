@@ -33,7 +33,7 @@ public class InPutData {
     
     
     
-    private synchronized String readMessage() throws IOException{
+    private synchronized String readMessage() throws IOException{   //read message sent by the server
         String message = reader.readLine();
         if (message == null) 
             throw new IOException();
@@ -48,7 +48,7 @@ public class InPutData {
     /**
      *  Cette méthode permet de lire toutes sortes d'information.
      */
-    public synchronized void readElement() throws IOException{
+    public synchronized void readElement() throws IOException{  //conversion of the message sent by the server in XML in XML format
         String ElementBuilder = "";
         String message = "";
         
