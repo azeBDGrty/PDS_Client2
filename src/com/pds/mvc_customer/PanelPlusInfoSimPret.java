@@ -10,6 +10,7 @@ import com.pds.entities.SimulationPret;
 import com.pds.graphics.MainGraphics;
 import com.pds.implobs.IObserver;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
 /**
  *
@@ -28,7 +29,11 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
 
     public void chargerSimulation(SimulationPret simulation) throws SQLException{
         this.simulation = simulation;
-         MainGraphics m=new MainGraphics (simulation.getIdSimPret(), simulation);
+        MainGraphics m=new MainGraphics (simulation.getIdSimPret(), simulation);
+        this.getContentPane().add(m);
+        this.setSize(1350,670);
+       
+        
         
     }
     
@@ -45,11 +50,11 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 631, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         pack();
