@@ -7,7 +7,7 @@ package com.pds.entities;
 
 import com.pds.networkprotocol.RoleUser;
 import java.sql.Timestamp;
-
+/*test*/
 /**
  *
  * @author zouhairhajji
