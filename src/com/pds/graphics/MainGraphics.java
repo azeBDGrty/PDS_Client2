@@ -30,7 +30,7 @@ public class MainGraphics extends JPanel{
         JPanel panelLineChart=l.createChartPanel();
         JPanel panelPieChart=p.createDemoPanel( );
         AmortisationTablePanel atp = new AmortisationTablePanel(idClient, simPret);
-        ParametresSimulation ps=new ParametresSimulation();
+        ParametresSimulation ps=new ParametresSimulation(simPret);
                 
        
         GridLayout gl=new GridLayout(2,0);

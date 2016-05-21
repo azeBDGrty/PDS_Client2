@@ -214,6 +214,7 @@ public class SimulationPret implements Cloneable{
         for (int i=0;i<this.getDureePret();i++){
             sumAssurance+=this.calcAssurance();
         }
+        sumAssurance=(double)Math.round(sumAssurance*100d)/100d;
             return sumAssurance;
     }
     

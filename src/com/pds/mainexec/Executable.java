@@ -19,18 +19,17 @@ import java.net.Socket;
  * @author zouhairhajji
  */
 public class Executable {
+
     public static void main(String[] args) throws IOException, Exception {
-        
+
         Socket socket = new Socket("localhost", 3000);
-        
+
         InPutData in = new InPutData(socket);
         OutPutData out = new OutPutData(socket);
         Anonyme user = new Anonyme();
-       
+
         AnonymeHandle model = new AnonymeHandle(in, out, user);
-        
-        
-        
+
         /*
             Element root = new Element("InfoAuthentification");
                 Element eLogin = new Element("login");
@@ -44,10 +43,9 @@ public class Executable {
 
 
             out.askAuthentification(root);
-        */
-        
+         */
         Controller_MDIForm controller = new Controller_MDIForm(model);
-        
+
         Forme view = new Forme(controller, true);
         model.addObserver(view);
         model.setDeskTopPane(view.getDesktopPane());
