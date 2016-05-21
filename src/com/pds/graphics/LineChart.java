@@ -36,9 +36,9 @@ public class LineChart extends ApplicationFrame {
     private static CalculPret calculPret;
     private static SimulationPret simPret;
     
-    public LineChart(int idClient) throws SQLException {
+    public LineChart(int idClient, SimulationPret simPret) throws SQLException {
         super("Graphique d'amortissement");
-        init(idClient);
+        this.simPret=simPret;
         //JPanel chartPanel = createChartPanel();
         //add(chartPanel, BorderLayout.CENTER);
         //setSize(640, 480);
@@ -135,15 +135,7 @@ public class LineChart extends ApplicationFrame {
     
     
     
-    public static void init(int idClient) throws SQLException{
-        simPret=new SimulationPret();
-        calculPret=new CalculPret();
-        Taux_directeur td=new Taux_directeur();
-        
-        calculPret.setTauxDirecteur(td);
-        simPret.setCalcPret(calculPret);
-        simPret.setAmortisationCalcPret(calculPret, idClient,td);
-    }
+   
     
     
     

@@ -6,6 +6,7 @@
 package com.pds.graphics;
 
 
+import com.pds.entities.SimulationPret;
 import java.awt.GridLayout;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -18,10 +19,10 @@ import javax.swing.JPanel;
 public class MainGraphics extends JFrame{
     
     
-    public MainGraphics (int idClient) throws SQLException{
+    public MainGraphics (int idClient, SimulationPret simPret) throws SQLException{
         
-        LineChart l = new LineChart(idClient);
-        PieChart p=new PieChart(idClient);
+        LineChart l = new LineChart(idClient, simPret);
+        PieChart p=new PieChart(idClient, simPret);
         
         
         GridLayout gl = new GridLayout(2, 2);
@@ -30,7 +31,7 @@ public class MainGraphics extends JFrame{
         gl.setHgap(20);     //20 pixels d'espace entre les colonnes
         JPanel panelLineChart=l.createChartPanel();
         JPanel panelPieChart=p.createDemoPanel( );
-        AmortisationTablePanel atp = new AmortisationTablePanel(1);
+        AmortisationTablePanel atp = new AmortisationTablePanel(idClient, simPret);
         ParametresSimulation ps=new ParametresSimulation();
         this.getContentPane().add(ps);
         
@@ -43,7 +44,5 @@ public class MainGraphics extends JFrame{
         this.setVisible(true);
     }
     
-    public static void main(String args[]) throws SQLException{
-        MainGraphics m=new MainGraphics(1);
-    }
+  
 }

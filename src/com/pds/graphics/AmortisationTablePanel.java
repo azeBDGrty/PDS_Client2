@@ -33,15 +33,15 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
     private SimulationPret simulationPret;
     private CalculPret calculPret;
     
-    public AmortisationTablePanel(int idClient) throws SQLException {
+        public AmortisationTablePanel(int idClient, SimulationPret simulationPret) throws SQLException {
         initComponents();
         //récupération des données dans la base, + peuplement de simulationpret
-        calculPret=new CalculPret();
+        /*calculPret=new CalculPret();
         Taux_directeur td=new Taux_directeur();
         calculPret.setTauxDirecteur(td);
         simulationPret=new SimulationPret();
         simulationPret.setCalcPret(calculPret);
-        simulationPret.setAmortisationCalcPret(calculPret, idClient,td);
+        simulationPret.setAmortisationCalcPret(calculPret, idClient,td);*/
         
         List<Double> capAmorti=new ArrayList<Double>();
         capAmorti=simulationPret.calcCapAmmort();   //capital amort
@@ -77,6 +77,7 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
         this.setVisible(true);
         //this.setSize(650, 500);
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

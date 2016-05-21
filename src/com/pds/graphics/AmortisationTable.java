@@ -36,7 +36,7 @@ public class AmortisationTable extends JFrame {
     /**
      * Creates new form AmortisationTable
      */
-    public AmortisationTable(int idClient) throws SQLException {
+public AmortisationTable(int idClient, SimulationPret simulationPret) throws SQLException {
         initComponents();
         frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         
@@ -44,12 +44,12 @@ public class AmortisationTable extends JFrame {
         //this.setTitle("Tableau d'amortissement");
         
         //récupération des données dans la base, + peuplement de simulationpret
-        calculPret=new CalculPret();
-        Taux_directeur td=new Taux_directeur();
-        calculPret.setTauxDirecteur(td);
-        simulationPret=new SimulationPret();
-        simulationPret.setCalcPret(calculPret);
-        simulationPret.setAmortisationCalcPret(calculPret, idClient,td);
+        //calculPret=new CalculPret();
+        //Taux_directeur td=new Taux_directeur();
+        //calculPret.setTauxDirecteur(td);
+        //simulationPret=new SimulationPret();
+        //simulationPret.setCalcPret(calculPret);
+        //simulationPret.setAmortisationCalcPret(calculPret, idClient,td);
         
         List<Double> capAmorti=new ArrayList<Double>();
         capAmorti=simulationPret.calcCapAmmort();   //capital amort
@@ -184,45 +184,7 @@ public class AmortisationTable extends JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-        */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AmortisationTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AmortisationTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AmortisationTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AmortisationTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new AmortisationTable(1).setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(AmortisationTable.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

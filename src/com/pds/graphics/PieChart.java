@@ -28,9 +28,9 @@ public class PieChart extends ApplicationFrame{
     private static SimulationPret simPret;
     
     
-    public PieChart( int idClient) throws SQLException {
+    public PieChart( int idClient, SimulationPret simulationPret) throws SQLException {
         super("Répartion des remboursements");
-        init(idClient);
+        simPret=simulationPret;
         //setContentPane(createDemoPanel( ));
         //this.setSize( 560 , 367 );    
       //RefineryUtilities.centerFrameOnScreen( this);    
@@ -60,14 +60,7 @@ public class PieChart extends ApplicationFrame{
       return chart;
    }
    
-   public static void init(int idClient) throws SQLException{
-       simPret=new SimulationPret();
-       calculPret=new CalculPret();
-        Taux_directeur td=new Taux_directeur();
-        calculPret.setTauxDirecteur(td);
-        simPret.setCalcPret(calculPret);
-        simPret.setAmortisationCalcPret(calculPret, idClient,td);
-   }
+  
    
    public static JPanel createDemoPanel( ) throws SQLException
    {

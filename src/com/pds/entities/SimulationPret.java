@@ -7,7 +7,6 @@ package com.pds.entities;
 
 import com.pds.enums.TypeEmprunt;
 import com.pds.enums.TypePret;
-import com.pds.graphics.DbConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -200,32 +199,6 @@ public class SimulationPret implements Cloneable{
         
         return capsAmort;
     }
-    
-
-    //récupération des données du client ayant l'id idClient
-
-    /*
-    public void setAmortisationCalcPret(CalculPret cp, int idClient, Taux_directeur td) throws SQLException{
-        DbConnection.connection();
-        Statement st=DbConnection.connection.createStatement();
-        String sql = ("SELECT * FROM simul_pret,calcpret,taux_directeur WHERE id_client="+idClient +" AND simul_pret.id_calcPret=calcPret.id_calcPret "
-                + "AND calcpret.id_tauxDirecteur=taux_directeur.id_tauxDirecteur");
-        ResultSet rs = st.executeQuery(sql);
-        //rajouter parsing xml
-        
-        Element rootElement = new Element("rootElement");
-        
-        if(rs.next()) {
-            setMtPret(rs.getDouble("mt_pret"));
-            setDureePret(rs.getInt("duree_pret"));
-            td.setValue(rs.getDouble("valeur"));
-            cp.setCoef_assurance(rs.getDouble("coef_assurance"));
-            cp.setT_marge(rs.getDouble("t_marge"));
-        }
-        DbConnection.connection.close();
-    }
-    */
-    
     
     public double calcSum(List<Double> list){
         double sum=0;
