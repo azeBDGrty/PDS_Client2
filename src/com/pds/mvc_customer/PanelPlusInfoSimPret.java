@@ -9,7 +9,7 @@ package com.pds.mvc_customer;
 import com.pds.entities.SimulationPret;
 import com.pds.graphics.MainGraphics;
 import com.pds.implobs.IObserver;
-import java.sql.SQLException;
+
 import javax.swing.JFrame;
 
 /**
@@ -27,7 +27,7 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
         initComponents();
     }
 
-    public void chargerSimulation(SimulationPret simulation) throws SQLException{
+    public void chargerSimulation(SimulationPret simulation) {
         this.simulation = simulation;
         MainGraphics m=new MainGraphics (simulation.getIdSimPret(), simulation);
         this.getContentPane().add(m);

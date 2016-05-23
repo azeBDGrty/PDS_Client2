@@ -48,7 +48,7 @@ public class Controller_GestClient {
         
     }
 
-    void showFrameTableAmmort(SimulationPret simPret) {
+    void showFrameTableAmmort(SimulationPret simPret)  {
         PanelPlusInfoSimPret view = new PanelPlusInfoSimPret(this);
         model.getDeskTopPane().add(view);
         

@@ -27,7 +27,7 @@ public class ListSimPretComp extends javax.swing.JInternalFrame implements com.p
     private String[] critere;
     public ListSimPretComp(Controller_GestClient controller) {
         this.controller = controller;
-        this.critere = new String[]{"Taux d'endettement", "Taux d'emprunt", "Par mensualité", "Tri intelligent", "Mt total de rembourssement"};
+        this.critere = new String[]{"Taux d'endettement", "Taux d'emprunt", "Par mensualité", "Tri intelligent", "Mt total de remboursement"};
         initComponents();
     }
 
