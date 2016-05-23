@@ -52,7 +52,8 @@ public class Forme extends JFrame implements IObserver {
     private JMenuItem simProspect;
     private JMenuItem simProspectVar;
     
-    
+    private JMenu gestionAgence;
+    private JMenuItem showIndicators;
     
     
     public Forme(Controller_MDIForm controller, boolean isNimbus) throws Exception {
@@ -90,6 +91,9 @@ public class Forme extends JFrame implements IObserver {
         this.simProspect = new JMenuItem("Simulation Prospect");
         this.simProspectVar = new JMenuItem("Simulation d'emprunt à taux variable");
         
+        this.gestionAgence = new JMenu("Gestion de l'agence");
+        this.showIndicators = new JMenuItem("Voir les indicateurs");
+        
         initComponent();
     }
 
@@ -107,10 +111,13 @@ public class Forme extends JFrame implements IObserver {
         this.gestionProspect .add(simProspect);
         this.gestionProspect .add(simProspectVar);
         
+        this.gestionAgence.add(showIndicators);
+        
         this.menuBar.add(option);
         this.menuBar.add(gestionComptes);
         this.menuBar.add(gestionClient);
         this.menuBar.add(gestionProspect);
+        this.menuBar.add(gestionAgence);
         
         this.desktopPane.setLayout(null);
 
@@ -119,7 +126,7 @@ public class Forme extends JFrame implements IObserver {
         this.listerClients.addActionListener(new ListerClientListener());
         this.simProspect.addActionListener(new simProspectListener());
         this.simProspectVar.addActionListener(new simProspectEmpVarListener());
-        
+        this.showIndicators.addActionListener(new InfoIndicatorListener());
         
         
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -169,6 +176,13 @@ public class Forme extends JFrame implements IObserver {
                 return false;
         }
         
+    }
+
+    private class InfoIndicatorListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            addWindow(controller.ouvrirIndicator(), true);
+        }
     }
     
 
