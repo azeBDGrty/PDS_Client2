@@ -33,7 +33,7 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
     private SimulationPret simulationPret;
     private CalculPret calculPret;
     
-        public AmortisationTablePanel(int idClient, SimulationPret simulationPret) throws SQLException {
+        public AmortisationTablePanel(int idClient, SimulationPret simulationPret)  {
         initComponents();
         //récupération des données dans la base, + peuplement de simulationpret
         /*calculPret=new CalculPret();

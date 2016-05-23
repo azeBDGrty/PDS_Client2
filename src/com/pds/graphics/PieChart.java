@@ -8,7 +8,6 @@ package com.pds.graphics;
 import com.pds.entities.CalculPret;
 import com.pds.entities.SimulationPret;
 import com.pds.entities.Taux_directeur;
-import java.sql.SQLException;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -28,7 +27,7 @@ public class PieChart extends ApplicationFrame{
     private static SimulationPret simPret;
     
     
-    public PieChart( int idClient, SimulationPret simulationPret) throws SQLException {
+    public PieChart( int idClient, SimulationPret simulationPret)  {
         super("Répartion des remboursements");
         simPret=simulationPret;
         //setContentPane(createDemoPanel( ));
@@ -36,8 +35,7 @@ public class PieChart extends ApplicationFrame{
       //RefineryUtilities.centerFrameOnScreen( this);    
       //this.setVisible( true ); 
     }
-    public static PieDataset createDataset( ) throws SQLException 
-   {
+    public static PieDataset createDataset( ){
       
       double capitalAmorti=simPret.calcSum(simPret.calcCapAmmort());
       double assurance=simPret.calcSumAssurance();
@@ -62,8 +60,7 @@ public class PieChart extends ApplicationFrame{
    
   
    
-   public static JPanel createDemoPanel( ) throws SQLException
-   {
+   public static JPanel createDemoPanel( ){
       JFreeChart chart = createChart(createDataset( ) );  
       return new ChartPanel( chart ); 
    }
