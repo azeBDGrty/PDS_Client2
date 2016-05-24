@@ -285,4 +285,10 @@ public class SimulationPret implements Cloneable{
         return (mtTTInteret + mtTTAssurance + getMtPret())/getDureePret();
     }
     
+    
+    public double calcMensualiteTauxVariable(double taux){
+        
+        double montantEmprunte=(this.getMtPret()*this.getTauxInteret()/12)/(1-(1/Math.pow(1+taux,12)*this.getDureePret()));
+        return montantEmprunte;
+    }
 }
