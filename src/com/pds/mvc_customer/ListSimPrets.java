@@ -71,7 +71,7 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1118, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -129,12 +129,14 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
         else if (framsSelected.size() == 1)
             for(PanelSimPret fram : framsUnselected)
                 fram.compararer(framsUnselected.get(0));
-        else
+        else{
             try {
                 controller.showPanelComparaison(client, listSimPret);
-        } catch (CloneNotSupportedException ex) {
-            Logger.getLogger(ListSimPrets.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(ListSimPrets.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+            
         
         
         
