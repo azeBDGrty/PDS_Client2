@@ -47,7 +47,7 @@ public class Controller_MDIForm {
      public JInternalFrame ouvrirIndicator(){
          Controller_Indicator controllerIndicator = new Controller_Indicator(model);
          View_Indicator viewIndicator= new View_Indicator(controllerIndicator);
-      //  model.addObserver(viewIndicator);
+         model.addObserver(viewIndicator);
         return viewIndicator;
     }
     

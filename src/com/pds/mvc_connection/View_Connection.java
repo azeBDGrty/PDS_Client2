@@ -192,15 +192,15 @@ public class View_Connection extends javax.swing.JInternalFrame implements IObse
         switch(message.toString().trim()){
             case "connectionAutorised" :
                 this.controller.fermer(this);
-                JOptionPane.showMessageDialog(this, "Vous êtes maintenant connecter");
+                JOptionPane.showMessageDialog(this, "Vous êtes maintenant connecté");
                 return true;
                 
             case "connectionRefused" :
-                JOptionPane.showMessageDialog(this, "La connection est refusée");
+                JOptionPane.showMessageDialog(this, "La connexion est refusée");
                 return true;
                 
             case "connectionDone" :  
-                JOptionPane.showMessageDialog(this, "La connection est déjà établie");
+                JOptionPane.showMessageDialog(this, "La connexion est déjà établie");
                 return true;
                 
             default :

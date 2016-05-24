@@ -140,6 +140,12 @@ public class ConseillerHandle extends AbstractHandle{
                     case sendAllPays : 
                         System.out.println("Je dois recevoir la liste des pays;");
                         break;
+                       
+                   case sendLoanNumbers : 
+                       System.out.println("test ConseillerHandle " + this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));                       
+                       setChanged();
+                       notifyObservers("sendLoanNumbers",this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));
+                        break;
                         
                     default : 
                       break; 

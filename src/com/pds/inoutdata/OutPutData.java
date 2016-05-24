@@ -86,6 +86,10 @@ public class OutPutData {
     public void askAllSimPretClient(Element element){
         sendMessage(askSimulationPretsClient.toString(), element);
     }
+
+    public void askIndicatorInfo(Element elementData) {
+        sendMessage(askIndicatorInfo.toString(), elementData);
+    }
     
     
     
