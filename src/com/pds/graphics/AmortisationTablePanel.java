@@ -33,7 +33,7 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
     private SimulationPret simulationPret;
     private CalculPret calculPret;
     
-        public AmortisationTablePanel(int idClient, SimulationPret simulationPret) throws SQLException {
+        public AmortisationTablePanel(int idClient, SimulationPret simulationPret)  {
         initComponents();
         //récupération des données dans la base, + peuplement de simulationpret
         /*calculPret=new CalculPret();
@@ -126,9 +126,7 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    public static void main (String args[]) throws SQLException{
-
-    }
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;

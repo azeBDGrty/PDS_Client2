@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 public class MainGraphics extends JPanel{
     
     
-    public MainGraphics (int idClient, SimulationPret simPret) throws SQLException{
+    public MainGraphics (int idClient, SimulationPret simPret) {
         
         LineChart l = new LineChart(idClient, simPret);
         PieChart p=new PieChart(idClient, simPret);

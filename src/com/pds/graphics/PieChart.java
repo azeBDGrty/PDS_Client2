@@ -28,7 +28,7 @@ public class PieChart extends ApplicationFrame{
     private static SimulationPret simPret;
     
     
-    public PieChart( int idClient, SimulationPret simulationPret) throws SQLException {
+    public PieChart( int idClient, SimulationPret simulationPret)  {
         super("Répartion des remboursements");
         simPret=simulationPret;
         //setContentPane(createDemoPanel( ));
@@ -36,7 +36,7 @@ public class PieChart extends ApplicationFrame{
       //RefineryUtilities.centerFrameOnScreen( this);    
       //this.setVisible( true ); 
     }
-    public static PieDataset createDataset( ) throws SQLException 
+    public static PieDataset createDataset( )  
    {
       
       double capitalAmorti=simPret.calcSum(simPret.calcCapAmmort());
@@ -62,7 +62,7 @@ public class PieChart extends ApplicationFrame{
    
   
    
-   public static JPanel createDemoPanel( ) throws SQLException
+   public static JPanel createDemoPanel( ) 
    {
       JFreeChart chart = createChart(createDataset( ) );  
       return new ChartPanel( chart ); 

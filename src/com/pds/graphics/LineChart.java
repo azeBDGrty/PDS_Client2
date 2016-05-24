@@ -36,7 +36,7 @@ public class LineChart extends ApplicationFrame {
     private static CalculPret calculPret;
     private static SimulationPret simPret;
     
-    public LineChart(int idClient, SimulationPret simPret) throws SQLException {
+    public LineChart(int idClient, SimulationPret simPret)  {
         super("Graphique d'amortissement");
         this.simPret=simPret;
         //JPanel chartPanel = createChartPanel();
