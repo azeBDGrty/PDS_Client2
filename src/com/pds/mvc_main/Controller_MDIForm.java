@@ -15,8 +15,6 @@ import com.pds.mvc_customer.View_GestClient;
 import com.pds.mvc_gestProspect.Controller_gestProspect;
 import com.pds.mvc_gestProspect.View_SimProspect;
 import com.pds.mvc_gestProspect.View_SimProspectVar;
-import com.pds.mvc_indicator.Controller_Indicator;
-import com.pds.mvc_indicator.View_Indicator;
 import javax.swing.JInternalFrame;
 
 /**
@@ -45,10 +43,13 @@ public class Controller_MDIForm {
     }
     
      public JInternalFrame ouvrirIndicator(){
+         /*
          Controller_Indicator controllerIndicator = new Controller_Indicator(model);
          View_Indicator viewIndicator= new View_Indicator(controllerIndicator);
          model.addObserver(viewIndicator);
         return viewIndicator;
+        */
+         return null;
     }
     
     public View_GestClient ouvrirListClient(){

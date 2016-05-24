@@ -36,7 +36,7 @@ public class AmortisationTable extends JFrame {
     /**
      * Creates new form AmortisationTable
      */
-public AmortisationTable(int idClient, SimulationPret simulationPret) throws SQLException {
+public AmortisationTable(int idClient, SimulationPret simulationPret)  {
         initComponents();
         frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         

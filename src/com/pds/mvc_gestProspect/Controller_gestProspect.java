@@ -5,6 +5,8 @@
  */
 package com.pds.mvc_gestProspect;
 
+import com.pds.entities.SimulationPret;
+import com.pds.mvc_customer.PanelPlusInfoSimPret;
 import com.pds.serverhandler.AbstractHandle;
 import com.pds.serverhandler.ConseillerHandle;
 
@@ -24,6 +26,13 @@ public class Controller_gestProspect {
         
     }
     
-    
+       void showFrameTableAmmort(SimulationPret simPret) {
+        PanelPlusInfoSimPret view = new PanelPlusInfoSimPret(null);
+        model.getDeskTopPane().add(view);
+        
+        model.addObserver(view);
+        view.chargerSimulation(simPret);
+        view.setVisible(true);
+    }
     
 }

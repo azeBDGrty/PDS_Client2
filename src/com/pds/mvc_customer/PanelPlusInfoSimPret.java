@@ -27,9 +27,10 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
         initComponents();
     }
 
-    public void chargerSimulation(SimulationPret simulation) {
+
+    public void chargerSimulation(SimulationPret simulation){
         this.simulation = simulation;
-        MainGraphics m=new MainGraphics (simulation.getIdSimPret(), simulation);
+        MainGraphics m=new MainGraphics (simulation);
         this.getContentPane().add(m);
         this.setSize(1350,670);
        
@@ -45,6 +46,9 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setClosable(true);
+        setIconifiable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

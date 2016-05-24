@@ -12,8 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observer;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 

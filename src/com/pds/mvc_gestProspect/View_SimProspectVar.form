@@ -57,7 +57,7 @@
                       <Component id="mensualité" min="-2" pref="91" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -133,11 +133,9 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="2">
+            <StringItem index="0" value="Pr&#xea;t consommation"/>
+            <StringItem index="1" value="Pr&#xea;t immobilier"/>
           </StringArray>
         </Property>
       </Properties>
@@ -198,7 +196,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Votre mensualit&#xe9; &#xe0; partir de  :"/>
+        <Property name="text" type="java.lang.String" value="Votre mensualit&#xe9; &#xe0; partir de :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="mensualit&#xe9;">

@@ -36,7 +36,10 @@ public class LineChart extends ApplicationFrame {
     private static CalculPret calculPret;
     private static SimulationPret simPret;
     
-    public LineChart(int idClient, SimulationPret simPret)  {
+
+
+
+    public LineChart( SimulationPret simPret)  {
         super("Graphique d'amortissement");
         this.simPret=simPret;
         //JPanel chartPanel = createChartPanel();
@@ -113,7 +116,6 @@ public class LineChart extends ApplicationFrame {
         capAmorti=simPret.calcEvolutionCapAmmorti();
         capRestant=simPret.calcCapRestant();
         capRestant.add(0, simPret.getMtPret());
-        System.out.println(capAmorti);
         XYSeriesCollection dataset = new XYSeriesCollection();
         XYSeries series1 = new XYSeries("Capital Remboursé");
         XYSeries series2 = new XYSeries("Reste dû");

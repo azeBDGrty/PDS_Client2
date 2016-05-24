@@ -61,6 +61,14 @@ public class SimulationPret implements Cloneable{
 
     }
     
+    public SimulationPret( 
+             int dureePret, double mtPret, CalculPret calcPret) {
+        this.dureePret = dureePret;
+        this.mtPret = mtPret;
+        this.typePret=typePret;
+        this.calcPret=calcPret;
+    }
+    
     public int getIdSimPret() {
         return idSimPret;
     }
