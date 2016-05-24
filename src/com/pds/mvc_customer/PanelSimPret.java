@@ -329,7 +329,9 @@ public class PanelSimPret extends javax.swing.JPanel {
     }//GEN-LAST:event_iTTInteretActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controller.showFrameTableAmmort(simPret);
+       
+            controller.showFrameTableAmmort(simPret);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -28,7 +28,8 @@ public class PieChart extends ApplicationFrame{
     private static SimulationPret simPret;
     
     
-    public PieChart( int idClient, SimulationPret simulationPret)  {
+
+    public PieChart( SimulationPret simulationPret) {
         super("Répartion des remboursements");
         simPret=simulationPret;
         //setContentPane(createDemoPanel( ));

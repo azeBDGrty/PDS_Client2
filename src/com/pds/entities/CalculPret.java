@@ -29,7 +29,11 @@ public class CalculPret {
         this.tauxDirecteur = tauxDirecteur;
     }
 
-    
+    public CalculPret(double coef_assurance, double t_marge, Taux_directeur tauxDirecteur) {
+        this.coef_assurance = coef_assurance;
+        this.t_marge = t_marge;
+        this.tauxDirecteur = tauxDirecteur;
+    }    
     
     
     

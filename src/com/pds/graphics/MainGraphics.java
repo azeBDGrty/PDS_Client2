@@ -22,17 +22,17 @@ import javax.swing.JPanel;
 public class MainGraphics extends JPanel{
     
     
-    public MainGraphics (int idClient, SimulationPret simPret) {
+
+    public MainGraphics ( SimulationPret simPret) {
         
-        LineChart l = new LineChart(idClient, simPret);
-        PieChart p=new PieChart(idClient, simPret);
+        LineChart l = new LineChart(simPret);
+        PieChart p=new PieChart( simPret);
 
         JPanel panelLineChart=l.createChartPanel();
         JPanel panelPieChart=p.createDemoPanel( );
-        AmortisationTablePanel atp = new AmortisationTablePanel(idClient, simPret);
+        AmortisationTablePanel atp = new AmortisationTablePanel(simPret);
         ParametresSimulation ps=new ParametresSimulation(simPret);
                 
-       
         GridLayout gl=new GridLayout(2,0);
         BorderLayout gl2=new BorderLayout();
         gl2.setHgap(20);

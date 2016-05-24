@@ -9,6 +9,7 @@ import com.pds.entities.Client;
 import com.pds.entities.SimulationPret;
 import com.pds.serverhandler.AbstractHandle;
 import com.pds.serverhandler.ConseillerHandle;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JInternalFrame;
 
