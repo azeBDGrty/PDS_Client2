@@ -91,7 +91,7 @@ public class View_SimProspectVar extends javax.swing.JInternalFrame implements c
         jSlider1.setMinorTickSpacing(12);
         jSlider1.setPaintTicks(true);
 
-        jLabel8.setText("Votre mensualité à partir de  :");
+        jLabel8.setText("Votre mensualité à partir de :");
 
         mensualité.setText("...");
 
@@ -143,7 +143,7 @@ public class View_SimProspectVar extends javax.swing.JInternalFrame implements c
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(mensualité, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

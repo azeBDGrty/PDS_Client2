@@ -57,7 +57,7 @@
                       <Component id="mensualité" min="-2" pref="91" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -196,7 +196,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Votre mensualit&#xe9; &#xe0; partir de  :"/>
+        <Property name="text" type="java.lang.String" value="Votre mensualit&#xe9; &#xe0; partir de :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="mensualit&#xe9;">
