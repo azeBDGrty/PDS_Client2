@@ -8,6 +8,7 @@ package com.pds.mvc_customer;
 import com.pds.entities.Client;
 import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
+import com.pds.graphics.PanelGraphInfoSim;
 import com.pds.implobs.AbstractObservable;
 import com.pds.mvc_customer.Controller_GestClient;
 import java.sql.Timestamp;
@@ -19,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import java.util.function.Consumer;
+import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -65,7 +67,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         afficherSimulation = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelGraph = new javax.swing.JPanel();
 
         setClosable(true);
         setIconifiable(true);
@@ -93,17 +95,17 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                 }
             });
 
-            jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            panelGraph.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-            jPanel1.setLayout(jPanel1Layout);
-            jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 777, Short.MAX_VALUE)
+            javax.swing.GroupLayout panelGraphLayout = new javax.swing.GroupLayout(panelGraph);
+            panelGraph.setLayout(panelGraphLayout);
+            panelGraphLayout.setHorizontalGroup(
+                panelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 956, Short.MAX_VALUE)
             );
-            jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 225, Short.MAX_VALUE)
+            panelGraphLayout.setVerticalGroup(
+                panelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 270, Short.MAX_VALUE)
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,10 +127,10 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                                     .addComponent(afficherSimulation)))
                             .addGap(0, 337, Short.MAX_VALUE)))
                     .addContainerGap())
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(152, 152, 152))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(89, 89, 89)
+                    .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,8 +140,8 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     .addGap(32, 32, 32)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addComponent(panelGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
                     .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
             );
@@ -149,6 +151,11 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
 
     private void afficherSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherSimulationActionPerformed
         System.out.println(this.listSimPretConcerned.get(this.selectedIndex));
+        this.panelGraph.repaint();
+        this.panelGraph.validate();
+        
+        this.repaint();
+        this.validate();
     }//GEN-LAST:event_afficherSimulationActionPerformed
 
 
@@ -212,7 +219,6 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         });
         
         for(int i = 0; i<dataSimulations.size() ;i++){
-            System.out.println((Timestamp)dataSimulations.get(i)[7]);
             dataSimulations.get(i)[7] = MathHepler.formatTimeStamp((Timestamp)dataSimulations.get(i)[7], "dd-MM-yyyy");
             dataSimulations.get(i)[9] = (i+1);
             tableModel.addRow(dataSimulations.get(i));
@@ -234,17 +240,22 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             tableModel.addRow(objects);
          */
         
-            
+        PanelGraphInfoSim view = new PanelGraphInfoSim("A", "", listSimPret, client);
+        view.getChartPanel().setBounds(0, 0, panelGraph.getWidth(), panelGraph.getHeight());
+        this.panelGraph.add(view.getChartPanel());
+        
+        
         this.repaint();
         this.validate();
+        System.out.println("Ajouté");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afficherSimulation;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel panelGraph;
     // End of variables declaration//GEN-END:variables
 
 
