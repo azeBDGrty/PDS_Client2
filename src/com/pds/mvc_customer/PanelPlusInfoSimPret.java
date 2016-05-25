@@ -1,41 +1,86 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.pds.mvc_customer;
 
 
 import com.pds.entities.SimulationPret;
 import com.pds.graphics.MainGraphics;
+import com.pds.graphics.Printer;
 import com.pds.implobs.IObserver;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.print.PageFormat;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author zouhairhajji
  */
 public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements IObserver{
-
+    
     private Controller_GestClient controller;
     private SimulationPret simulation;
+    private JFrame frame;
     
     
     public PanelPlusInfoSimPret(Controller_GestClient controller) {
         this.controller = controller;
         initComponents();
+        frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        this.setJMenuBar(createMenuBar());
     }
-
-
+    
+    
     public void chargerSimulation(SimulationPret simulation){
         this.simulation = simulation;
         MainGraphics m=new MainGraphics (simulation);
         this.getContentPane().add(m);
         this.setSize(1350,670);
-       
         
         
+        
+    }
+    
+    protected JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("File");
+        menu.setMnemonic(KeyEvent.VK_N);
+        JMenuItem menuItem = new JMenuItem("Imprimer");
+        menuItem.setMnemonic(KeyEvent.VK_N);
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                PrinterJob job = PrinterJob.getPrinterJob();
+                
+                PageFormat format = job.defaultPage();
+                format.setOrientation(PageFormat.LANDSCAPE);
+                PageFormat postformat = job.pageDialog(format);
+                job.setPrintable(new Printer(frame), format);
+                
+
+                    if(job.printDialog()) try {
+                        job.print();
+                } catch (PrinterException ex) {
+                    Logger.getLogger(PanelPlusInfoSimPret.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        });
+        menu.add(menuItem);
+        menuBar.add(menu);
+        return menuBar;
     }
     
     /**
@@ -63,13 +108,13 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     @Override
     public boolean update(com.pds.implobs.AbstractObservable sender, String message, Object... data) {
         return true;
     }
-
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
