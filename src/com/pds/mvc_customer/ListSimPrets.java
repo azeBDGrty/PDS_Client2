@@ -8,6 +8,7 @@ package com.pds.mvc_customer;
 import com.pds.entities.Client;
 import com.pds.entities.SimulationPret;
 import com.pds.implobs.AbstractObservable;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -162,6 +163,8 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
             PanelSimPret panel = new PanelSimPret(controller);
             panel.chargerSimulation(simPret);
             FrameList.add(panel);
+            if(simPret.getTauxEndettement(client)*100 > 33.33 )
+                panel.setBackground(Color.red);
         }
         FrameList.repaint();
         FrameList.validate();

@@ -8,17 +8,18 @@ package com.pds.mvc_customer;
 import com.pds.entities.Client;
 import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
+import com.pds.graphics.PanelGraphInfoSim;
 import com.pds.implobs.AbstractObservable;
-import com.pds.mvc_customer.Controller_GestClient;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Vector;
-import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.ComboBox;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -33,21 +34,36 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     private Client client;
     private List<SimulationPret> listSimPretConcerned;
     private Controller_GestClient controller;
-    private double coefs[];
-    private int selectedIndex;
     
     /**
-     * Creates new form PanelTableSimPret
+     * @param _1 coefmensualite
+     * @param _2 coefDuree
+     * @param _3 coefTauxInteret
+     * @param _4 coefMtTotal
+     * @param _5 coefTypePret
+     * @param _6 coefTauxEndettement
+     * @param _7 coefDateFin
      */
+    private int coefs[];
+    private int selectedIndex;
     
-
+    
+    
     PanelTableSimPret(Controller_GestClient controller) {
         this.controller = controller;
-        this.coefs = new double[]{7, 6, 5, 4, 3, 2, 1};
+        this.coefs = new int[]{7, 6, 5, 4, 3, 2, 1};
         this.selectedIndex = -1;
         initComponents();
-        this.afficherSimulation.setEnabled(false);
-        this.jTable1.getSelectionModel().addListSelectionListener(new TableSelecterListener());
+        remplirComboboxCoef(-5, 10, cMensualite, coefs[0]);
+        remplirComboboxCoef(-5, 10, cDuree, coefs[1]);
+        remplirComboboxCoef(-5, 10, cTauxInter, coefs[2]);
+        remplirComboboxCoef(-5, 10, cMt, coefs[3]);
+        remplirComboboxCoef(-5, 10, cTauxFixe, coefs[4]);
+        remplirComboboxCoef(-5, 10, cTauxEndettement, coefs[5]);
+        remplirComboboxCoef(-5, 10, cDateFin, coefs[6]);
+        
+        //this.afficherSimulation.setEnabled(false);
+        //this.jTable1.getSelectionModel().addListSelectionListener(new TableSelecterListener());
         
         
     }
@@ -65,7 +81,23 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         afficherSimulation = new javax.swing.JButton();
+        panelGraph = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cMensualite = new javax.swing.JComboBox<>();
+        cDuree = new javax.swing.JComboBox<>();
+        cTauxInter = new javax.swing.JComboBox<>();
+        cMt = new javax.swing.JComboBox<>();
+        cTauxFixe = new javax.swing.JComboBox<>();
+        cTauxEndettement = new javax.swing.JComboBox<>();
+        cDateFin = new javax.swing.JComboBox<>();
+        afficherSimulation1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -86,25 +118,119 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
             jLabel1.setText("Le tri intéligent des simulations");
 
-            afficherSimulation.setText("Afficher les simulations");
+            afficherSimulation.setText("Modifier les coefficients et retrier");
             afficherSimulation.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     afficherSimulationActionPerformed(evt);
                 }
             });
 
-            jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            panelGraph.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+            javax.swing.GroupLayout panelGraphLayout = new javax.swing.GroupLayout(panelGraph);
+            panelGraph.setLayout(panelGraphLayout);
+            panelGraphLayout.setHorizontalGroup(
+                panelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 1006, Short.MAX_VALUE)
+            );
+            panelGraphLayout.setVerticalGroup(
+                panelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 260, Short.MAX_VALUE)
+            );
+
+            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "les coefficients"));
+
+            jLabel2.setText("coef : Mensualité ");
+
+            jLabel3.setText("coef : Durée ");
+
+            jLabel4.setText("coef : Taux d'interet ");
+
+            jLabel5.setText("coef : Montant total  ");
+
+            jLabel6.setText("coef : Taux fixe ");
+
+            jLabel7.setText("coef : Taux d'endettement ");
+
+            jLabel8.setText("coef : Date fin");
+            jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jLabel8MouseClicked(evt);
+                }
+            });
+            jLabel8.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    jLabel8KeyPressed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
             jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 777, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cMensualite, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cTauxInter, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cTauxFixe, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cTauxEndettement, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cDateFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(cMt, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap())
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 225, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(13, 13, 13)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel6)
+                        .addComponent(cMensualite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cTauxFixe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel7)
+                        .addComponent(cDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cTauxEndettement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel8)
+                        .addComponent(cTauxInter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(cMt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
+
+            afficherSimulation1.setText("Modifier les coefficients et retrier");
+            afficherSimulation1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    afficherSimulation1ActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -121,14 +247,19 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                                     .addGap(266, 266, 266)
                                     .addComponent(jLabel1))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(afficherSimulation)))
-                            .addGap(0, 337, Short.MAX_VALUE)))
+                                    .addGap(60, 60, 60)
+                                    .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(121, 121, 121)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addComponent(afficherSimulation1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(afficherSimulation))
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(0, 76, Short.MAX_VALUE)))
                     .addContainerGap())
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(152, 152, 152))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,20 +267,58 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     .addGap(22, 22, 22)
                     .addComponent(jLabel1)
                     .addGap(32, 32, 32)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                    .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(afficherSimulation1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(20, 20, 20))
             );
 
             pack();
         }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    /**
+     * @param _1 coefmensualite
+     * @param _2 coefDuree
+     * @param _3 coefTauxInteret
+     * @param _4 coefMtTotal
+     * @param _5 coefTypePret
+     * @param _6 coefTauxEndettement
+     * @param _7 coefDateFin
+     */
     private void afficherSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherSimulationActionPerformed
-        System.out.println(this.listSimPretConcerned.get(this.selectedIndex));
+        this.coefs[0] = Integer.parseInt(cMensualite.getSelectedItem().toString());
+        this.coefs[1] = Integer.parseInt(cDuree.getSelectedItem().toString());
+        this.coefs[2] = Integer.parseInt(cTauxInter.getSelectedItem().toString());
+        this.coefs[3] = Integer.parseInt(cMt.getSelectedItem().toString());
+        this.coefs[4] = Integer.parseInt(cTauxFixe.getSelectedItem().toString());
+        this.coefs[5] = Integer.parseInt(cTauxEndettement.getSelectedItem().toString());
+        this.coefs[6] = Integer.parseInt(cDateFin.getSelectedItem().toString());
+        try {
+            chargerSimulations(client, listSimPretConcerned);
+            
+        } catch (CloneNotSupportedException ex) {
+            JOptionPane.showMessageDialog(this, "L'opération s'est déroulé avec un echec");
+        }
     }//GEN-LAST:event_afficherSimulationActionPerformed
+
+    private void afficherSimulation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherSimulation1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_afficherSimulation1ActionPerformed
+
+    private void jLabel8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel8KeyPressed
+        
+    }//GEN-LAST:event_jLabel8KeyPressed
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        JOptionPane.showMessageDialog(this, "si le client est sensible à la date de fin, ca veut dire qu'il préfere que la date fin soit prolongée, il faut augmenter le coefficient, sinon il faut le diminuer (valeur négative si )");
+    }//GEN-LAST:event_jLabel8MouseClicked
 
 
     
@@ -198,7 +367,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                 listSimPret.get(i).getTypePret().getAbv(),
                 MathHepler.ajustVirgule(listSimPret.get(i).getTauxEndettement(client)*100, 2)+" %",
                 MathHepler.addMouthToDate(listSimPret.get(i).getDateContraction(), listSimPret.get(i).getDureePret()),
-                resultat, 
+                Math.abs(resultat), 
                 -1
             };
             dataSimulations.add(objects); 
@@ -212,7 +381,6 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         });
         
         for(int i = 0; i<dataSimulations.size() ;i++){
-            System.out.println((Timestamp)dataSimulations.get(i)[7]);
             dataSimulations.get(i)[7] = MathHepler.formatTimeStamp((Timestamp)dataSimulations.get(i)[7], "dd-MM-yyyy");
             dataSimulations.get(i)[9] = (i+1);
             tableModel.addRow(dataSimulations.get(i));
@@ -234,20 +402,41 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             tableModel.addRow(objects);
          */
         
-            
+        PanelGraphInfoSim view = new PanelGraphInfoSim("A", "", listSimPret, client);
+        view.getChartPanel().setBounds(0, 0, panelGraph.getWidth(), panelGraph.getHeight());
+        this.panelGraph.add(view.getChartPanel());
+        
+        
         this.repaint();
         this.validate();
+        JOptionPane.showMessageDialog(this, "Le tri s'est déroulé avec un succée");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afficherSimulation;
+    private javax.swing.JButton afficherSimulation1;
+    private javax.swing.JComboBox<String> cDateFin;
+    private javax.swing.JComboBox<String> cDuree;
+    private javax.swing.JComboBox<String> cMensualite;
+    private javax.swing.JComboBox<String> cMt;
+    private javax.swing.JComboBox<String> cTauxEndettement;
+    private javax.swing.JComboBox<String> cTauxFixe;
+    private javax.swing.JComboBox<String> cTauxInter;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel panelGraph;
     // End of variables declaration//GEN-END:variables
 
-
+    
     public  double getResultat(double pMensualite, double pDuree, double pTauxInteret, double pMtTotal, double pTypePret, double pTauxEndettement, double pDateFin){
         return (pMensualite * coefs[0] + pDuree* coefs[1] + pTauxInteret* coefs[2] + pMtTotal* coefs[3] + pTypePret* coefs[4]+ pTauxEndettement* coefs[5]+ pDateFin* coefs[6]);
     }
@@ -368,6 +557,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     public class TableSelecterListener implements ListSelectionListener {
         @Override
         public void valueChanged(ListSelectionEvent e) {
+            /*
             if (!e.getValueIsAdjusting()) {
                 if (!((ListSelectionModel) e.getSource()).isSelectionEmpty()) {
                     selectedIndex = ((ListSelectionModel) e.getSource()).getMinSelectionIndex();
@@ -377,9 +567,15 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     afficherSimulation.setEnabled(false);
                 }   
             }
-                 
+            */
         }
     }
     
-    
+    public void remplirComboboxCoef(int min, int max, JComboBox combo, int indexToSelect){
+        for(int i = min; i<max+1; i++){
+            combo.addItem(i);
+        }
+        combo.setSelectedIndex((max-min*-1)+indexToSelect);
+    }
+          
 }
