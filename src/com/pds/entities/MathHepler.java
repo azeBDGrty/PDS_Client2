@@ -111,10 +111,11 @@ public class MathHepler {
     
     public static Timestamp addMouthToDate(Timestamp date, int nbrMouth){
         Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
+        Timestamp dateCloned = (Timestamp) date.clone();
+        cal.setTime(dateCloned);
         cal.add(Calendar.MONTH, nbrMouth);
-        date.setTime(cal.getTime().getTime());
-        return date;
+        dateCloned.setTime(cal.getTime().getTime());
+        return dateCloned;
     }
     
     public static String formatTimeStamp(Timestamp date, String format){

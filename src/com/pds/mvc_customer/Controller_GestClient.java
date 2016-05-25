@@ -58,6 +58,11 @@ public class Controller_GestClient {
         view.chargerSimulation(simPret);
         view.setVisible(true);
     }
+
+    void fermerFenetre(PanelTableSimPret aThis) {
+        this.model.deleteObserver(aThis);
+        aThis.dispose();
+    }
     
     
 }

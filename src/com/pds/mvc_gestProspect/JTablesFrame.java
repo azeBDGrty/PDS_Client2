@@ -20,7 +20,7 @@ public class JTablesFrame extends javax.swing.JFrame {
     /**
      * Creates new form JTablesFrame
      */
-    public JTablesFrame(double indice, int duree, double tauxInit, double montant) {
+    public JTablesFrame(double indice, int duree, double tauxInit, double montant, double capet) {
         SimulationPret sp=new SimulationPret();
         sp.setMtPret(montant);
         Taux_directeur td=new Taux_directeur();
@@ -36,21 +36,20 @@ public class JTablesFrame extends javax.swing.JFrame {
         jTable1.setModel(dtm);
         DecimalFormat f = new DecimalFormat();
 	f.setMaximumFractionDigits(2);
-        double tauxTmp = (tauxInit/100);
+        double tauxTmp = tauxInit;
         double remaining=montant;
         
-        for (double i=0;i<1;i++){      //affichage des valeurs dans les cellules
-            Object[] data = {i+1, indice, tauxInit
-            };
-            dtm.addRow(data);
-        }
-         for (double j=1;j<=(duree/12);j++){      //affichage des valeurs dans les cellules
+        
+        dtm.addRow(new Object[]{1, indice, tauxInit, f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining))});
+       
+        for (double j=1;j<duree;j++){      //affichage des valeurs dans les cellules
              
-             System.out.println("tauxTmp" + tauxTmp);
-             
+            System.out.println("tauxTmp" + tauxTmp);
+            if( (tauxTmp + indice) <  capet)
+                tauxTmp += indice;
+            else
+                tauxTmp = capet+ tauxInit;
             Object[] data = {j+1, indice, f.format(tauxTmp), f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining))};
-            double remaining= (*f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining)))-(12*f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining))) ;
-            tauxTmp=tauxTmp+(indice/100);
            
             dtm.addRow(data);
             

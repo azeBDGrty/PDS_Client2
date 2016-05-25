@@ -98,6 +98,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         cTauxEndettement = new javax.swing.JComboBox<>();
         cDateFin = new javax.swing.JComboBox<>();
         afficherSimulation1 = new javax.swing.JButton();
+        afficherSimulation2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -116,7 +117,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             jScrollPane1.setViewportView(jTable1);
 
             jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-            jLabel1.setText("Le tri intélligent des simulations");
+            jLabel1.setText("Le tri intelligent des simulations");
 
             afficherSimulation.setText("Modifier les coefficients et retrier");
             afficherSimulation.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +144,11 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             jLabel2.setText("coef : Mensualité ");
 
             jLabel3.setText("coef : Durée ");
+            jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jLabel3MouseClicked(evt);
+                }
+            });
 
             jLabel4.setText("coef : Taux d'interet ");
 
@@ -182,7 +188,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                                 .addComponent(cMensualite, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cTauxInter, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,6 +238,13 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                 }
             });
 
+            afficherSimulation2.setText("fermer");
+            afficherSimulation2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    afficherSimulation2ActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -248,17 +261,20 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                                     .addComponent(jLabel1))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(60, 60, 60)
-                                    .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(139, 139, 139)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(afficherSimulation1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(afficherSimulation)))))
+                                    .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(0, 76, Short.MAX_VALUE)))
                     .addContainerGap())
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(afficherSimulation1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(afficherSimulation)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(afficherSimulation2)))
+                    .addGap(250, 250, 250))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,9 +288,11 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(afficherSimulation1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(afficherSimulation1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(afficherSimulation2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(20, 20, 20))
             );
 
@@ -319,6 +337,14 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         JOptionPane.showMessageDialog(this, "si le client est sensible à la date de fin, ca veut dire qu'il préfere que la date fin soit prolongée, il faut augmenter le coefficient, sinon il faut le diminuer (valeur négative si )");
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void afficherSimulation2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherSimulation2ActionPerformed
+        controller.fermerFenetre(this);
+    }//GEN-LAST:event_afficherSimulation2ActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+       JOptionPane.showMessageDialog(this, "Si le client est sensible à la durée du prêt <( Il souhaite payer dans un delai plus court )>, il faut augmenter le coefficient, sinon il vaut mettez une valeur négative");
+    }//GEN-LAST:event_jLabel3MouseClicked
+
 
     
     void chargerSimulations(Client client, List<SimulationPret> listSimPret) throws CloneNotSupportedException {
@@ -356,9 +382,9 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             pTauxEndettement = getPosTauxEndett(listSimPret, listSimPret.get(i)); 
             pDateFin = getPosDateFin(listSimPret, listSimPret.get(i)); 
             resultat =   getResultat(pMensualite, pDuree, pTauxInteret, pMtTotal, pTypePret, pTauxEndettement, pDateFin);
-            
+            System.out.println(pMensualite + " : " + pDuree + " : " + pTauxInteret + " : " + pMtTotal + " : " + pTypePret + " : " + pTauxEndettement + " : " + pDateFin + "  =  " + resultat );
             Object[] objects = new Object[]{
-                "Idenfiant :"+listSimPret.get(i).getIdSimPret(),
+                listSimPret.get(i).getIdSimPret(),
                 MathHepler.ajustVirgule(listSimPret.get(i).getMensualite(), 2)+ " €",
                 listSimPret.get(i).getDureePret()+ " mois",
                 MathHepler.ajustVirgule(listSimPret.get(i).getTauxInteret(), 2)+" %",
@@ -366,7 +392,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                 listSimPret.get(i).getTypePret().getAbv(),
                 MathHepler.ajustVirgule(listSimPret.get(i).getTauxEndettement(client)*100, 2)+" %",
                 MathHepler.addMouthToDate(listSimPret.get(i).getDateContraction(), listSimPret.get(i).getDureePret()),
-                Math.abs(resultat), 
+                resultat, 
                 -1
             };
             dataSimulations.add(objects); 
@@ -380,6 +406,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         });
         
         for(int i = 0; i<dataSimulations.size() ;i++){
+            dataSimulations.get(i)[0] = "Numero "+dataSimulations.get(i)[0];
             dataSimulations.get(i)[7] = MathHepler.formatTimeStamp((Timestamp)dataSimulations.get(i)[7], "dd-MM-yyyy");
             dataSimulations.get(i)[9] = (i+1);
             tableModel.addRow(dataSimulations.get(i));
@@ -401,7 +428,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             tableModel.addRow(objects);
          */
         
-        PanelGraphInfoSim view = new PanelGraphInfoSim("A", "", listSimPret, client);
+        PanelGraphInfoSim view = new PanelGraphInfoSim("", "", listSimPret, client);
         view.getChartPanel().setBounds(0, 0, panelGraph.getWidth(), panelGraph.getHeight());
         this.panelGraph.add(view.getChartPanel());
         
@@ -414,6 +441,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afficherSimulation;
     private javax.swing.JButton afficherSimulation1;
+    private javax.swing.JButton afficherSimulation2;
     private javax.swing.JComboBox<String> cDateFin;
     private javax.swing.JComboBox<String> cDuree;
     private javax.swing.JComboBox<String> cMensualite;
@@ -437,7 +465,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
 
     
     public  double getResultat(double pMensualite, double pDuree, double pTauxInteret, double pMtTotal, double pTypePret, double pTauxEndettement, double pDateFin){
-        return (pMensualite * coefs[0] + pDuree* coefs[1] + pTauxInteret* coefs[2] + pMtTotal* coefs[3] + pTypePret* coefs[4]+ pTauxEndettement* coefs[5]+ pDateFin* coefs[6]);
+        return ((pMensualite+1) * coefs[0] + (pDuree+1)* coefs[1] + (pTauxInteret+1)* coefs[2] + (pMtTotal+1)* coefs[3] + (pTypePret+1)* coefs[4]+ (pTauxEndettement+1)* coefs[5]+ (pDateFin+1)* coefs[6]);
     }
     
     
@@ -448,7 +476,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         
         listSimulation.stream()
                 .sorted(
-                        (e1, e2) -> MathHepler.compareToWithMensualite(e1, e2, false)
+                        (e1, e2) -> MathHepler.compareToWithMensualite(e1, e2, true)
                 ).forEach(e -> simulations.add(e));
         
         return simulations.indexOf(simulationConcerned);
@@ -461,7 +489,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         
         listSimulation.stream()
                 .sorted(
-                        (e1, e2) -> MathHepler.compareToWithDuree(e1, e2, false)
+                        (e1, e2) -> MathHepler.compareToWithDuree(e1, e2, true)
                 ).forEach(e -> simulations.add(e));
         
         return simulations.indexOf(simulationConcerned);
@@ -577,4 +605,9 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         combo.setSelectedIndex((max-min*-1)+indexToSelect);
     }
           
+    
+    
+    
+    
+    
 }
