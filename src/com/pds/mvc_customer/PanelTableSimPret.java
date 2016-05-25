@@ -9,12 +9,19 @@ import com.pds.entities.Client;
 import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
 import com.pds.implobs.AbstractObservable;
+import com.pds.mvc_customer.Controller_GestClient;
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import java.util.function.Consumer;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,9 +31,10 @@ import javax.swing.table.DefaultTableModel;
 public class PanelTableSimPret extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver {
 
     private Client client;
-    private LinkedList<SimulationPret> listSimPretConcerned;
+    private List<SimulationPret> listSimPretConcerned;
     private Controller_GestClient controller;
     private double coefs[];
+    private int selectedIndex;
     
     /**
      * Creates new form PanelTableSimPret
@@ -35,8 +43,13 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
 
     PanelTableSimPret(Controller_GestClient controller) {
         this.controller = controller;
-        this.coefs = new double[]{6,5,4,3,2,1};
+        this.coefs = new double[]{7, 6, 5, 4, 3, 2, 1};
+        this.selectedIndex = -1;
         initComponents();
+        this.afficherSimulation.setEnabled(false);
+        this.jTable1.getSelectionModel().addListSelectionListener(new TableSelecterListener());
+        
+        
     }
 
     /**
@@ -51,7 +64,13 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        afficherSimulation = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
+        setClosable(true);
+        setIconifiable(true);
+
+        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {
@@ -59,12 +78,33 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
 
                 }},
                 new String [] {
-                    "Identifiant de la simulation", "Mensualité", "Durée", "Taux d'interet", "Montant totale", "Type de prêt", "Taux d'endettement", "Resultat", "Position"
+                    "Identifiant de la simulation", "Mensualité", "Durée", "Taux d'interet", "Montant totale", "Type de prêt", "Taux d'endettement", "Date fin du contrat", "Resultat", "Position"
                 }
             ));
             jScrollPane1.setViewportView(jTable1);
 
+            jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
             jLabel1.setText("Le tri intéligent des simulations");
+
+            afficherSimulation.setText("Afficher les simulations");
+            afficherSimulation.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    afficherSimulationActionPerformed(evt);
+                }
+            });
+
+            jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+            jPanel1.setLayout(jPanel1Layout);
+            jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 777, Short.MAX_VALUE)
+            );
+            jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 225, Short.MAX_VALUE)
+            );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -74,30 +114,48 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(233, 233, 233)
-                            .addComponent(jLabel1)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(266, 266, 266)
+                                    .addComponent(jLabel1))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(afficherSimulation)))
+                            .addGap(0, 337, Short.MAX_VALUE)))
+                    .addContainerGap())
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(152, 152, 152))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(34, 34, 34)
+                    .addGap(22, 22, 22)
                     .addComponent(jLabel1)
-                    .addGap(50, 50, 50)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(32, 32, 32)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
             );
 
             pack();
         }// </editor-fold>//GEN-END:initComponents
 
+    private void afficherSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherSimulationActionPerformed
+        System.out.println(this.listSimPretConcerned.get(this.selectedIndex));
+    }//GEN-LAST:event_afficherSimulationActionPerformed
+
 
     
     void chargerSimulations(Client client, List<SimulationPret> listSimPret) throws CloneNotSupportedException {
         this.client = client;
-        this.listSimPretConcerned = new LinkedList<>();
+        this.listSimPretConcerned = listSimPret;
         DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
         tableModel.setRowCount(0);
         /*
@@ -116,19 +174,20 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         int pMtTotal = -1;
         int pTypePret = -1;
         int pTauxEndettement = -1;
+        int pDateFin = -1;
         double resultat = -1;
         int position = 0;
+        
         List<Object[]> dataSimulations = new LinkedList<>();
-        
-        
         for(int i = 0; i<listSimPret.size() ;i++){         
             pMensualite = getPosMensualite(listSimPret, listSimPret.get(i));
             pDuree = getPosDuree(listSimPret, listSimPret.get(i));
             pTauxInteret = getPosTauxInteret(listSimPret, listSimPret.get(i));
             pMtTotal = getPosMensualite(listSimPret, listSimPret.get(i)) ;
             pTypePret = getPosTypePret(listSimPret, listSimPret.get(i)) ;
-            pTauxEndettement = getPosTauxEndett(listSimPret, listSimPret.get(i));   
-            resultat =   getResultat(pMensualite, pDuree, pTauxInteret, pMtTotal, pTypePret, pTauxEndettement);
+            pTauxEndettement = getPosTauxEndett(listSimPret, listSimPret.get(i)); 
+            pDateFin = getPosDateFin(listSimPret, listSimPret.get(i)); 
+            resultat =   getResultat(pMensualite, pDuree, pTauxInteret, pMtTotal, pTypePret, pTauxEndettement, pDateFin);
             
             Object[] objects = new Object[]{
                 "Idenfiant :"+listSimPret.get(i).getIdSimPret(),
@@ -138,6 +197,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                 MathHepler.ajustVirgule(listSimPret.get(i).getMensualite()*listSimPret.get(i).getDureePret(), 2)+ " €",
                 listSimPret.get(i).getTypePret().getAbv(),
                 MathHepler.ajustVirgule(listSimPret.get(i).getTauxEndettement(client)*100, 2)+" %",
+                MathHepler.addMouthToDate(listSimPret.get(i).getDateContraction(), listSimPret.get(i).getDureePret()),
                 resultat, 
                 -1
             };
@@ -152,7 +212,9 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         });
         
         for(int i = 0; i<dataSimulations.size() ;i++){
-            dataSimulations.get(i)[8] = (i+1);
+            System.out.println((Timestamp)dataSimulations.get(i)[7]);
+            dataSimulations.get(i)[7] = MathHepler.formatTimeStamp((Timestamp)dataSimulations.get(i)[7], "dd-MM-yyyy");
+            dataSimulations.get(i)[9] = (i+1);
             tableModel.addRow(dataSimulations.get(i));
         }
         
@@ -178,14 +240,16 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton afficherSimulation;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
 
-    public  double getResultat(double pMensualite, double pDuree, double pTauxInteret, double pMtTotal, double pTypePret, double pTauxEndettement){
-        return (pMensualite * coefs[0] + pDuree* coefs[1] + pTauxInteret* coefs[2] + pMtTotal* coefs[3] + pTypePret* coefs[4]+ pTauxEndettement* coefs[5]);
+    public  double getResultat(double pMensualite, double pDuree, double pTauxInteret, double pMtTotal, double pTypePret, double pTauxEndettement, double pDateFin){
+        return (pMensualite * coefs[0] + pDuree* coefs[1] + pTauxInteret* coefs[2] + pMtTotal* coefs[3] + pTypePret* coefs[4]+ pTauxEndettement* coefs[5]+ pDateFin* coefs[6]);
     }
     
     
@@ -279,10 +343,43 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         return simulations.indexOf(simulationConcerned);
     }
     
-    
+    public int getPosDateFin(List<SimulationPret> listSimulation, SimulationPret simulationConcerned){
+        int position = 1;
+        List<SimulationPret> simulations = new LinkedList<>();
+        
+        listSimulation.stream()
+                .sorted(
+                        (e1, e2) -> MathHepler.compareToDateFin( e1, e2, false)
+                ).forEach(e -> simulations.add(e));
+        
+        return simulations.indexOf(simulationConcerned);
+    }
     
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
         return true;
     }
+
+    
+    
+    
+    
+    
+    public class TableSelecterListener implements ListSelectionListener {
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (!e.getValueIsAdjusting()) {
+                if (!((ListSelectionModel) e.getSource()).isSelectionEmpty()) {
+                    selectedIndex = ((ListSelectionModel) e.getSource()).getMinSelectionIndex();
+                    afficherSimulation.setEnabled(true);
+                }else{
+                    selectedIndex = -1;
+                    afficherSimulation.setEnabled(false);
+                }   
+            }
+                 
+        }
+    }
+    
+    
 }

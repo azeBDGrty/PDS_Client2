@@ -40,7 +40,8 @@ public class Controller_GestClient {
     }
 
     void showPanelComparaison(Client client, List<SimulationPret> listSimPret) throws CloneNotSupportedException {
-        ListSimPretComp view = new ListSimPretComp(this);
+        //ListSimPretComp view = new ListSimPretComp(this);
+        PanelTableSimPret view = new PanelTableSimPret(this);
         model.getDeskTopPane().add(view);
         
         model.addObserver(view);

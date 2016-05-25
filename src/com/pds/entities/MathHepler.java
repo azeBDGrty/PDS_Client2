@@ -5,7 +5,11 @@
  */
 package com.pds.entities;
 
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.stream.Stream;
 
 /**
  *
@@ -93,25 +97,32 @@ public class MathHepler {
     }
     
     public static int compareToResSimulation(Object[] sim, Object[] sim2, boolean desc){
-        if( ((double)sim[7]) > ((double)sim2[7]) )
+        if( ((double)sim[8]) > ((double)sim2[8]) )
                 return (desc) ? 1 : -1;
         
-        else if ( ((double)sim[7]) == ((double)sim2[7]) )
+        else if ( ((double)sim[8]) == ((double)sim2[8]) )
             return 0;
         
         return (desc) ? -1 : 1;
     }
     
-    /*
-    public static int compareToTypePret(Client client, SimulationPret sim, SimulationPret sim2, boolean desc){
-        
-        if(sim.getTauxEndettement(client) > sim2.getTauxEndettement(client))
-                return (desc) ? 1 : -1;
-        
-        else if (sim.getTauxEndettement(client) == sim2.getTauxEndettement(client))
-            return 0;
-        
-        return (desc) ? -1 : 1;
+    
+    public static Timestamp addMouthToDate(Timestamp date, int nbrMouth){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, nbrMouth);
+        date.setTime(cal.getTime().getTime());
+        return date;
     }
-    */
+    
+    public static String formatTimeStamp(Timestamp date, String format){
+        return new SimpleDateFormat(format).format(date);
+    }
+
+    public static int compareToDateFin(SimulationPret e1, SimulationPret e2, boolean b) {
+        if (e1.getDateContraction().before(e2.getDateContraction()))
+            return 1;
+        return -1;
+    }
+    
 }
