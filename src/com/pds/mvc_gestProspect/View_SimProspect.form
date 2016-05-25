@@ -133,7 +133,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Date de reference  :"/>
+        <Property name="text" type="java.lang.String" value="Date de r&#xe9;f&#xe9;rence  :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iMtPret">
@@ -147,7 +147,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Taux D&apos;interet (TAEG) :"/>
+        <Property name="text" type="java.lang.String" value="Taux D&apos;int&#xe9;r&#xea;t (TAEG) :"/>
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="iDateContraction">
@@ -267,7 +267,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mt total des inter&#xea;ts :"/>
+            <Property name="text" type="java.lang.String" value="Mt total des int&#xe9;r&#xea;ts :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="iTTAssurance">

@@ -77,11 +77,11 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
 
         jLabel11.setText("Durée de prêt (en mois)  :");
 
-        jLabel12.setText("Date de reference  :");
+        jLabel12.setText("Date de référence  :");
 
         jLabel13.setText("Le montant du prêt :");
 
-        jLabel14.setText("Taux D'interet (TAEG) :");
+        jLabel14.setText("Taux D'intérêt (TAEG) :");
 
         jLabel15.setText("Taux d'assurance   :");
 
@@ -106,7 +106,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
             }
         });
 
-        jLabel16.setText("Mt total des interêts :");
+        jLabel16.setText("Mt total des intérêts :");
 
         jLabel17.setText("Mt total de l'assurance:");
 
