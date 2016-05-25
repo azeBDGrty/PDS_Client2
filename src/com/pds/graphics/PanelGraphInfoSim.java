@@ -67,11 +67,11 @@ public class PanelGraphInfoSim extends  ApplicationFrame {
        }
        
        for(SimulationPret sim : simulations){
-            dataset.addValue( sim.getMensualite()/100 , "Simulation "+sim.getIdSimPret(), "Mensualité" );        
-            dataset.addValue( sim.getDureePret() , "Simulation "+sim.getIdSimPret() , "Durée" );        
-            dataset.addValue( sim.getTauxInteret(), "Simulation "+sim.getIdSimPret() , "Taux d'interet" );        
-            dataset.addValue( sim.getMtPret()*sim.getDureePret()/10000 , "Simulation "+sim.getIdSimPret() , "Montant total" );        
-            dataset.addValue( sim.getTauxEndettement(client)*100 , "Simulation "+sim.getIdSimPret() , "Taux d'endettement" );   
+            dataset.addValue( sim.getMensualite()/100 , "Simulation "+sim.getIdSimPret(), "Mensualite par 100€" );        
+            dataset.addValue( sim.getDureePret() , "Simulation "+sim.getIdSimPret() , "Durée en mois" );        
+            dataset.addValue( sim.getTauxInteret(), "Simulation "+sim.getIdSimPret() , "Taux d'interet en %" );        
+            dataset.addValue( sim.getMtPret()*sim.getDureePret()/10000 , "Simulation "+sim.getIdSimPret() , "Montant total par 10k €" );        
+            dataset.addValue( sim.getTauxEndettement(client)*100 , "Simulation "+sim.getIdSimPret() , "Taux d'endettement en %" );   
        }       
 
       return dataset; 
