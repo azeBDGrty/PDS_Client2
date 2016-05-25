@@ -30,21 +30,7 @@ public class Executable {
         Anonyme user = new Anonyme();
 
         AnonymeHandle model = new AnonymeHandle(in, out, user);
-
-        /*
-            Element root = new Element("InfoAuthentification");
-                Element eLogin = new Element("login");
-                eLogin.setText("Zouhair2");
-
-                Element ePassWord = new Element("passWord");
-                ePassWord.setText("12345");
-
-                root.addContent(eLogin);
-                root.addContent(ePassWord);
-
-
-            out.askAuthentification(root);
-         */
+        
         Controller_MDIForm controller = new Controller_MDIForm(model);
 
         Forme view = new Forme(controller, true);
