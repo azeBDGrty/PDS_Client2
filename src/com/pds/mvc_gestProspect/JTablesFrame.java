@@ -8,6 +8,7 @@ package com.pds.mvc_gestProspect;
 import com.pds.entities.CalculPret;
 import com.pds.entities.SimulationPret;
 import com.pds.entities.Taux_directeur;
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,23 +28,32 @@ public class JTablesFrame extends javax.swing.JFrame {
         CalculPret cp=new CalculPret();
         cp.setT_marge(0d);
         sp.setCalcPret(cp);
+        sp.setDureePret(duree);
         cp.setTauxDirecteur(td);
         initComponents();
         String col[] = {"Année", "Indice", "Taux", "Mensualité", "Montant restant"};
         DefaultTableModel dtm = new DefaultTableModel(col, 0);
         jTable1.setModel(dtm);
+        DecimalFormat f = new DecimalFormat();
+	f.setMaximumFractionDigits(2);
+        double tauxTmp = (tauxInit/100);
+        double remaining=montant;
         
         for (double i=0;i<1;i++){      //affichage des valeurs dans les cellules
             Object[] data = {i+1, indice, tauxInit
             };
             dtm.addRow(data);
         }
-         for (double i=1;i<duree;i++){      //affichage des valeurs dans les cellules
-            Object[] data = {i+1, indice, tauxInit+(i/10), sp.calcMensualiteTauxVariable(tauxInit+(i/10))
-            
-            };
+         for (double j=1;j<=(duree/12);j++){      //affichage des valeurs dans les cellules
+             
+             System.out.println("tauxTmp" + tauxTmp);
+             
+            Object[] data = {j+1, indice, f.format(tauxTmp), f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining))};
+            double remaining= (*f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining)))-(12*f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining))) ;
+            tauxTmp=tauxTmp+(indice/100);
+           
             dtm.addRow(data);
-            System.out.println(sp.calcMensualiteTauxVariable(tauxInit+(i/10)));
+            
         }
         this.setVisible(true);
         this.setSize(650, 500);
