@@ -106,6 +106,8 @@ public class ConseillerHandle extends AbstractHandle{
             in.getCommand();
             this.buildAllSimulation(this.in.getLastDocument());
             
+            
+            
         } catch (IOException | ParseException ex) {
             Logger.getLogger(ConseillerHandle.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -162,9 +164,31 @@ public class ConseillerHandle extends AbstractHandle{
     
     
     
+    public double askTauxInteret(int age, double revenue, String typeContrat, TypeEmprunt typeEmprunt, boolean isClient ){
+        double tauxInteret = 100;
+                
+        Element eRoot = new Element("eRoot");
+        Element eAge = new Element("age");
+        eAge.setText(age+"");
+        Element eRevenu = new Element("revenu");
+        eRevenu.setText(revenue+"");
+        Element eTypeContrat = new Element("typeContrat");
+        eTypeContrat.setText(typeContrat);
+        Element eTypeEmprunt = new Element("typeEmprunt");
+        eTypeEmprunt.setText(typeEmprunt.toString());
+        Element eIsClient = new Element("isClient");
+        eIsClient.setText( (isClient) ? "1" : "0" );
+        eRoot.addContent(eAge);
+        eRoot.addContent(eRevenu);
+        eRoot.addContent(eTypeContrat);
+        eRoot.addContent(eTypeEmprunt);
+        eRoot.addContent(eIsClient);
+        this.out.askTauxInteretPretFixe(eRoot);
+        
+        return tauxInteret/100;
+    }
     
-    
-    
+   
     
     
     
