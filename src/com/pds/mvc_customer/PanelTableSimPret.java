@@ -116,7 +116,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             jScrollPane1.setViewportView(jTable1);
 
             jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-            jLabel1.setText("Le tri intéligent des simulations");
+            jLabel1.setText("Le tri intélligent des simulations");
 
             afficherSimulation.setText("Modifier les coefficients et retrier");
             afficherSimulation.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +225,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
-            afficherSimulation1.setText("Modifier les coefficients et retrier");
+            afficherSimulation1.setText("Afficher la simulation");
             afficherSimulation1.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     afficherSimulation1ActionPerformed(evt);
@@ -250,14 +250,13 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                                     .addGap(60, 60, 60)
                                     .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(121, 121, 121)
+                                    .addGap(139, 139, 139)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
                                             .addComponent(afficherSimulation1)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(afficherSimulation))
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(afficherSimulation)))))
                             .addGap(0, 76, Short.MAX_VALUE)))
                     .addContainerGap())
             );

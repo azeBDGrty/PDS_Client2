@@ -6,6 +6,7 @@
 package com.pds.mvc_customer;
 
 import com.pds.entities.Client;
+import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
 import com.pds.implobs.AbstractObservable;
 import java.awt.Color;
@@ -92,7 +93,7 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,10 +162,12 @@ public class ListSimPrets extends javax.swing.JInternalFrame implements com.pds.
         this.client = client;
         for(SimulationPret simPret : client.getSimulationsPrets()){
             PanelSimPret panel = new PanelSimPret(controller);
-            panel.chargerSimulation(simPret);
+            panel.chargerSimulation( client, simPret);
             FrameList.add(panel);
             if(simPret.getTauxEndettement(client)*100 > 33.33 )
-                panel.setBackground(Color.red);
+                panel.setBackground(MathHepler.getColorWrong());
+            else
+                panel.setBackground(MathHepler.getColorReight());
         }
         FrameList.repaint();
         FrameList.validate();

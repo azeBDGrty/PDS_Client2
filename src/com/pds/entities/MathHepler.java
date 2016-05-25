@@ -5,6 +5,7 @@
  */
 package com.pds.entities;
 
+import java.awt.Color;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import java.util.stream.Stream;
  */
 public class MathHepler {
     
+    private static Color colorWrong, colorReight;
     private static DecimalFormat df;
     
     static{
@@ -123,6 +125,19 @@ public class MathHepler {
         if (e1.getDateContraction().before(e2.getDateContraction()))
             return 1;
         return -1;
+    }
+
+    public static Color getColorWrong() {
+        if(colorWrong == null)
+            colorWrong = new Color(255, 234, 234);
+        return colorWrong;
+    }
+    
+    
+    public static Color getColorReight() {
+        if(colorReight == null)
+            colorReight = new Color(242, 255, 245);
+        return colorReight;
     }
     
 }
