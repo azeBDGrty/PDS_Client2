@@ -286,9 +286,18 @@ public class SimulationPret implements Cloneable{
     }
     
     
-    public double calcMensualiteTauxVariable(double taux){
+    public double calcMensualiteTauxVariable(double taux,double remaining){
         
-        double montantEmprunte=(this.getMtPret()*taux/12)/(1-(1/Math.pow(1+taux,12)*this.getDureePret()));
-        return montantEmprunte;
+        int nbannee = (int) (getDureePret()/12);
+        System.out.println("test255");
+        System.out.println("le montant du pret est" + getMtPret());
+        System.out.println("le taux est" + taux);
+        System.out.println("le nombre d'année est" + nbannee);
+         
+        
+       double monthly= (remaining*(taux/12))/(1-(1/Math.pow((1+taux/12),getDureePret())));
+       
+        
+        return monthly;
     }
 }
