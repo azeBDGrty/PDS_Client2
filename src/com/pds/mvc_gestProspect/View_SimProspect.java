@@ -287,27 +287,20 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
             TEAG = Double.parseDouble(iTauxInteret.getText());
             tauxAssurance = Double.parseDouble(iTauxAssurance.getText());
 
-            
-            double c0 = Double.parseDouble(iMtPret.getText());
-            double t=Double.parseDouble(iTauxInteret.getText())/100;
-            int n = Integer.parseInt(iDureePret.getText());
-            
-            
+           
             
             double mtTTInteret = (mtPret*dureePret*TEAG)/1200;
             double mtTTAssurance = (mtPret*dureePret*tauxAssurance)/1200;
             
-            double mensualite = (c0*(t/12))/(-1+Math.pow(( 1+(t/12) ), n));
-            
             this.iTTInteret.setText(mtTTInteret+"");
             this.iTTAssurance.setText(mtTTAssurance+"");
             //this.iTTAssurance.setText(Double.toString(simPret.getMtPret()));
-            //double mensualite = (mtTTInteret + mtTTAssurance + mtPret)/dureePret;
+            double mensualite = (mtTTInteret + mtTTAssurance + mtPret)/dureePret;
             this.iRembourssement.setText(mensualite+"");
             this.iTTPret.setText(mensualite*dureePret+"");
             
             Timestamp timestamp=new Timestamp(iDateContraction.getDate().getTime());
-            System.out.println(timestamp);
+            
             SimulationPret simPret=new SimulationPret();
             
             simPret.setDureePret(dureePret);
