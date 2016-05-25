@@ -6,11 +6,12 @@
 package com.pds.mvc_indicator;
 
 
+
 import com.pds.implobs.AbstractObservable;
 import com.pds.implobs.IObserver;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -21,14 +22,18 @@ public class View_Indicator extends javax.swing.JInternalFrame implements IObser
     /**
      * Creates new form View_Indicator
      */
-    
+    MainGraphics2 m;
 private Controller_Indicator controller;
     
     public View_Indicator(Controller_Indicator controller) {
            this.controller = controller;
-        initComponents();
+           initComponents();
+            m=new MainGraphics2 (controller,"");
+        this.getContentPane().add(m);
+        this.setSize(1350,670);
+        
 
-        this.jToggleButton1.addActionListener(new IndicatorListener());
+       // this.jToggleButton1.addActionListener(new IndicatorListener());
               
     }
     
@@ -42,62 +47,19 @@ private Controller_Indicator controller;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jTextField1 = new javax.swing.JTextField();
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jToggleButton1.setText("jToggleButton1");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(330, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
-                .addGap(302, 302, 302))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jToggleButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+            .addGap(0, 324, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
@@ -105,9 +67,13 @@ private Controller_Indicator controller;
        
         switch(message.trim()){ 
        case "sendLoanNumbers" :
-               jTextField1.setText("il y a eu du changement");
+           //    jTextField1.setText("il y a eu du changement");
            System.out.println("le resultat est :" + data.toString());
-               
+          this.remove(m);
+          this.repaint();
+          m=new MainGraphics2(controller, "test");
+          this.add(m);
+          this.validate();
                 return true;
       default :
                 return false;         
@@ -123,8 +89,5 @@ private Controller_Indicator controller;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

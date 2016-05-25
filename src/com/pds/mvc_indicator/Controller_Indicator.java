@@ -22,6 +22,9 @@ public class Controller_Indicator {
     
 
     public void sendIndicatorInfo() {
+        
+        System.out.println("sendIndicator");
+        
         Element root = new Element("InfoIndicator");
             
             Element eAnnee = new Element("annee");
