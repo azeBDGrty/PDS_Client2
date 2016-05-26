@@ -25,45 +25,28 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
     /**
      * Creates new form AmortisationTablePanel
      */
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private SimulationPret simulationPret;
-    private CalculPret calculPret;
-    
 
-
-        public AmortisationTablePanel(SimulationPret simulationPret)  {
+        public AmortisationTablePanel(SimulationPret loanSimulation)  {
 
         initComponents();
-        //récupération des données dans la base, + peuplement de simulationpret
-        /*calculPret=new CalculPret();
-        Taux_directeur td=new Taux_directeur();
-        calculPret.setTauxDirecteur(td);
-        simulationPret=new SimulationPret();
-        simulationPret.setCalcPret(calculPret);
-        simulationPret.setAmortisationCalcPret(calculPret, idClient,td);*/
-        
-        List<Double> capAmorti=new ArrayList<Double>();
-        capAmorti=simulationPret.calcCapAmmort();   //capital amort
-        List<Double> capRestant=new ArrayList<Double>();
-        capRestant=simulationPret.calcCapRestant(); //captital restant
-        List<Double> calcInterets=new ArrayList<Double>();
-        calcInterets=simulationPret.calcInterets(); //interets
-        double assurance=simulationPret.calcAssurance();    //asurance
-        double totalAPayer=simulationPret.calcMensualite(); //total a payer
+        List<Double> capPayed=new ArrayList<Double>();
+        capPayed=loanSimulation.calcCapAmmort();   //capital payed
+        List<Double> capToRefund=new ArrayList<Double>();
+        capToRefund=loanSimulation.calcCapRestant(); //captital to refund
+        List<Double> calcInterests=new ArrayList<Double>();
+        calcInterests=loanSimulation.calcInterets(); //interests
+        double insurance=loanSimulation.calcAssurance();    //insurance
+        double totalToPay=loanSimulation.calcMensualite(); //total to pay
         
         String col[] = {"Mois", "Montant remboursé", "Intérêts", "Montant restant à rembourser", "Assurance", "Coût total"};
         DefaultTableModel dtm = new DefaultTableModel(col, 0);
         jTable1.setModel(dtm);
-        for (int i=0;i<simulationPret.getDureePret();i++){      //affichage des valeurs dans les cellules
-            Object[] data = {i+1, capAmorti.get(i), calcInterets.get(i),capRestant.get(i),assurance,totalAPayer
+        for (int i=0;i<loanSimulation.getDureePret();i++){      //print values in the cells
+            Object[] data = {i+1, capPayed.get(i), calcInterests.get(i),capToRefund.get(i),insurance,totalToPay
             };
             dtm.addRow(data);
         }
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);        //taille des colonnes
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);        //columns jTable width
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(140);
@@ -73,9 +56,9 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i=0;i<jTable1.getColumnCount();i++)
-            jTable1.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);   //centrer les valeurs du jtable
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);   //center values in jtable
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
-                .setHorizontalAlignment(JLabel.CENTER);         //centrer les titres du header
+                .setHorizontalAlignment(JLabel.CENTER);         //centrer titles in header
         this.setVisible(true);
         //this.setSize(650, 500);
     }

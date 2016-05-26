@@ -51,11 +51,11 @@ public class Controller_GestClient {
     }
 
     void showFrameTableAmmort(SimulationPret simPret)  {
-        PanelPlusInfoSimPret view = new PanelPlusInfoSimPret(this);
+        PanelMoreInfoSimLoan view = new PanelMoreInfoSimLoan(this);
         model.getDeskTopPane().add(view);
         
         model.addObserver(view);
-        view.chargerSimulation(simPret);
+        view.loadSimulation(simPret);
         view.setVisible(true);
     }
 
