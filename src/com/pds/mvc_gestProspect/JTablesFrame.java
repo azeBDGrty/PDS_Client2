@@ -35,45 +35,114 @@ public class JTablesFrame extends javax.swing.JFrame {
         cp.setTauxDirecteur(td);
         initComponents();
         
-        
-        String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
-        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-        dtm.setRowCount(0);
-        dtm.setColumnIdentifiers(col);
-        
-        double tauxTmp = tauxInit;
-        double remaining=montant;
-        
-        double montantTotal = 0;
-        List<infoMensualite> listeTable = new LinkedList<>();
-        
-        for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
-            
-            //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
-            sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
-            montantTotal +=  sp.getMensualite();
-            listeTable.add(new infoMensualite(j+1, indice, tauxTmp, sp.getMensualite(), 0));          
-            //dtm.addRow(data);
-            
-            if( (tauxTmp + indice) <  tauxInit+capet)
-                tauxTmp += indice;
-            else
-                tauxTmp = (tauxInit+capet);
+        {
+            String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            dtm.setRowCount(0);
+            dtm.setColumnIdentifiers(col);
+
+            double tauxTmp = tauxInit;
+            double remaining=montant;
+
+            double montantTotal = 0;
+            List<infoMensualite> listeTable = new LinkedList<>();
+
+            for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
+
+                //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
+                sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
+                montantTotal +=  sp.getMensualite();
+                listeTable.add(new infoMensualite(j+1, indice, tauxTmp, sp.getMensualite(), 0));          
+                //dtm.addRow(data);
+
+                if( (tauxTmp + indice) <  tauxInit+capet)
+                    tauxTmp += indice;
+                else
+                    tauxTmp = (tauxInit+capet);
+            }
+
+
+            for(infoMensualite info : listeTable){
+                montantTotal -= info.mensualite;
+                info.montantRestant = montantTotal;
+                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
+            }
         }
-        
-        
-        for(infoMensualite info : listeTable){
-            montantTotal -= info.mensualite;
-            info.montantRestant = montantTotal;
-            dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
-        }
-        
         
         
         
         
         
         // ici .... il faut faire copier coller
+        // en baisse 
+        
+        {
+            String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
+            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+            dtm.setRowCount(0);
+            dtm.setColumnIdentifiers(col);
+
+            double tauxTmp = tauxInit;
+            double remaining=montant;
+
+            double montantTotal = 0;
+            List<infoMensualite> listeTable = new LinkedList<>();
+
+            for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
+
+                //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
+                sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
+                montantTotal +=  sp.getMensualite();
+                listeTable.add(new infoMensualite(j+1, indice, tauxTmp, sp.getMensualite(), 0));          
+                //dtm.addRow(data);
+
+                if( (tauxTmp - indice) >  2)
+                    tauxTmp -= indice;
+                else
+                    tauxTmp = 2;
+            }
+
+
+            for(infoMensualite info : listeTable){
+                montantTotal -= info.mensualite;
+                info.montantRestant = montantTotal;
+                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
+            }
+        }
+        
+        
+        
+        // stable
+        
+        {
+            String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            dtm.setRowCount(0);
+            dtm.setColumnIdentifiers(col);
+
+            double tauxTmp = tauxInit;
+            double remaining=montant;
+
+            double montantTotal = 0;
+            List<infoMensualite> listeTable = new LinkedList<>();
+
+            for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
+
+                //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
+                sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
+                montantTotal +=  sp.getMensualite();
+                listeTable.add(new infoMensualite(j+1, indice, tauxTmp, sp.getMensualite(), 0));          
+                //dtm.addRow(data);
+
+            }
+
+
+            for(infoMensualite info : listeTable){
+                montantTotal -= info.mensualite;
+                info.montantRestant = montantTotal;
+                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
+            }
+        }
         
         this.setVisible(true);
         this.setSize(650, 500);
@@ -150,48 +219,32 @@ public class JTablesFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(64, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(328, Short.MAX_VALUE)))
         );
 
         pack();
