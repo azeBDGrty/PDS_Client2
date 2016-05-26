@@ -29,14 +29,14 @@ import javax.swing.SwingUtilities;
  *
  * @author zouhairhajji
  */
-public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements IObserver{
+public class PanelMoreInfoSimLoan extends javax.swing.JInternalFrame implements IObserver{
     
     private Controller_GestClient controller;
-    private SimulationPret simulation;
+    private SimulationPret loan;
     private JFrame frame;
     
     
-    public PanelPlusInfoSimPret(Controller_GestClient controller) {
+    public PanelMoreInfoSimLoan(Controller_GestClient controller) {
         this.controller = controller;
         initComponents();
         frame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -44,9 +44,9 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
     }
     
     
-    public void chargerSimulation(SimulationPret simulation){
-        this.simulation = simulation;
-        MainGraphics m=new MainGraphics (simulation);
+    public void loadSimulation(SimulationPret loan){
+        this.loan = loan;
+        MainGraphics m=new MainGraphics (loan);
         this.getContentPane().add(m);
         this.setSize(1350,670);
         
@@ -73,7 +73,7 @@ public class PanelPlusInfoSimPret extends javax.swing.JInternalFrame implements 
                     if(job.printDialog()) try {
                         job.print();
                 } catch (PrinterException ex) {
-                    Logger.getLogger(PanelPlusInfoSimPret.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PanelMoreInfoSimLoan.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }
