@@ -67,6 +67,14 @@ public class JTablesFrame extends javax.swing.JFrame {
             info.montantRestant = montantTotal;
             dtm.addRow(new Object[]{info.annee, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
         }
+        
+        
+        
+        
+        
+        
+        // ici .... il faut faire copier coller
+        
         this.setVisible(true);
         this.setSize(650, 500);
     }
