@@ -78,7 +78,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         
         {
             String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
-            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
             dtm.setRowCount(0);
             dtm.setColumnIdentifiers(col);
 
@@ -116,7 +116,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         
         {
             String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
-            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
             dtm.setRowCount(0);
             dtm.setColumnIdentifiers(col);
 
