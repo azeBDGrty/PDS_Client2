@@ -93,7 +93,7 @@ public class Forme extends JFrame implements IObserver {
         
         this.gestionAgence = new JMenu("Gestion de l'agence");
         this.showIndicators = new JMenuItem("Voir les indicateurs");
-        
+        this.setTitle("Simulateur de prêt BDG");
         initComponent();
     }
 

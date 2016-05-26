@@ -53,7 +53,7 @@ public class MainGraphics extends JPanel{
         this.setLayout(new BorderLayout());
         this.add(main,BorderLayout.EAST);
         this.add(main2, BorderLayout.WEST);
-        setSize(1330, 640);
+        setSize(1330, 620);
         
         this.setVisible(true);
     }
