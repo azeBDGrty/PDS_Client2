@@ -34,20 +34,14 @@ import org.jfree.ui.ApplicationFrame;
 public class LineChart extends ApplicationFrame {
     
     private static CalculPret calculPret;
-    private static SimulationPret simPret;
+    private static SimulationPret simLoan;
     
 
 
 
-    public LineChart( SimulationPret simPret)  {
+    public LineChart( SimulationPret simulationLoan)  {
         super("Graphique d'amortissement");
-        this.simPret=simPret;
-        //JPanel chartPanel = createChartPanel();
-        //add(chartPanel, BorderLayout.CENTER);
-        //setSize(640, 480);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setLocationRelativeTo(null);
-        //this.setVisible(true);
+        this.simLoan=simulationLoan;
     }
     
     public JPanel createChartPanel() {
@@ -111,17 +105,17 @@ public class LineChart extends ApplicationFrame {
         List<Double> capAmorti=new ArrayList<>();
         List<Double> capRestant=new ArrayList<>();
         List<Double> evolutionInterets=new ArrayList<>();
-        evolutionInterets=simPret.calcEvolutionInterets();
+        evolutionInterets=simLoan.calcEvolutionInterets();
         evolutionInterets.add(0,0d);
-        capAmorti=simPret.calcEvolutionCapAmmorti();
-        capRestant=simPret.calcCapRestant();
-        capRestant.add(0, simPret.getMtPret());
+        capAmorti=simLoan.calcEvolutionCapAmmorti();
+        capRestant=simLoan.calcCapRestant();
+        capRestant.add(0, simLoan.getMtPret());
         XYSeriesCollection dataset = new XYSeriesCollection();
         XYSeries series1 = new XYSeries("Capital Remboursé");
         XYSeries series2 = new XYSeries("Reste dû");
         XYSeries series3 = new XYSeries("Interêts remboursés");
         
-        for (int i=0; i<=simPret.getDureePret();i++){
+        for (int i=0; i<=simLoan.getDureePret();i++){
             series1.add(i,capAmorti.get(i) );
             series2.add(i, capRestant.get(i));
             series3.add(i, evolutionInterets.get(i));

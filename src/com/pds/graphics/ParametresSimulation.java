@@ -16,7 +16,7 @@ import javax.swing.JTextField;
  */
 public class ParametresSimulation extends javax.swing.JPanel {
 
-    private SimulationPret simPret;
+    private SimulationPret simLoan;
 
     public JTextField getjTextField1() {
         return jTextField1;
@@ -94,22 +94,22 @@ public class ParametresSimulation extends javax.swing.JPanel {
     /**
      * Creates new form ParametresSimulation
      */
-    public ParametresSimulation(SimulationPret simulationPret) {
+    public ParametresSimulation(SimulationPret simulationLoan) {
         initComponents();
-        this.simPret=simulationPret;
-        this.jTextField1.setText(Double.toString(simPret.getMtPret())); // montant emprunted
-        this.jTextField2.setText(Integer.toString(simPret.getDureePret())); //duration of the loan
-        String timeStamp = new SimpleDateFormat("dd.MM.yyyy à HH.mm").format(simPret.getDateContraction());
+        this.simLoan=simulationLoan;
+        this.jTextField1.setText(Double.toString(simLoan.getMtPret())); // montant emprunted
+        this.jTextField2.setText(Integer.toString(simLoan.getDureePret())); //duration of the loan
+        String timeStamp = new SimpleDateFormat("dd.MM.yyyy à HH.mm").format(simLoan.getDateContraction());
         this.jTextField6.setText(timeStamp);    //date of the simulation
-        this.jTextField3.setText(Double.toString(simulationPret.calcSum(simulationPret.calcInterets())));    //interests
-        this.jTextField5.setText(Double.toString(simulationPret.calcSumAssurance()));// insurance
-        double montant=simulationPret.getMensualite()*simulationPret.getDureePret();
+        this.jTextField3.setText(Double.toString(simulationLoan.calcSum(simulationLoan.calcInterets())));    //interests
+        this.jTextField5.setText(Double.toString(simulationLoan.calcSumAssurance()));// insurance
+        double montant=simulationLoan.getMensualite()*simulationLoan.getDureePret();
         montant=(double)Math.round(montant*100d)/100d;
         this.jTextField4.setText(Double.toString(montant));
-        this.jTextField7.setText(simulationPret.getTypeEmprunt().getAbv());
-        System.out.println(simulationPret.getTypeEmprunt().getAbv());
-        this.jTextField8.setText((simulationPret.getCalcPret().getTauxDirecteur().getValue()+simPret.getCalcPret().getT_marge())+"");
-        this.jTextField9.setText(Double.toString(simulationPret.getCalcPret().getCoef_assurance()));
+        this.jTextField7.setText(simulationLoan.getTypeEmprunt().getAbv());
+        System.out.println(simulationLoan.getTypeEmprunt().getAbv());
+        this.jTextField8.setText((simulationLoan.getCalcPret().getTauxDirecteur().getValue()+simLoan.getCalcPret().getT_marge())+"");
+        this.jTextField9.setText(Double.toString(simulationLoan.getCalcPret().getCoef_assurance()));
     }
 
     /**

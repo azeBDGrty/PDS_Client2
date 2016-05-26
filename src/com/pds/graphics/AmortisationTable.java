@@ -5,19 +5,13 @@
 */
 package com.pds.graphics;
 
-import com.pds.entities.CalculPret;
 import com.pds.entities.SimulationPret;
-import com.pds.entities.Taux_directeur;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterJob;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -30,41 +24,28 @@ import javax.swing.table.DefaultTableModel;
 public class AmortisationTable extends JFrame {
     
     private JFrame frame;
-    private SimulationPret simulationPret;
-    private CalculPret calculPret;
+
     
     /**
      * Creates new form AmortisationTable
      */
-public AmortisationTable(int idClient, SimulationPret simulationPret)  {
+public AmortisationTable(int idClient, SimulationPret loanSimulation)  {
         initComponents();
         frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        
-        //this.setTitle("Tableau d'amortissement");
-        
-        //récupération des données dans la base, + peuplement de simulationpret
-        //calculPret=new CalculPret();
-        //Taux_directeur td=new Taux_directeur();
-        //calculPret.setTauxDirecteur(td);
-        //simulationPret=new SimulationPret();
-        //simulationPret.setCalcPret(calculPret);
-        //simulationPret.setAmortisationCalcPret(calculPret, idClient,td);
-        
-        List<Double> capAmorti=new ArrayList<Double>();
-        capAmorti=simulationPret.calcCapAmmort();   //capital amort
-        List<Double> capRestant=new ArrayList<Double>();
-        capRestant=simulationPret.calcCapRestant(); //captital restant
-        List<Double> calcInterets=new ArrayList<Double>();
-        calcInterets=simulationPret.calcInterets(); //interets
-        double assurance=simulationPret.calcAssurance();    //insurance
-        double totalAPayer=simulationPret.calcMensualite(); //total a payer
+        List<Double> capPayed=new ArrayList<Double>();
+        capPayed=loanSimulation.calcCapAmmort();   //capital amort
+        List<Double> capToRefund=new ArrayList<Double>();
+        capToRefund=loanSimulation.calcCapRestant(); //captital restant
+        List<Double> calcInterests=new ArrayList<Double>();
+        calcInterests=loanSimulation.calcInterets(); //interets
+        double insurance=loanSimulation.calcAssurance();    //insurance
+        double totalToPay=loanSimulation.calcMensualite(); //total a payer
         
         String col[] = {"Mois", "Montant remboursé", "Intérêts", "Montant restant à rembourser", "Assurance", "Coût total"};
         DefaultTableModel dtm = new DefaultTableModel(col, 0);
         jTable1.setModel(dtm);
-        for (int i=0;i<simulationPret.getDureePret();i++){      //affichage des valeurs dans les cellules
-            Object[] data = {i+1, capAmorti.get(i), calcInterets.get(i),capRestant.get(i),assurance,totalAPayer
+        for (int i=0;i<loanSimulation.getDureePret();i++){      //print values in the cells
+            Object[] data = {i+1, capPayed.get(i), calcInterests.get(i),capToRefund.get(i),insurance,totalToPay
             };
             dtm.addRow(data);
         }

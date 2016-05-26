@@ -23,30 +23,25 @@ public class MainGraphics extends JPanel{
     
     
 
-    public MainGraphics ( SimulationPret simPret) {
+    public MainGraphics ( SimulationPret simLoan) {
         
-        LineChart l = new LineChart(simPret);
-        PieChart p=new PieChart( simPret);
+        LineChart l = new LineChart(simLoan);
+        PieChart p=new PieChart( simLoan);
 
         JPanel panelLineChart=l.createChartPanel();
         JPanel panelPieChart=p.createDemoPanel( );
-        AmortisationTablePanel atp = new AmortisationTablePanel(simPret);
-        ParametresSimulation ps=new ParametresSimulation(simPret);
+        AmortisationTablePanel atp = new AmortisationTablePanel(simLoan);
+        ParametresSimulation ps=new ParametresSimulation(simLoan);
                 
         GridLayout gl=new GridLayout(2,0);
         BorderLayout gl2=new BorderLayout();
-        gl2.setHgap(20);
+        gl2.setHgap(20);    //vertical space 
         JPanel main=new JPanel();
         JPanel main2=new JPanel();
         
         main.setLayout(gl);
         main2.setLayout(gl2);
         
-        //gl.setVgap(20); //20 pixels d'espace entre les lignes (V comme Vertical) 
-        //gl.setHgap(20);     //20 pixels d'espace entre les colonnes
-
-        //this.add(ps);
-        //this.add(atp);
         main.add(panelLineChart);
         main.add(panelPieChart);
         main2.add(ps, BorderLayout.NORTH);
