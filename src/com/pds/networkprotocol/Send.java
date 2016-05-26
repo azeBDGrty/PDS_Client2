@@ -29,7 +29,8 @@ public enum Send {
     askAllRegion ("Demande la liste des regions "),
     askSimulationPretsClient ("Demande la liste des simulations des prets"),
     askSimulationClient("demander les simulations d'un client passé en param"),
-    askIndicatorInfo ("");
+    askIndicatorInfo (""),
+    askTauxInteret ("");
     
     private String signification;
 

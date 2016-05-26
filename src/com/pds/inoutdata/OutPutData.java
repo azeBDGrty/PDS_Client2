@@ -82,6 +82,12 @@ public class OutPutData {
         sendMessage(askSimulationPretsClient.toString(), element);
     }
     
+    public void askTauxInteretPretFixe(Element element){
+        sendMessage(askTauxInteret.toString(), element);
+    }
+    
+    
+    
     //Nodaro
     public void askAllSimPretClient(Element element){
         sendMessage(askSimulationPretsClient.toString(), element);

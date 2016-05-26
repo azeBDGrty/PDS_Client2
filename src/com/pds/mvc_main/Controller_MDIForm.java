@@ -63,14 +63,14 @@ public class Controller_MDIForm {
     }
     
     public View_SimProspect ouvrirListProspect(){
-        Controller_gestProspect controllerGestprospect = new Controller_gestProspect(model);
+        Controller_gestProspect controllerGestprospect = new Controller_gestProspect((ConseillerHandle)model);
         View_SimProspect viewGestProspect = new View_SimProspect(controllerGestprospect);
         model.addObserver(viewGestProspect);
         return viewGestProspect;
     }
 
     public View_SimProspectVar ouvrirListProspectEmpVar() {
-        Controller_gestProspect controllerGestprospect = new Controller_gestProspect(model);
+        Controller_gestProspect controllerGestprospect = new Controller_gestProspect((ConseillerHandle)model);
         View_SimProspectVar view = new View_SimProspectVar(controllerGestprospect);
         model.addObserver(view);
         return view;

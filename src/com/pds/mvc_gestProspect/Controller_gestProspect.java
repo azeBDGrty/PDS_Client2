@@ -7,6 +7,8 @@ package com.pds.mvc_gestProspect;
 
 import com.pds.entities.SimulationPret;
 import com.pds.mvc_customer.PanelMoreInfoSimLoan;
+import com.pds.enums.TypeEmprunt;
+import com.pds.mvc_customer.PanelMoreInfoSimLoan;
 import com.pds.serverhandler.AbstractHandle;
 import com.pds.serverhandler.ConseillerHandle;
 
@@ -18,12 +20,11 @@ import com.pds.serverhandler.ConseillerHandle;
  */
 public class Controller_gestProspect {
 
-    private AbstractHandle model;
+    private ConseillerHandle model;
     
     
-    public Controller_gestProspect(AbstractHandle model) {
+    public Controller_gestProspect(ConseillerHandle model) {
         this.model = model;
-        
     }
     
        void showFrameTableAmmort(SimulationPret simPret) {
@@ -33,6 +34,10 @@ public class Controller_gestProspect {
         model.addObserver(view);
         view.loadSimulation(simPret);
         view.setVisible(true);
+    }
+
+    void askTauxInteret(int age, double revenu, String typeContrat, TypeEmprunt typeEmprunt, boolean client) {
+        this.model.askTauxInteret(age, revenu, typeContrat, typeEmprunt, client);
     }
     
 }
