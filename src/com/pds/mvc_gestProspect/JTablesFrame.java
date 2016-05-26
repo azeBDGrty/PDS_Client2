@@ -36,7 +36,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         initComponents();
         
         
-        String col[] = {"Année", "12", "Indice", "Taux", "Mensualité", "Montant restant"};
+        String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         dtm.setColumnIdentifiers(col);
