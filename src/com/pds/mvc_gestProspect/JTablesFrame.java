@@ -6,9 +6,12 @@
 package com.pds.mvc_gestProspect;
 
 import com.pds.entities.CalculPret;
+import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
 import com.pds.entities.Taux_directeur;
 import java.text.DecimalFormat;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,28 +34,38 @@ public class JTablesFrame extends javax.swing.JFrame {
         sp.setDureePret(duree);
         cp.setTauxDirecteur(td);
         initComponents();
+        
+        
         String col[] = {"Année", "Indice", "Taux", "Mensualité", "Montant restant"};
-        DefaultTableModel dtm = new DefaultTableModel(col, 0);
-        jTable1.setModel(dtm);
-        DecimalFormat f = new DecimalFormat();
-	f.setMaximumFractionDigits(2);
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        dtm.setColumnIdentifiers(col);
+        
         double tauxTmp = tauxInit;
         double remaining=montant;
         
+        double montantTotal = 0;
+        List<infoMensualite> listeTable = new LinkedList<>();
         
-        dtm.addRow(new Object[]{1, indice, tauxInit, f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining))});
-       
-        for (double j=1;j<duree;j++){      //affichage des valeurs dans les cellules
-             
-            System.out.println("tauxTmp" + tauxTmp);
-            if( (tauxTmp + indice) <  capet)
+        for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
+            
+            //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
+            sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
+            montantTotal +=  sp.getMensualite();
+            listeTable.add(new infoMensualite(j+1, indice, tauxTmp, sp.getMensualite(), 0));          
+            //dtm.addRow(data);
+            
+            if( (tauxTmp + indice) <  tauxInit+capet)
                 tauxTmp += indice;
             else
-                tauxTmp = capet+ tauxInit;
-            Object[] data = {j+1, indice, f.format(tauxTmp), f.format(sp.calcMensualiteTauxVariable(tauxTmp,remaining))};
-           
-            dtm.addRow(data);
-            
+                tauxTmp = (tauxInit+capet);
+        }
+        
+        
+        for(infoMensualite info : listeTable){
+            montantTotal -= info.mensualite;
+            info.montantRestant = montantTotal;
+            dtm.addRow(new Object[]{info.annee, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
         }
         this.setVisible(true);
         this.setSize(650, 500);
@@ -206,6 +219,25 @@ public class JTablesFrame extends javax.swing.JFrame {
         /* Create and display the form */
         
     }
+    
+    
+    
+    public class infoMensualite{
+        int annee;
+        double indice, taux, mensualite, montantRestant;
+
+        public infoMensualite(int annee, double indice, double taux, double mensualite, double montantRestant) {
+            this.annee = annee;
+            this.indice = indice;
+            this.taux = taux;
+            this.mensualite = mensualite;
+            this.montantRestant = montantRestant;
+        }
+        
+        
+        
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -149,7 +149,6 @@ public class View_SimProspectVar extends javax.swing.JInternalFrame implements c
         double tauxInit=Double.parseDouble(this.jTextField4.getText());
         double montantPret=Double.parseDouble(this.jTextField1.getText());
         int duree=Integer.parseInt(this.jTextField2.getText());
-        System.out.println("l'indice est " + indice);
         JTablesFrame jt=new JTablesFrame(indice,duree, tauxInit, montantPret, Double.parseDouble(jComboBox1.getSelectedItem().toString()));
         //System.out.println(indice);
         // TODO add your handling code here:

@@ -421,8 +421,8 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             pTypePret = getPosMtTotal(listSimPret, listSimPret.get(i), client, 2, true);
             pTauxEndettement = getPosMtTotal(listSimPret, listSimPret.get(i), client, 3, true);
             pDateFin = getPosMtTotal(listSimPret, listSimPret.get(i), client, 7, true);
-            resultat =   getResultat(pMensualite, pDuree, pTauxInteret, pMtTotal, 0, pTauxEndettement, pDateFin);
-            System.out.println(listSimPret.get(i).getIdSimPret()+" > : "+ pMensualite + " : " + pDuree + " : " + pTauxInteret + " : " + pMtTotal + " : " + pTauxEndettement + " : " + pDateFin + " =>  "+ resultat );
+            resultat =   getResultat(pMensualite, pDuree, pTauxInteret, pMtTotal, pTauxEndettement, pDateFin);
+            System.out.println(listSimPret.get(i).getIdSimPret()+" > : "+ pMensualite+1 + "-" + coefs[0]+ " : " + pDuree+1 + "-" + coefs[1]+ " : " + pTauxInteret+1 + "-" + coefs[2]+ " : " + pMtTotal+1 + "-" + coefs[3]+ " : " + pTauxEndettement+1 + "-" + coefs[5]+ " : " + pDateFin+1 + "-" + coefs[6]+ " =>  "+ resultat );
             // we put all objects the this list, to add them in the JtableModel of the Jtable
             dataSimulations.add(new Object[]{
                 listSimPret.get(i).getIdSimPret(),
@@ -491,8 +491,10 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     // End of variables declaration//GEN-END:variables
 
     
-    public  double getResultat(double pMensualite, double pDuree, double pTauxInteret, double pMtTotal, double pTypePret, double pTauxEndettement, double pDateFin){
-        return ((pMensualite+1) * coefs[0] + (pDuree+1)* coefs[1] + (pTauxInteret+1)* coefs[2] + (pMtTotal+1)* coefs[3] + (pTypePret+1)* coefs[4]+ (pTauxEndettement+1)* coefs[5]+ (pDateFin+1)* coefs[6]);
+    public  double getResultat(double pMensualite, double pDuree, double pTauxInteret, double pMtTotal, double pTauxEndettement, double pDateFin){
+        //System.out.println( ((pMensualite+1) * coefs[0]) + " : " + ((pDuree+1)* coefs[1]) + " : " + ((pTauxInteret+1)* coefs[2]) + " : " + ((pMtTotal+1)* coefs[3]) + " : " + ((pTauxEndettement+1)* coefs[5])+ " : "+ ((pDateFin+1)* coefs[6])  )  ;
+        return ( ((pMensualite+1) * coefs[0]) + ((pDuree+1)* coefs[1]) + ((pTauxInteret+1)* coefs[2]) + ((pMtTotal+1)* coefs[3]) +  ((pTauxEndettement+1)* coefs[5])+ ((pDateFin+1)* coefs[6]));
+    
     }
     
     
