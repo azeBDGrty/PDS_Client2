@@ -36,7 +36,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         initComponents();
         
         
-        String col[] = {"Année", "Indice", "Taux", "Mensualité", "Montant restant"};
+        String col[] = {"Année", "12", "Indice", "Taux", "Mensualité", "Montant restant"};
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         dtm.setColumnIdentifiers(col);
@@ -65,7 +65,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         for(infoMensualite info : listeTable){
             montantTotal -= info.mensualite;
             info.montantRestant = montantTotal;
-            dtm.addRow(new Object[]{info.annee, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
+            dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
         }
         
         
