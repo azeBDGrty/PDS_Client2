@@ -93,7 +93,7 @@ public class MathHepler {
     public static int compareToTypePret(SimulationPret sim, SimulationPret sim2, boolean desc){
         
         if( sim.getTypeEmprunt() == sim2.getTypeEmprunt() )
-                return (desc) ? 1 : -1;
+                return 0;
         
         return (desc) ? -1 : 1;
     }
@@ -109,6 +109,15 @@ public class MathHepler {
     }
     
     
+    public static int compareToDateFin(SimulationPret e1, SimulationPret e2, boolean b) {
+        
+        if ( MathHepler.addMouthToDate(e1.getDateContraction(), e1.getDureePret()).getTime() > MathHepler.addMouthToDate(e2.getDateContraction(), e2.getDureePret()).getTime())
+            return 1;
+        else if ( MathHepler.addMouthToDate(e1.getDateContraction(), e1.getDureePret()).getTime() == MathHepler.addMouthToDate(e2.getDateContraction(), e2.getDureePret()).getTime())
+            return 0;
+        return -1;
+    }
+    
     public static Timestamp addMouthToDate(Timestamp date, int nbrMouth){
         Calendar cal = Calendar.getInstance();
         Timestamp dateCloned = (Timestamp) date.clone();
@@ -122,11 +131,7 @@ public class MathHepler {
         return new SimpleDateFormat(format).format(date);
     }
 
-    public static int compareToDateFin(SimulationPret e1, SimulationPret e2, boolean b) {
-        if (e1.getDateContraction().before(e2.getDateContraction()))
-            return 1;
-        return -1;
-    }
+    
 
     public static Color getColorWrong() {
         if(colorWrong == null)

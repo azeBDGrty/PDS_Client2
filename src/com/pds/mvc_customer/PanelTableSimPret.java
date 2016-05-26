@@ -62,12 +62,18 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         remplirComboboxCoef(-5, 10, cDuree, coDuree);
         remplirComboboxCoef(-5, 10, cTauxInter, coTauxInter);
         remplirComboboxCoef(-5, 10, cMt, coMt);
-        remplirComboboxCoef(-5, 10, cTauxFixe, coTauxFixe);
         remplirComboboxCoef(-5, 10, cTauxEndettement, coTauxEndettement);
         remplirComboboxCoef(-5, 10, cDateFin, coDateFin);
     }
     
     public void fillComboboxDefault(){
+        this.coefs[0] = 7;
+        this.coefs[1] = 1;
+        this.coefs[2] = 10;
+        this.coefs[3] = 3;
+        this.coefs[4] = 2;
+        this.coefs[5] = 8;
+        this.coefs[6] = 2;
         fillComboboxwithValues(-5, 10, coefs[0], coefs[1], coefs[2], coefs[3], coefs[4], coefs[5], coefs[6]);
     }
     
@@ -95,18 +101,16 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cMensualite = new javax.swing.JComboBox<>();
         cDuree = new javax.swing.JComboBox<>();
         cTauxInter = new javax.swing.JComboBox<>();
         cMt = new javax.swing.JComboBox<>();
-        cTauxFixe = new javax.swing.JComboBox<>();
         cTauxEndettement = new javax.swing.JComboBox<>();
         cDateFin = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        afficherSimulation1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         afficherSimulation2 = new javax.swing.JButton();
 
         setClosable(true);
@@ -163,8 +167,6 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
 
             jLabel5.setText("coef : Montant total  ");
 
-            jLabel6.setText("coef : Taux fixe ");
-
             jLabel7.setText("coef : Taux d'endettement ");
 
             jLabel8.setText("coef : Date fin");
@@ -180,10 +182,18 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             });
 
             jButton2.setBackground(new java.awt.Color(243, 241, 249));
-            jButton2.setText("remise à 0");
+            jButton2.setText("Par défaut");
             jButton2.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jButton2ActionPerformed(evt);
+                }
+            });
+
+            jButton3.setBackground(new java.awt.Color(243, 241, 249));
+            jButton3.setText("remise à 0");
+            jButton3.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton3ActionPerformed(evt);
                 }
             });
 
@@ -202,65 +212,67 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cMensualite, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cTauxInter, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cTauxFixe, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cTauxEndettement, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cDateFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(cTauxInter, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cMensualite, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cTauxEndettement, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cDateFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addContainerGap())
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(cMt, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton2)
-                            .addGap(74, 74, 74))))
+                            .addGap(28, 28, 28))))
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(13, 13, 13)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel6)
-                        .addComponent(cMensualite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cTauxFixe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel7)
-                        .addComponent(cDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cTauxEndettement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(cMensualite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(cDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(cTauxEndettement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(cDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jLabel8)
-                        .addComponent(cTauxInter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cTauxInter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5)
                                 .addComponent(cMt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(12, Short.MAX_VALUE))
+                            .addContainerGap(18, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(jButton2))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton2)
+                                .addComponent(jButton3)))))
             );
-
-            afficherSimulation1.setText("Afficher la simulation");
-            afficherSimulation1.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    afficherSimulation1ActionPerformed(evt);
-                }
-            });
 
             afficherSimulation2.setText("fermer");
             afficherSimulation2.addActionListener(new java.awt.event.ActionListener() {
@@ -286,19 +298,19 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(60, 60, 60)
                                     .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(0, 76, Short.MAX_VALUE)))
+                            .addGap(0, 63, Short.MAX_VALUE)))
                     .addContainerGap())
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(afficherSimulation1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(250, 250, 250))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(afficherSimulation)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(afficherSimulation2)))
-                    .addGap(250, 250, 250))
+                            .addComponent(afficherSimulation2)
+                            .addGap(318, 318, 318))))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,11 +324,9 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(afficherSimulation1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(afficherSimulation2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(afficherSimulation2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(afficherSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(20, 20, 20))
             );
 
@@ -338,7 +348,6 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         this.coefs[1] = Integer.parseInt(cDuree.getSelectedItem().toString());
         this.coefs[2] = Integer.parseInt(cTauxInter.getSelectedItem().toString());
         this.coefs[3] = Integer.parseInt(cMt.getSelectedItem().toString());
-        this.coefs[4] = Integer.parseInt(cTauxFixe.getSelectedItem().toString());
         this.coefs[5] = Integer.parseInt(cTauxEndettement.getSelectedItem().toString());
         this.coefs[6] = Integer.parseInt(cDateFin.getSelectedItem().toString());
         try {
@@ -348,10 +357,6 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             JOptionPane.showMessageDialog(this, "L'opération s'est déroulé avec un echec");
         }
     }//GEN-LAST:event_afficherSimulationActionPerformed
-
-    private void afficherSimulation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherSimulation1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_afficherSimulation1ActionPerformed
 
     private void jLabel8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel8KeyPressed
         
@@ -370,14 +375,22 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        try {
+            fillComboboxDefault();
+            chargerSimulations(client, listSimPretConcerned);
+        } catch (CloneNotSupportedException ex) {
+            JOptionPane.showMessageDialog(this, "Une exception s'est declanchée lors du remise à 0");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             fillComboboxZero();
             chargerSimulations(client, listSimPretConcerned);
         } catch (CloneNotSupportedException ex) {
             JOptionPane.showMessageDialog(this, "Une exception s'est declanchée lors du remise à 0");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     
@@ -408,8 +421,8 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
             pTypePret = getPosMtTotal(listSimPret, listSimPret.get(i), client, 2, true);
             pTauxEndettement = getPosMtTotal(listSimPret, listSimPret.get(i), client, 3, true);
             pDateFin = getPosMtTotal(listSimPret, listSimPret.get(i), client, 7, true);
-            resultat =   getResultat(pMensualite, pDuree, pTauxInteret, pMtTotal, pTypePret, pTauxEndettement, pDateFin);
-           
+            resultat =   getResultat(pMensualite, pDuree, pTauxInteret, pMtTotal, 0, pTauxEndettement, pDateFin);
+            System.out.println(listSimPret.get(i).getIdSimPret()+" > : "+ pMensualite + " : " + pDuree + " : " + pTauxInteret + " : " + pMtTotal + " : " + pTauxEndettement + " : " + pDateFin + " =>  "+ resultat );
             // we put all objects the this list, to add them in the JtableModel of the Jtable
             dataSimulations.add(new Object[]{
                 listSimPret.get(i).getIdSimPret(),
@@ -455,22 +468,20 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afficherSimulation;
-    private javax.swing.JButton afficherSimulation1;
     private javax.swing.JButton afficherSimulation2;
     private javax.swing.JComboBox<String> cDateFin;
     private javax.swing.JComboBox<String> cDuree;
     private javax.swing.JComboBox<String> cMensualite;
     private javax.swing.JComboBox<String> cMt;
     private javax.swing.JComboBox<String> cTauxEndettement;
-    private javax.swing.JComboBox<String> cTauxFixe;
     private javax.swing.JComboBox<String> cTauxInter;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -501,6 +512,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
      * codeRole = 6 : comparer La mensualite
      * codeRole = 7 : comparer Date fin du prêt
      */
+    
     public int getPosMtTotal(List<SimulationPret> listSimulation, SimulationPret simulationConcerned, Client client, int codeRole, boolean order){
         int position = 1;
         List<SimulationPret> simulations = new LinkedList<>();
@@ -510,13 +522,16 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
                         (e1, e2) -> {
                             switch(codeRole){
                                 case 1 : 
-                                    return MathHepler.compareToMtTotale(e1, e2, order);
+                                    return MathHepler.compareToMtTotale(e1, e2, !order);
                                     
                                 case 2 : 
                                     return MathHepler.compareToTypePret(e1, e2, order);
                                     
                                 case 3 : 
                                     return MathHepler.compareToWithTauxEndet(client, e1, e2, order);
+                                
+                                case 4 : 
+                                    return MathHepler.compareToInteret(e1, e2, order);
                                     
                                 case 5 : 
                                     return MathHepler.compareToWithDuree(e1, e2, order);
