@@ -44,11 +44,13 @@ public class Controller_MDIForm {
         return viewConnection;
     }
     
-     public JInternalFrame ouvrirIndicator(){
+     public View_Indicator ouvrirIndicator(){
         
-         Controller_Indicator controllerIndicator = new Controller_Indicator(model);
+         Controller_Indicator controllerIndicator = new Controller_Indicator((ConseillerHandle) model);
          View_Indicator viewIndicator= new View_Indicator(controllerIndicator);
          model.addObserver(viewIndicator);
+         model.addObserver(controllerIndicator);
+         
         return viewIndicator;
         
          

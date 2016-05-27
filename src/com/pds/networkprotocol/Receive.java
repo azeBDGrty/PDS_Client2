@@ -30,6 +30,7 @@ public enum Receive {
     sendAllRegion ("La liste des regions"),
     sendAllPays ("La liste des pays"),
     
+    sendAvgAge(""),
     sendLoanNumbers(""),
     sendSimulationPretsClient ("La liste des simulations de prets.");
     
@@ -81,6 +82,9 @@ public enum Receive {
             
             case "sendLoanNumbers":
                 return sendLoanNumbers;
+                
+            case "sendAvgAge":
+                return sendAvgAge;
                 
             default :
                 return none;

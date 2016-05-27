@@ -111,6 +111,10 @@ public class InPutData {
                 readElement();
                 break ;
                 
+            case sendAvgAge:
+                readElement();
+                break ;
+                
             case sendSimulationPretsClient: 
                 System.out.println("Simulation lkfsdmghmfdsjlghvhjmskfldghjkmsdgfhjk");
                 readElement(); 

@@ -6,12 +6,13 @@
 package com.pds.mvc_main;
 
 
-import com.pds.serverhandler.ConseillerHandle;
 import com.pds.implobs.AbstractObservable;
 import com.pds.implobs.IObserver;
 import com.pds.mvc_customer.View_GestClient;
 import com.pds.mvc_gestProspect.View_SimProspect;
 import com.pds.mvc_gestProspect.View_SimProspectVar;
+import com.pds.mvc_indicator.View_Indicator;
+import com.pds.serverhandler.ConseillerHandle;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -181,7 +182,9 @@ public class Forme extends JFrame implements IObserver {
     private class InfoIndicatorListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            addWindow(controller.ouvrirIndicator(), true);
+            View_Indicator view = controller.ouvrirIndicator();
+             addWindow(view, true);
+//addWindow(controller.ouvrirIndicator(), true);
         }
     }
     

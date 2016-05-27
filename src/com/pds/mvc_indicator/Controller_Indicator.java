@@ -5,19 +5,29 @@
  */
 package com.pds.mvc_indicator;
 
-import com.pds.serverhandler.AbstractHandle;
+import com.pds.entities.Conseiller;
+import com.pds.implobs.AbstractObservable;
+import com.pds.implobs.IObserver;
+import com.pds.serverhandler.ConseillerHandle;
+import com.pds.serverhandler.IndicatorHandle;
 import org.jdom2.Element;
 
 /**
  *
  * @author Poweriser
  */
-public class Controller_Indicator {
+public class Controller_Indicator implements IObserver{
     
-      private AbstractHandle model;
+      private ConseillerHandle model;
+      private IndicatorHandle Indicator;
 
-    public Controller_Indicator(AbstractHandle model) {
+    public IndicatorHandle getIndicator() {
+        return Indicator;
+    }
+
+    public Controller_Indicator(ConseillerHandle model) {
         this.model = model;
+        this.Indicator = this.model.getIndicator();
     }
     
 
@@ -54,4 +64,28 @@ public class Controller_Indicator {
             
             model.getOut().askIndicatorInfo(root);
     }
+    
+    public void sendAvgAgeQuery(String checkImmo,String checkConso){
+       Element root = new Element("AvgAge"); 
+       
+       
+           Element eTypePretImmo = new Element("TypePretImmo");
+           eTypePretImmo.setText(checkImmo);
+           root.addContent(eTypePretImmo);
+           Element eTypePretConso = new Element("TypePretConso");
+           eTypePretConso.setText(checkConso);
+           root.addContent(eTypePretConso);
+       
+       model.getOut().askAvgAge(root);
+    }
+
+    @Override
+    public boolean update(AbstractObservable sender, String message, Object... data) {
+        System.out.println("mise a jour du controller indicator");
+      this.Indicator = this.model.getIndicator();
+        System.out.println(this.model.getIndicator().getResultats().get(0));
+      System.out.println("resultat indicator niveau controller" +Indicator.getResultats().get(0));
+          return true;
+    }
+    
 }

@@ -6,27 +6,22 @@
 package com.pds.mvc_indicator;
 
 
-import com.pds.entities.SimulationPret;
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Nodaro
- */
+
 public class MainGraphics2 extends JPanel{
-    
-String s;
+ 
 Controller_Indicator controller;
-    public MainGraphics2 (Controller_Indicator controller,String s ) {
+
+
+    public MainGraphics2 (Controller_Indicator controller ) {
         this.controller = controller;
-        this.s=s;
-       panelPieChart p= new panelPieChart(this.controller,this.s);
+        
+       panelPieChart p= new panelPieChart(this.controller);
+       panelLineChart plc = new panelLineChart(controller);
                 
         GridLayout gl=new GridLayout(2,0);
         BorderLayout gl2=new BorderLayout();
@@ -44,7 +39,7 @@ Controller_Indicator controller;
         //this.add(atp);
        
         main.add(p);
-        
+        main.add(plc);
         
         this.add(main2);
         this.add(main);

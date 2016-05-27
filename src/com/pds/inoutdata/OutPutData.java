@@ -96,6 +96,10 @@ public class OutPutData {
     public void askIndicatorInfo(Element elementData) {
         sendMessage(askIndicatorInfo.toString(), elementData);
     }
+
+    public void askAvgAge(Element element) {
+        sendMessage(askAvgAge.toString(), element);
+    }
     
     
     

@@ -28,7 +28,7 @@ private Controller_Indicator controller;
     public View_Indicator(Controller_Indicator controller) {
            this.controller = controller;
            initComponents();
-            m=new MainGraphics2 (controller,"");
+            m=new MainGraphics2 (controller);
         this.getContentPane().add(m);
         this.setSize(1350,670);
         
@@ -64,14 +64,26 @@ private Controller_Indicator controller;
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
 
-       
+      
         switch(message.trim()){ 
        case "sendLoanNumbers" :
            //    jTextField1.setText("il y a eu du changement");
-           System.out.println("le resultat est :" + data.toString());
+           System.out.println("le resultat est 12h31 :" + data.toString());
           this.remove(m);
           this.repaint();
-          m=new MainGraphics2(controller, "test");
+          
+          m=new MainGraphics2(controller);
+          this.add(m);
+          this.validate();
+                return true;
+         case "sendAvgAge" :
+           //    jTextField1.setText("il y a eu du changement");
+                   System.out.println("resultat indicator niveau view" +controller.getIndicator().getResultats().get(0));
+
+           System.out.println("le resultat est 12h30:" + data);
+          this.remove(m);
+          this.repaint();
+          m=new MainGraphics2(controller);
           this.add(m);
           this.validate();
                 return true;
@@ -81,12 +93,7 @@ private Controller_Indicator controller;
         
     }
         
-     public class IndicatorListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            controller.sendIndicatorInfo();
-        }
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

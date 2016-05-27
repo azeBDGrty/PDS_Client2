@@ -48,6 +48,12 @@ public class ConseillerHandle extends AbstractHandle{
     private List<Pays> pays;
     private List<Client> clients;
     private List<SimulationPret> simulations;
+    private IndicatorHandle Indicator;
+
+    public IndicatorHandle getIndicator() {
+        return Indicator;
+    }
+
     
     
     public ConseillerHandle(InPutData in, OutPutData out, Personne user) {
@@ -57,6 +63,7 @@ public class ConseillerHandle extends AbstractHandle{
         this.departements = new ArrayList<>();
         this.pays = new ArrayList<>();
         this.clients  = new ArrayList<>();
+        this.Indicator = new IndicatorHandle();
         simulations=new ArrayList<>();
     }
 
@@ -148,7 +155,16 @@ public class ConseillerHandle extends AbstractHandle{
                        setChanged();
                        notifyObservers("sendLoanNumbers",this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));
                         break;
-                        
+                   
+                   case sendAvgAge : 
+                       System.out.println("test ConseillerHandle " + this.in.getLastDocument().getRootElement().getChildText("resultat"));                       
+                       Indicator.setResultats(this.in.getLastDocument());
+                       System.out.println("resultat indicator niveau Cobseiller" + Indicator.getResultats().get(0));
+                       
+                       setChanged();
+                       notifyObservers("sendAvgAge");
+                        break;
+                       
                     default : 
                       break; 
                       
