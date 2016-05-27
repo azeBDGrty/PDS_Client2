@@ -80,6 +80,11 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
 
         jLabel9.setText("Type d'emprunt     :");
 
+        iDureePret.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iDureePretMouseClicked(evt);
+            }
+        });
         iDureePret.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 iDureePretKeyPressed(evt);
@@ -89,6 +94,12 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
         jLabel11.setText("Durée de prêt (en mois)  :");
 
         jLabel12.setText("Date de référence  :");
+
+        iMtPret.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iMtPretMouseClicked(evt);
+            }
+        });
 
         jLabel13.setText("Le montant du prêt :");
 
@@ -370,6 +381,14 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
         chargerTauxInteret();
     }//GEN-LAST:event_iRevenuMouseClicked
 
+    private void iDureePretMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iDureePretMouseClicked
+        chargerTauxInteret();
+    }//GEN-LAST:event_iDureePretMouseClicked
+
+    private void iMtPretMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iMtPretMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iMtPretMouseClicked
+
     public void chargerTauxInteret() {
         try {
             int age = Integer.parseInt(iAge.getText());
@@ -385,6 +404,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
             controller.askTauxInteret(age, revenu, typeContrat, typeEmprunt, isClient);
         } catch (Exception e) {
             System.out.println("formulaire mal rempli" + e.getMessage());
+            iTauxInteret.setText("");
         }
 
         
@@ -392,9 +412,26 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
 
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
-        System.out.println("j'ai recu " + message);
-        if ("setTauxInteretProspect".equalsIgnoreCase(message)) {
-            iTauxInteret.setText(data[0].toString());
+        System.out.println("j'ai recu " +  message);
+        if ("setTauxInteretProspect".equalsIgnoreCase( message)) {
+            double tauxInteret = Double.parseDouble( data[0].toString() );
+            
+            try {
+                double tauxtoAdd = 1/Double.parseDouble(iMtPret.getText());
+                tauxInteret += tauxtoAdd;
+            } catch (Exception e) {
+                
+            }
+            
+            
+            try {
+                double tauxtoAdd = 1/Double.parseDouble(iAge.getText());
+                tauxInteret += tauxtoAdd;
+            } catch (Exception e) {
+                
+            }
+            
+            
         }
         return true;
     }

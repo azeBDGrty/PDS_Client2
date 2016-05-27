@@ -136,7 +136,13 @@ public class ConseillerHandle extends AbstractHandle{
                         System.out.println("Mes informations sont : " + new XMLOutputter().outputString(in.getLastDocument()));
                         buildOwnInfo(this.in.getLastDocument());
                         break;
+                    
+                    case sendTauxInteret: 
                         
+                        double tauxInteret = Double.parseDouble(this.in.getLastDocument().getRootElement().getChildText("taux"));
+                        setChanged();
+                        notifyObservers("setTauxInteretProspect", tauxInteret);
+                        break;
                         
                     case sendAllRegion : 
                         System.out.println("Je dois recevoir la liste des regions;");
@@ -154,7 +160,7 @@ public class ConseillerHandle extends AbstractHandle{
                        System.out.println("test ConseillerHandle " + this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));                       
                        setChanged();
                        notifyObservers("sendLoanNumbers",this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));
-                        break;
+                       break;
                    
                    case sendAvgAge : 
                        System.out.println("test ConseillerHandle " + this.in.getLastDocument().getRootElement().getChildText("resultat"));                       

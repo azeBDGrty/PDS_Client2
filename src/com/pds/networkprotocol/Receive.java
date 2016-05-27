@@ -32,6 +32,7 @@ public enum Receive {
     
     sendAvgAge(""),
     sendLoanNumbers(""),
+    sendTauxInteret(""),
     sendSimulationPretsClient ("La liste des simulations de prets.");
     
     private String signification;
@@ -82,6 +83,9 @@ public enum Receive {
             
             case "sendLoanNumbers":
                 return sendLoanNumbers;
+            
+            case "sendTauxInteret":
+                return sendTauxInteret;
                 
             case "sendAvgAge":
                 return sendAvgAge;
