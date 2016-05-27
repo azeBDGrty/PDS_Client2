@@ -9,6 +9,7 @@ import com.pds.entities.MathHepler;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  *
@@ -25,6 +26,8 @@ public class Testes {
     }
     
     public static void main(String[] args) {
-        System.out.println(MathHepler.formatTimeStamp(addDate(new Timestamp(new Date("10/09/1994").getTime()), 11), "dd-MM-yyyy"));
+        //System.out.println(MathHepler.formatTimeStamp(addDate(new Timestamp(new Date("10/09/1994").getTime()), 11), "dd-MM-yyyy"));
+        
+        
     }
 }

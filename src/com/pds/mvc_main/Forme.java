@@ -44,14 +44,14 @@ public class Forme extends JFrame implements IObserver {
     private JMenuItem seConnecter, seDeconnecter, quitter;
 
     private JMenu gestionComptes;
-    private JMenuItem listerComptes, rechercheCompte;
-
+    private JMenuItem listerComptes, rechercheCompte, simPretVar;
+    
     private JMenu gestionClient;
     private JMenuItem listerClients;
     
     private JMenu gestionProspect;
     private JMenuItem simProspect;
-    private JMenuItem simProspectVar;
+    
     
     private JMenu gestionAgence;
     private JMenuItem showIndicators;
@@ -87,10 +87,11 @@ public class Forme extends JFrame implements IObserver {
 
         this.gestionClient = new JMenu("Gestion des clients");
         this.listerClients = new JMenuItem("Lister les clients");
+        this.simPretVar = new JMenuItem("Simulation d'emprunt à taux variable");
         
         this.gestionProspect = new JMenu("Gestion des prospects");
         this.simProspect = new JMenuItem("Simulation Prospect");
-        this.simProspectVar = new JMenuItem("Simulation d'emprunt à taux variable");
+        
         
         this.gestionAgence = new JMenu("Gestion de l'agence");
         this.showIndicators = new JMenuItem("Voir les indicateurs");
@@ -108,9 +109,9 @@ public class Forme extends JFrame implements IObserver {
         this.gestionComptes.add(listerComptes);
         
         this.gestionClient.add(listerClients);
+        this.gestionClient.add(simPretVar);
         
         this.gestionProspect .add(simProspect);
-        this.gestionProspect .add(simProspectVar);
         
         this.gestionAgence.add(showIndicators);
         
@@ -126,7 +127,7 @@ public class Forme extends JFrame implements IObserver {
         this.listerComptes.addActionListener(new GestionClientListener());
         this.listerClients.addActionListener(new ListerClientListener());
         this.simProspect.addActionListener(new simProspectListener());
-        this.simProspectVar.addActionListener(new simProspectEmpVarListener());
+        this.simPretVar.addActionListener(new simProspectEmpVarListener());
         this.showIndicators.addActionListener(new InfoIndicatorListener());
         
         
