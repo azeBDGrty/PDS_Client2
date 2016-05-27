@@ -5,7 +5,10 @@
 */
 package com.pds.graphics;
 
+import com.pds.entities.CalculPret;
 import com.pds.entities.SimulationPret;
+import com.pds.entities.Taux_directeur;
+import com.pds.enums.TypeEmprunt;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterJob;
 import java.util.ArrayList;
@@ -29,7 +32,7 @@ public class AmortisationTable extends JFrame {
     /**
      * Creates new form AmortisationTable
      */
-public AmortisationTable(int idClient, SimulationPret loanSimulation)  {
+public AmortisationTable(SimulationPret loanSimulation)  {
         initComponents();
         frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         List<Double> capPayed=new ArrayList<Double>();
@@ -165,6 +168,20 @@ public AmortisationTable(int idClient, SimulationPret loanSimulation)  {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
+    public static void main (String args[]){
+        SimulationPret sim = new SimulationPret();
+
+            sim.setDureePret(12);
+            sim.setMtPret(10000);
+  
+            CalculPret calculPret = new CalculPret();
+            calculPret.setCoef_assurance(2);
+            calculPret.setT_marge(2);
+            Taux_directeur tauxDir = new Taux_directeur(0);
+            calculPret.setTauxDirecteur(tauxDir);
+            sim.setCalcPret(calculPret);
+        AmortisationTable am=new AmortisationTable(sim);
+    }
   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,9 +25,9 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
     /**
      * Creates new form AmortisationTablePanel
      */
-
-        public AmortisationTablePanel(SimulationPret loanSimulation)  {
-
+    
+    public AmortisationTablePanel(SimulationPret loanSimulation)  {
+        
         initComponents();
         List<Double> capPayed=new ArrayList<Double>();
         capPayed=loanSimulation.calcCapAmmort();   //capital payed
@@ -111,9 +111,20 @@ public class AmortisationTablePanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-   
-
+    public static void main (String args[]){
+        SimulationPret sim = new SimulationPret();
+        sim.setDureePret(12);
+        sim.setMtPret(10000);
+        CalculPret calculPret = new CalculPret();
+        calculPret.setCoef_assurance(2);
+        calculPret.setT_marge(2);
+        Taux_directeur tauxDir = new Taux_directeur(0);
+        calculPret.setTauxDirecteur(tauxDir);
+        sim.setCalcPret(calculPret);
+        AmortisationTablePanel am=new AmortisationTablePanel(sim);
+    }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
