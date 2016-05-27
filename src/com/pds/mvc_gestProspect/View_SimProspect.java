@@ -414,24 +414,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
     public boolean update(AbstractObservable sender, String message, Object... data) {
         System.out.println("j'ai recu " +  message);
         if ("setTauxInteretProspect".equalsIgnoreCase( message)) {
-            double tauxInteret = Double.parseDouble( data[0].toString() );
-            
-            try {
-                double tauxtoAdd = 1/Double.parseDouble(iMtPret.getText());
-                tauxInteret += tauxtoAdd;
-            } catch (Exception e) {
-                
-            }
-            
-            
-            try {
-                double tauxtoAdd = 1/Double.parseDouble(iAge.getText());
-                tauxInteret += tauxtoAdd;
-            } catch (Exception e) {
-                
-            }
-            
-            
+            iTauxInteret.setText(data[0].toString());
         }
         return true;
     }

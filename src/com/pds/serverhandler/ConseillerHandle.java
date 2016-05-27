@@ -138,7 +138,7 @@ public class ConseillerHandle extends AbstractHandle{
                         break;
                     
                     case sendTauxInteret: 
-                        
+                        System.out.println(new XMLOutputter().outputString(this.in.getLastDocument()));
                         double tauxInteret = Double.parseDouble(this.in.getLastDocument().getRootElement().getChildText("taux"));
                         setChanged();
                         notifyObservers("setTauxInteretProspect", tauxInteret);
