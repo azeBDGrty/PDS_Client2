@@ -33,10 +33,10 @@
                           <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel11" alignment="0" pref="142" max="32767" attributes="0"/>
-                          <Component id="jLabel20" alignment="0" pref="142" max="32767" attributes="0"/>
-                          <Component id="jLabel21" alignment="0" pref="142" max="32767" attributes="0"/>
-                          <Component id="jLabel22" alignment="0" pref="142" max="32767" attributes="0"/>
+                          <Component id="jLabel11" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jLabel20" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel21" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel22" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -107,10 +107,7 @@
                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="iDateContraction" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -146,6 +143,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iDureePret">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="iDureePretKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
@@ -336,6 +336,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="iRevenu">
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iRevenuMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="iRevenuKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="iRevenuKeyReleased"/>
       </Events>
@@ -346,6 +347,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iAge">
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iAgeMousePressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>
@@ -354,6 +358,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="iTypeContrat">
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iTypeContratMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="iTypeContratKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="iTypeContratKeyReleased"/>
       </Events>

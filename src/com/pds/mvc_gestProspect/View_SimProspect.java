@@ -17,12 +17,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author JIHANE
  */
-public class View_SimProspect extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver{
+public class View_SimProspect extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver {
 
     private Controller_gestProspect controller;
     private double mtPret;
@@ -30,7 +29,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
     private double tauxAssurance;
     private SimulationPret simPret;
     private CalculPret calculPret;
-    
+
     public View_SimProspect(Controller_gestProspect controller) {
         this.controller = controller;
         initComponents();
@@ -80,6 +79,12 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
         setIconifiable(true);
 
         jLabel9.setText("Type d'emprunt     :");
+
+        iDureePret.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                iDureePretKeyPressed(evt);
+            }
+        });
 
         jLabel11.setText("Durée de prêt (en mois)  :");
 
@@ -181,6 +186,11 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
 
         jLabel20.setText("Age  : ");
 
+        iRevenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iRevenuMouseClicked(evt);
+            }
+        });
         iRevenu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 iRevenuKeyPressed(evt);
@@ -192,8 +202,19 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
 
         jLabel21.setText("Revenu : ");
 
+        iAge.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iAgeMousePressed(evt);
+            }
+        });
+
         jLabel22.setText("Type contrat :");
 
+        iTypeContrat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iTypeContratMouseClicked(evt);
+            }
+        });
         iTypeContrat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 iTypeContratKeyPressed(evt);
@@ -217,10 +238,10 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -276,9 +297,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
                     .addComponent(jLabel15)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel12))
+                            .addComponent(jLabel12)
                             .addComponent(iDateContraction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -307,7 +326,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
     }//GEN-LAST:event_iTTInteretActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         controller.showFrameTableAmmort(chargerSimulation());
+        controller.showFrameTableAmmort(chargerSimulation());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbTypeEmpruntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeEmpruntActionPerformed
@@ -324,17 +343,7 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
     }//GEN-LAST:event_iRevenuKeyPressed
 
     private void iRevenuKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iRevenuKeyReleased
-        int age = Integer.parseInt(iAge.getText());
-        boolean isClient = false;
-        double revenu = Double.parseDouble(iRevenu.getText());
-        TypeEmprunt typeEmprunt = (cbTypeEmprunt.getSelectedIndex() == 0) ? TypeEmprunt._Credit_IMMO_ : TypeEmprunt._CREDIT_CONSO_; 
-        String typeContrat = "NON";
-        if("cdd".equalsIgnoreCase(iTypeContrat.getText().trim().toLowerCase()))
-            typeContrat = "cdd";
-        else if ("cdi".equalsIgnoreCase(iTypeContrat.getText().trim().toLowerCase()))
-            typeContrat = "cdi";
-        
-        controller.askTauxInteret(age, revenu, typeContrat, typeEmprunt, isClient);
+
     }//GEN-LAST:event_iRevenuKeyReleased
 
     private void iTypeContratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iTypeContratKeyPressed
@@ -345,65 +354,99 @@ public class View_SimProspect extends javax.swing.JInternalFrame implements com.
         // TODO add your handling code here:
     }//GEN-LAST:event_iTypeContratKeyReleased
 
+    private void iDureePretKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iDureePretKeyPressed
+        chargerTauxInteret();
+    }//GEN-LAST:event_iDureePretKeyPressed
+
+    private void iAgeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iAgeMousePressed
+        chargerTauxInteret();
+    }//GEN-LAST:event_iAgeMousePressed
+
+    private void iTypeContratMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iTypeContratMouseClicked
+        chargerTauxInteret();
+    }//GEN-LAST:event_iTypeContratMouseClicked
+
+    private void iRevenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iRevenuMouseClicked
+        chargerTauxInteret();
+    }//GEN-LAST:event_iRevenuMouseClicked
+
+    public void chargerTauxInteret() {
+        try {
+            int age = Integer.parseInt(iAge.getText());
+            boolean isClient = false;
+            double revenu = Double.parseDouble(iRevenu.getText());
+            TypeEmprunt typeEmprunt = (cbTypeEmprunt.getSelectedIndex() == 0) ? TypeEmprunt._Credit_IMMO_ : TypeEmprunt._CREDIT_CONSO_;
+            String typeContrat = "NON";
+            if ("cdd".equalsIgnoreCase(iTypeContrat.getText().trim().toLowerCase())) 
+                typeContrat = "cdd";
+            else if ("cdi".equalsIgnoreCase(iTypeContrat.getText().trim().toLowerCase())) 
+                typeContrat = "cdi";
+            
+            controller.askTauxInteret(age, revenu, typeContrat, typeEmprunt, isClient);
+        } catch (Exception e) {
+            System.out.println("formulaire mal rempli" + e.getMessage());
+        }
+
+        
+    }
+
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
-        
+        System.out.println("j'ai recu " + message);
+        if ("setTauxInteretProspect".equalsIgnoreCase(message)) {
+            iTauxInteret.setText(data[0].toString());
+        }
         return true;
     }
 
-
     public SimulationPret chargerSimulation() {
-        
-            
+
         try {
             int dureePret = Integer.parseInt(iDureePret.getText());
             mtPret = Double.parseDouble(iMtPret.getText());
             TEAG = Double.parseDouble(iTauxInteret.getText());
             tauxAssurance = Double.parseDouble(iTauxAssurance.getText());
 
-           
-            
-            double mtTTInteret = (mtPret*dureePret*TEAG)/1200;
-            double mtTTAssurance = (mtPret*dureePret*tauxAssurance)/1200;
-            
-            this.iTTInteret.setText(mtTTInteret+"");
-            this.iTTAssurance.setText(mtTTAssurance+"");
+            double mtTTInteret = (mtPret * dureePret * TEAG) / 1200;
+            double mtTTAssurance = (mtPret * dureePret * tauxAssurance) / 1200;
+
+            this.iTTInteret.setText(mtTTInteret + "");
+            this.iTTAssurance.setText(mtTTAssurance + "");
             //this.iTTAssurance.setText(Double.toString(simPret.getMtPret()));
-            double mensualite = (mtTTInteret + mtTTAssurance + mtPret)/dureePret;
-            this.iRembourssement.setText(mensualite+"");
-            this.iTTPret.setText(mensualite*dureePret+"");
-            
-            Timestamp timestamp=new Timestamp(iDateContraction.getDate().getTime());
-            
-            SimulationPret simPret=new SimulationPret();
-            
+            double mensualite = (mtTTInteret + mtTTAssurance + mtPret) / dureePret;
+            this.iRembourssement.setText(mensualite + "");
+            this.iTTPret.setText(mensualite * dureePret + "");
+
+            Timestamp timestamp = new Timestamp(iDateContraction.getDate().getTime());
+
+            SimulationPret simPret = new SimulationPret();
+
             simPret.setDureePret(dureePret);
             simPret.setMtPret(mtPret);
             simPret.setDateContraction(timestamp);
-            if (this.cbTypeEmprunt.getSelectedIndex()==0){
+            if (this.cbTypeEmprunt.getSelectedIndex() == 0) {
                 simPret.setTypeEmprunt(TypeEmprunt._Credit_IMMO_);
-            }
-            else{
+            } else {
                 simPret.setTypeEmprunt(TypeEmprunt._CREDIT_CONSO_);
             }
-            
-            CalculPret calculPret=new CalculPret();
+
+            CalculPret calculPret = new CalculPret();
             calculPret.setCoef_assurance(tauxAssurance);
             calculPret.setT_marge(TEAG);
-            Taux_directeur tauxDir=new Taux_directeur(0);
+            Taux_directeur tauxDir = new Taux_directeur(0);
             calculPret.setTauxDirecteur(tauxDir);
             simPret.setCalcPret(calculPret);
             this.iTTInteret.setText(Double.toString(simPret.calcSum(simPret.calcInterets())));
-            
+
             return simPret;
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Le formulaire est mal rempli");
             return null;
         }
-        
+
     }
-        
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbTypeEmprunt;
