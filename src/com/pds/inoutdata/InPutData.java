@@ -122,6 +122,11 @@ public class InPutData {
                 readElement();
                 break ;
                 
+            case sendTauxInteret:
+                 System.out.println("Input coté client");
+                readElement();
+                break ;
+                
             case sendAvgAge:
                 readElement();
                 break ;

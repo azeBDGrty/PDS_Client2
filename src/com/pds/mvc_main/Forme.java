@@ -9,8 +9,8 @@ package com.pds.mvc_main;
 import com.pds.implobs.AbstractObservable;
 import com.pds.implobs.IObserver;
 import com.pds.mvc_customer.View_GestClient;
-import com.pds.mvc_gestProspect.View_SimProspect;
-import com.pds.mvc_gestProspect.View_SimProspectVar;
+import com.pds.mvc_gestProspect.View_SimTauxFixe;
+import com.pds.mvc_gestProspect.View_SimTauxVari;
 import com.pds.mvc_indicator.View_Indicator;
 import com.pds.serverhandler.ConseillerHandle;
 import java.awt.Color;
@@ -44,14 +44,14 @@ public class Forme extends JFrame implements IObserver {
     private JMenuItem seConnecter, seDeconnecter, quitter;
 
     private JMenu gestionComptes;
-    private JMenuItem listerComptes, rechercheCompte;
-
+    private JMenuItem listerComptes, rechercheCompte, simPretVar;
+    
     private JMenu gestionClient;
     private JMenuItem listerClients;
     
     private JMenu gestionProspect;
     private JMenuItem simProspect;
-    private JMenuItem simProspectVar;
+    
     
     private JMenu gestionAgence;
     private JMenuItem showIndicators;
@@ -87,10 +87,11 @@ public class Forme extends JFrame implements IObserver {
 
         this.gestionClient = new JMenu("Gestion des clients");
         this.listerClients = new JMenuItem("Lister les clients");
+        this.simPretVar = new JMenuItem("Simulation d'emprunt à taux variable");
         
-        this.gestionProspect = new JMenu("Gestion des prospects");
-        this.simProspect = new JMenuItem("Simulation Prospect");
-        this.simProspectVar = new JMenuItem("Simulation d'emprunt à taux variable");
+        this.gestionProspect = new JMenu("Gestion des simulations FIXE");
+        this.simProspect = new JMenuItem("Simulation à taux fixe");
+        
         
         this.gestionAgence = new JMenu("Gestion de l'agence");
         this.showIndicators = new JMenuItem("Voir les indicateurs");
@@ -108,9 +109,9 @@ public class Forme extends JFrame implements IObserver {
         this.gestionComptes.add(listerComptes);
         
         this.gestionClient.add(listerClients);
+        this.gestionClient.add(simPretVar);
         
         this.gestionProspect .add(simProspect);
-        this.gestionProspect .add(simProspectVar);
         
         this.gestionAgence.add(showIndicators);
         
@@ -126,7 +127,7 @@ public class Forme extends JFrame implements IObserver {
         this.listerComptes.addActionListener(new GestionClientListener());
         this.listerClients.addActionListener(new ListerClientListener());
         this.simProspect.addActionListener(new simProspectListener());
-        this.simProspectVar.addActionListener(new simProspectEmpVarListener());
+        this.simPretVar.addActionListener(new simProspectEmpVarListener());
         this.showIndicators.addActionListener(new InfoIndicatorListener());
         
         
@@ -219,7 +220,7 @@ public class Forme extends JFrame implements IObserver {
     public class simProspectListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            View_SimProspect view = controller.ouvrirListProspect();
+            View_SimTauxFixe view = controller.ouvrirListProspect();
             addWindow(view, true);
         }
     }
@@ -228,7 +229,7 @@ public class Forme extends JFrame implements IObserver {
     public class simProspectEmpVarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            View_SimProspectVar view = controller.ouvrirListProspectEmpVar();
+            View_SimTauxVari view = controller.ouvrirListProspectEmpVar();
             addWindow(view, true);
         }
     }

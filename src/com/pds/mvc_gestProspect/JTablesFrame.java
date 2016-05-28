@@ -65,7 +65,7 @@ public class JTablesFrame extends javax.swing.JFrame {
             for(infoMensualite info : listeTable){
                 montantTotal -= info.mensualite;
                 info.montantRestant = montantTotal;
-                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
+                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €"});
             }
         }
         
@@ -106,7 +106,7 @@ public class JTablesFrame extends javax.swing.JFrame {
             for(infoMensualite info : listeTable){
                 montantTotal -= info.mensualite;
                 info.montantRestant = montantTotal;
-                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
+                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €"});
             }
         }
         
@@ -140,12 +140,11 @@ public class JTablesFrame extends javax.swing.JFrame {
             for(infoMensualite info : listeTable){
                 montantTotal -= info.mensualite;
                 info.montantRestant = montantTotal;
-                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2), MathHepler.ajustVirgule(info.mensualite/12, 2), MathHepler.ajustVirgule(info.montantRestant, 2)});
+                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €"});
             }
         }
         
         this.setVisible(true);
-        this.setSize(650, 500);
     }
     
     /**
@@ -166,6 +165,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,43 +208,69 @@ public class JTablesFrame extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Baisse du taux:");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setText("Augmentation du taux: ");
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setText("Stabilité du taux:");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel4.setText("Le tableau d'amortissement");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(333, 333, 333)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(jLabel2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addComponent(jScrollPane3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 164, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(154, 154, 154))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel2)
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -304,6 +330,7 @@ public class JTablesFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
