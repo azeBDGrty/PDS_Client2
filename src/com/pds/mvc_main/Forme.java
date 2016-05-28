@@ -89,8 +89,8 @@ public class Forme extends JFrame implements IObserver {
         this.listerClients = new JMenuItem("Lister les clients");
         this.simPretVar = new JMenuItem("Simulation d'emprunt à taux variable");
         
-        this.gestionProspect = new JMenu("Gestion des prospects");
-        this.simProspect = new JMenuItem("Simulation Prospect");
+        this.gestionProspect = new JMenu("Gestion des simulations FIXE");
+        this.simProspect = new JMenuItem("Simulation à taux fixe");
         
         
         this.gestionAgence = new JMenu("Gestion de l'agence");
