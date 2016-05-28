@@ -34,6 +34,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     private Client client;
     private List<SimulationPret> listSimPretConcerned;
     private Controller_GestClient controller;
+    private PanelGraphInfoSim panelGraphComparaison;
     
     /**
      * @param _1 coefmensualite
@@ -371,7 +372,7 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
     }//GEN-LAST:event_afficherSimulation2ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-       JOptionPane.showMessageDialog(this, "Si le client est sensible à la durée du prêt <( Il souhaite payer dans un délai plus court )>, il faut augmenter le coefficient, sinon il vaut mettez une valeur négative");
+       JOptionPane.showMessageDialog(this, "Si le client est sensible à la durée du prêt <( Il souhaite payer dans un délai plus court )>, il faut augmenter le coefficient, sinon il vaut mieux mettre une valeur négative");
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -456,9 +457,9 @@ public class PanelTableSimPret extends javax.swing.JInternalFrame implements com
         }
         
         // we add the graph into the frame
-        PanelGraphInfoSim view = new PanelGraphInfoSim("", "", listSimPret, client);
-        view.getChartPanel().setBounds(0, 0, panelGraph.getWidth(), panelGraph.getHeight());
-        this.panelGraph.add(view.getChartPanel());
+        this.panelGraphComparaison = new PanelGraphInfoSim("", "", listSimPret, client);
+        panelGraphComparaison.getChartPanel().setBounds(0, 0, panelGraph.getWidth(), panelGraph.getHeight());
+        this.panelGraph.add(panelGraphComparaison.getChartPanel());
         
         // we refresh our view
         this.repaint();

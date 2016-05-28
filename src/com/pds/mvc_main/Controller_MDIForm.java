@@ -13,8 +13,8 @@ import com.pds.mvc_connection.View_Connection;
 import com.pds.mvc_customer.Controller_GestClient;
 import com.pds.mvc_customer.View_GestClient;
 import com.pds.mvc_gestProspect.Controller_gestProspect;
-import com.pds.mvc_gestProspect.View_SimProspect;
-import com.pds.mvc_gestProspect.View_SimProspectVar;
+import com.pds.mvc_gestProspect.View_SimTauxFixe;
+import com.pds.mvc_gestProspect.View_SimTauxVari;
 import com.pds.mvc_indicator.Controller_Indicator;
 import com.pds.mvc_indicator.View_Indicator;
 import javax.swing.JInternalFrame;
@@ -64,16 +64,16 @@ public class Controller_MDIForm {
         return viewGestClient;
     }
     
-    public View_SimProspect ouvrirListProspect(){
+    public View_SimTauxFixe ouvrirListProspect(){
         Controller_gestProspect controllerGestprospect = new Controller_gestProspect((ConseillerHandle)model);
-        View_SimProspect viewGestProspect = new View_SimProspect(controllerGestprospect);
+        View_SimTauxFixe viewGestProspect = new View_SimTauxFixe(controllerGestprospect);
         model.addObserver(viewGestProspect);
         return viewGestProspect;
     }
 
-    public View_SimProspectVar ouvrirListProspectEmpVar() {
+    public View_SimTauxVari ouvrirListProspectEmpVar() {
         Controller_gestProspect controllerGestprospect = new Controller_gestProspect((ConseillerHandle)model);
-        View_SimProspectVar view = new View_SimProspectVar(controllerGestprospect);
+        View_SimTauxVari view = new View_SimTauxVari(controllerGestprospect);
         model.addObserver(view);
         return view;
         

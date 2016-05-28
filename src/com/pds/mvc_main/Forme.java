@@ -9,8 +9,8 @@ package com.pds.mvc_main;
 import com.pds.implobs.AbstractObservable;
 import com.pds.implobs.IObserver;
 import com.pds.mvc_customer.View_GestClient;
-import com.pds.mvc_gestProspect.View_SimProspect;
-import com.pds.mvc_gestProspect.View_SimProspectVar;
+import com.pds.mvc_gestProspect.View_SimTauxFixe;
+import com.pds.mvc_gestProspect.View_SimTauxVari;
 import com.pds.mvc_indicator.View_Indicator;
 import com.pds.serverhandler.ConseillerHandle;
 import java.awt.Color;
@@ -220,7 +220,7 @@ public class Forme extends JFrame implements IObserver {
     public class simProspectListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            View_SimProspect view = controller.ouvrirListProspect();
+            View_SimTauxFixe view = controller.ouvrirListProspect();
             addWindow(view, true);
         }
     }
@@ -229,7 +229,7 @@ public class Forme extends JFrame implements IObserver {
     public class simProspectEmpVarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            View_SimProspectVar view = controller.ouvrirListProspectEmpVar();
+            View_SimTauxVari view = controller.ouvrirListProspectEmpVar();
             addWindow(view, true);
         }
     }
