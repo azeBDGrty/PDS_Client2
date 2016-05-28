@@ -36,8 +36,10 @@ public enum Receive {
 
     sendLoanNumber(""),
     sendSimNumber(""),
+    sendTauxInteret(""),
 
-    sendLoanNumbers(""),
+
+ 
     sendTauxInteret(""),
 
     sendSimulationPretsClient ("La liste des simulations de prets.");
@@ -98,8 +100,7 @@ public enum Receive {
             case "sendSimNumber":
                 return sendSimNumber;
 
-            case "sendLoanNumbers":
-                return sendLoanNumbers;
+            
             
             case "sendTauxInteret":
                 return sendTauxInteret;
