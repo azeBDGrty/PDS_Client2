@@ -33,13 +33,13 @@ public enum Receive {
     sendLoanTime(""),
     sendAvgAmount(""),
     sendAvgAge(""),
-<<<<<<< HEAD
+
     sendLoanNumber(""),
     sendSimNumber(""),
-=======
+
     sendLoanNumbers(""),
     sendTauxInteret(""),
->>>>>>> 1950e97497423978197f2ab7c876801e1ba4c5af
+
     sendSimulationPretsClient ("La liste des simulations de prets.");
     
     private String signification;
