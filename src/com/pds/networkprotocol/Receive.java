@@ -30,8 +30,11 @@ public enum Receive {
     sendAllRegion ("La liste des regions"),
     sendAllPays ("La liste des pays"),
     
+    sendLoanTime(""),
+    sendAvgAmount(""),
     sendAvgAge(""),
-    sendLoanNumbers(""),
+    sendLoanNumber(""),
+    sendSimNumber(""),
     sendSimulationPretsClient ("La liste des simulations de prets.");
     
     private String signification;
@@ -80,8 +83,14 @@ public enum Receive {
             case "sendSimulationPretsClient":
                 return sendSimulationPretsClient;
             
-            case "sendLoanNumbers":
-                return sendLoanNumbers;
+            case "sendLoanNumber":
+                return sendLoanNumber;
+            
+                case "sendAvgAmount":
+                return sendAvgAmount;
+            
+            case "sendSimNumber":
+                return sendSimNumber;
                 
             case "sendAvgAge":
                 return sendAvgAge;

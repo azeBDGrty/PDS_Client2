@@ -100,6 +100,22 @@ public class OutPutData {
     public void askAvgAge(Element element) {
         sendMessage(askAvgAge.toString(), element);
     }
+
+    public void askLoanNumber(Element element) {
+        sendMessage(askLoanNumber.toString(), element);
+    }
+
+    public void askAvgAmount(Element element) {
+        sendMessage(askAvgAmount.toString(), element);    
+    }
+    
+    public void askLoanTime(Element element) {
+        sendMessage(askLoanTime.toString(), element);
+    }
+    
+    public void askSimNumber(Element element) {
+        sendMessage(askSimNumber.toString(), element);
+    }
     
     
     

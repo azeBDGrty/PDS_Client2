@@ -79,6 +79,75 @@ public class Controller_Indicator implements IObserver{
        model.getOut().askAvgAge(root);
     }
 
+     public void sendLoanNumberRequest(String checkImmo,String checkConso,int tranche){
+       Element root = new Element("LoanNumber"); 
+       
+           
+           Element eTypePretImmo = new Element("TypePretImmo");
+           eTypePretImmo.setText(checkImmo);
+           root.addContent(eTypePretImmo);
+           Element eTypePretConso = new Element("TypePretConso");
+           eTypePretConso.setText(checkConso);
+           root.addContent(eTypePretConso);
+           Element eTranche = new Element("Tranche");
+           eTranche.setText(String.valueOf(tranche));
+           root.addContent(eTranche);
+           
+       model.getOut().askLoanNumber(root);
+    }
+     
+      public void sendSimNumberRequest(String checkImmo,String checkConso,int tranche){
+     Element root = new Element("SimNumber"); 
+       
+          
+           Element eTypePretImmo = new Element("TypePretImmo");
+           eTypePretImmo.setText(checkImmo);
+           root.addContent(eTypePretImmo);
+           Element eTypePretConso = new Element("TypePretConso");
+           eTypePretConso.setText(checkConso);
+           root.addContent(eTypePretConso);
+           Element eTranche = new Element("Tranche");
+           eTranche.setText(String.valueOf(tranche));
+           root.addContent(eTranche);
+           
+       model.getOut().askSimNumber(root);
+    }
+    
+      public void sendAvgAmount(String checkImmo,String checkConso,int tranche){
+       Element root = new Element("AvgAmount"); 
+       
+           
+           Element eTypePretImmo = new Element("TypePretImmo");
+           eTypePretImmo.setText(checkImmo);
+           root.addContent(eTypePretImmo);
+           Element eTypePretConso = new Element("TypePretConso");
+           eTypePretConso.setText(checkConso);
+           root.addContent(eTypePretConso);
+           Element eTranche = new Element("Tranche");
+           eTranche.setText(String.valueOf(tranche));
+           root.addContent(eTranche);
+           
+       model.getOut().askAvgAmount(root);
+    }
+      
+     public void sendLoanTime(String checkImmo,String checkConso,int tranche){
+       Element root = new Element("LoanTime"); 
+       
+           
+           Element eTypePretImmo = new Element("TypePretImmo");
+           eTypePretImmo.setText(checkImmo);
+           root.addContent(eTypePretImmo);
+           Element eTypePretConso = new Element("TypePretConso");
+           eTypePretConso.setText(checkConso);
+           root.addContent(eTypePretConso);
+           Element eTranche = new Element("Tranche");
+           eTranche.setText(String.valueOf(tranche));
+           root.addContent(eTranche);
+           
+       model.getOut().askAvgAmount(root);
+    }  
+      
+      
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
         System.out.println("mise a jour du controller indicator");

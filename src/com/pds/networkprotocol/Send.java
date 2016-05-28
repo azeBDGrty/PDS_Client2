@@ -31,6 +31,10 @@ public enum Send {
     askSimulationClient("demander les simulations d'un client passé en param"),
     askIndicatorInfo (""),
     askAvgAge(""),
+    askLoanNumber(""),
+    askLoanTime(""),
+    askAvgAmount(""),
+    askSimNumber(""),
     askTauxInteret ("");
     
     private String signification;

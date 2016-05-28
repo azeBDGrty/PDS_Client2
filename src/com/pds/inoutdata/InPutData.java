@@ -106,8 +106,19 @@ public class InPutData {
                 readElement();
                 break ;
                 
-            case sendLoanNumbers:
-                 System.out.println("Input coté client");
+            case sendLoanNumber:
+                readElement();
+                break ;
+            
+            case sendLoanTime:
+                readElement();
+                break ;    
+            
+            case sendAvgAmount:
+                readElement();
+                break ;    
+                
+            case sendSimNumber:
                 readElement();
                 break ;
                 

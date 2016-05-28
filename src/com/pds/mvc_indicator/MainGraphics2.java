@@ -22,6 +22,7 @@ Controller_Indicator controller;
         
        panelPieChart p= new panelPieChart(this.controller);
        panelLineChart plc = new panelLineChart(controller);
+       panelIndicatorTable pit = new panelIndicatorTable(controller);
                 
         GridLayout gl=new GridLayout(2,0);
         BorderLayout gl2=new BorderLayout();
@@ -41,13 +42,15 @@ Controller_Indicator controller;
         main.add(p);
         main.add(plc);
         
+        main2.add(pit, BorderLayout.SOUTH);
+        
         this.add(main2);
         this.add(main);
         
         this.setLayout(new BorderLayout());
         this.add(main,BorderLayout.EAST);
         this.add(main2, BorderLayout.WEST);
-        setSize(1330, 640);
+        setSize(1330, 620);
         
         this.setVisible(true);
     }

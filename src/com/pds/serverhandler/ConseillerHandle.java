@@ -150,15 +150,33 @@ public class ConseillerHandle extends AbstractHandle{
                         System.out.println("Je dois recevoir la liste des pays;");
                         break;
                        
-                   case sendLoanNumbers : 
-                       System.out.println("test ConseillerHandle " + this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));                       
+                   case sendLoanNumber : 
+                       Indicator.setLoanNumber(this.in.getLastDocument());
                        setChanged();
-                       notifyObservers("sendLoanNumbers",this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));
+                       notifyObservers("sendLoanNumber");
                         break;
                    
+                    case sendSimNumber : 
+                       Indicator.setSimNumber(this.in.getLastDocument());
+                        setChanged();
+                       notifyObservers("sendSimNumber");
+                        break;   
+                    
+                    case sendAvgAmount : 
+                       Indicator.setAvgAmount(this.in.getLastDocument());
+                        setChanged();
+                       notifyObservers("sendAvgAmount");
+                        break;
+                    
+                    case sendLoanTime : 
+                       Indicator.setLoanTime(this.in.getLastDocument());
+                        setChanged();
+                       notifyObservers("sendLoanTime");
+                        break;    
+                    
                    case sendAvgAge : 
                        System.out.println("test ConseillerHandle " + this.in.getLastDocument().getRootElement().getChildText("resultat"));                       
-                       Indicator.setResultats(this.in.getLastDocument());
+                       Indicator.setAgebyLoanResult(this.in.getLastDocument());
                        System.out.println("resultat indicator niveau Cobseiller" + Indicator.getResultats().get(0));
                        
                        setChanged();

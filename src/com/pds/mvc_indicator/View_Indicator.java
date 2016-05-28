@@ -64,10 +64,7 @@ private Controller_Indicator controller;
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
 
-      
-        switch(message.trim()){ 
-       case "sendLoanNumbers" :
-           //    jTextField1.setText("il y a eu du changement");
+ 
            System.out.println("le resultat est 12h31 :" + data.toString());
           this.remove(m);
           this.repaint();
@@ -76,20 +73,7 @@ private Controller_Indicator controller;
           this.add(m);
           this.validate();
                 return true;
-         case "sendAvgAge" :
-           //    jTextField1.setText("il y a eu du changement");
-                   System.out.println("resultat indicator niveau view" +controller.getIndicator().getResultats().get(0));
-
-           System.out.println("le resultat est 12h30:" + data);
-          this.remove(m);
-          this.repaint();
-          m=new MainGraphics2(controller);
-          this.add(m);
-          this.validate();
-                return true;
-      default :
-                return false;         
-        }
+         
         
     }
         
