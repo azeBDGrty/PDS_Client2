@@ -170,7 +170,7 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
 
         try {
 
-            double indice = Double.parseDouble(this.jComboBox2.getSelectedItem().toString());  //indice de référence
+            double indice = Double.parseDouble(this.jComboBox2.getSelectedItem().toString());  //Benchmark
             double tauxInit = Double.parseDouble(this.jTextField4.getText());
             double montantPret = Double.parseDouble(this.jTextField1.getText());
             int duree = Integer.parseInt(this.jTextField2.getText());
