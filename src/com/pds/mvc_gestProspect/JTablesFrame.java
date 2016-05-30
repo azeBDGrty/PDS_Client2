@@ -35,6 +35,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         cp.setTauxDirecteur(td);
         initComponents();
         
+        // Rate increase 
         {
             String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
             DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
@@ -47,7 +48,7 @@ public class JTablesFrame extends javax.swing.JFrame {
             double montantTotal = 0;
             List<infoMensualite> listeTable = new LinkedList<>();
 
-            for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
+            for (int j=0;j<duree;j++){      //Display values in cells 
 
                 //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
                 sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
@@ -73,8 +74,8 @@ public class JTablesFrame extends javax.swing.JFrame {
         
         
         
-        // ici .... il faut faire copier coller
-        // en baisse 
+        //Rate down
+        
         
         {
             String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
@@ -88,7 +89,7 @@ public class JTablesFrame extends javax.swing.JFrame {
             double montantTotal = 0;
             List<infoMensualite> listeTable = new LinkedList<>();
 
-            for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
+            for (int j=0;j<duree;j++){      //Display values in cells 
 
                 //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
                 sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
@@ -112,7 +113,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         
         
         
-        // stable
+        // stable rate
         
         {
             String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
@@ -126,7 +127,7 @@ public class JTablesFrame extends javax.swing.JFrame {
             double montantTotal = 0;
             List<infoMensualite> listeTable = new LinkedList<>();
 
-            for (int j=0;j<duree;j++){      //affichage des valeurs dans les cellules
+            for (int j=0;j<duree;j++){      //Display values in cells 
 
                 //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
                 sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);

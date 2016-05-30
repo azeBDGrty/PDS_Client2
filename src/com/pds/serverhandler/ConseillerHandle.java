@@ -239,9 +239,12 @@ public class ConseillerHandle extends AbstractHandle{
                        Indicator.setLoanNumber(this.in.getLastDocument());
                        setChanged();
 
+
                        notifyObservers("sendLoanNumber");
                         break;
               
+
+                   
                     case sendSimNumber : 
                        Indicator.setSimNumber(this.in.getLastDocument());
                         setChanged();

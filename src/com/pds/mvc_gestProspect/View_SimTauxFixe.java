@@ -74,6 +74,8 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
         iAge = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         iTypeContrat = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        cbIsClient = new javax.swing.JComboBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -182,6 +184,11 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
         );
 
         cbTypeEmprunt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Prêt immobilier", "Prêt consomateur", " " }));
+        cbTypeEmprunt.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbTypeEmpruntItemStateChanged(evt);
+            }
+        });
         cbTypeEmprunt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTypeEmpruntActionPerformed(evt);
@@ -235,6 +242,20 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
             }
         });
 
+        jLabel10.setText("Type d'emprunt     :");
+
+        cbIsClient.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Client", "Pas client" }));
+        cbIsClient.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbIsClientItemStateChanged(evt);
+            }
+        });
+        cbIsClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbIsClientActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -252,7 +273,8 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                             .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -264,7 +286,8 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
                             .addComponent(iDureePret, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(iRevenu, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(iAge, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(iTypeContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(iTypeContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbIsClient, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(jLabel1))
@@ -303,7 +326,11 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(iTypeContrat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(cbIsClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel15)
                     .addGroup(layout.createSequentialGroup()
@@ -389,10 +416,22 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
         // TODO add your handling code here:
     }//GEN-LAST:event_iMtPretMouseClicked
 
+    private void cbIsClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIsClientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbIsClientActionPerformed
+
+    private void cbIsClientItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbIsClientItemStateChanged
+        chargerTauxInteret();
+    }//GEN-LAST:event_cbIsClientItemStateChanged
+
+    private void cbTypeEmpruntItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTypeEmpruntItemStateChanged
+        chargerTauxInteret();
+    }//GEN-LAST:event_cbTypeEmpruntItemStateChanged
+
     public void chargerTauxInteret() {
         try {
             int age = Integer.parseInt(iAge.getText());
-            boolean isClient = false;
+            boolean isClient = (cbIsClient.getSelectedIndex() == 0);
             double revenu = Double.parseDouble(iRevenu.getText());
             TypeEmprunt typeEmprunt = (cbTypeEmprunt.getSelectedIndex() == 0) ? TypeEmprunt._Credit_IMMO_ : TypeEmprunt._CREDIT_CONSO_;
             String typeContrat = "NON";
@@ -469,6 +508,7 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cbIsClient;
     private javax.swing.JComboBox cbTypeEmprunt;
     private javax.swing.JTextField iAge;
     private com.toedter.calendar.JDateChooser iDateContraction;
@@ -485,6 +525,7 @@ public class View_SimTauxFixe extends javax.swing.JInternalFrame implements com.
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
